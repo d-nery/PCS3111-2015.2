@@ -522,6 +522,7 @@ void limiarizacao(int m[MAXLINHA][MAXCOLUNA], int linhas, int colunas, int k)
         }
 
 }
+
 void filtroBorda1(int m[MAXLINHA][MAXCOLUNA], int linhas, int colunas, int larguraJanela, int k)
 {
     int E[MAXLINHA][MAXCOLUNA];
