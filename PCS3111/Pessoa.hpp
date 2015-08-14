@@ -13,6 +13,7 @@ namespace Polikut {
 		string nome;
 		string dataDeNascimento;
 		string pais;
+
 	public:
 		// Cria uma pessoa
 		Pessoa(string nome, string dataDeNascimento, string pais);
