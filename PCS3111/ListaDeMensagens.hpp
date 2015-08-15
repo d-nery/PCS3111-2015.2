@@ -10,11 +10,11 @@ namespace Polikut {
 		ListaDeMensagens();
 
 		// Adiciona uma mensagem à lista ligada
-		void adicionar(Mensagem m);
+		void adicionar(Mensagem& m);
 
 		// Obtém a cabeça da lista ligada
 		// (Isso é necessário para varrer a lista)
-		Elemento getCabeca();
+		Elemento& getCabeca();
 
 		// Destrói a lista ligada, apagando todos os elementos criados
 		~ListaDeMensagens();
