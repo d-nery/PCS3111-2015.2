@@ -14,7 +14,7 @@ namespace Polikut {
 
 		// Obtém a cabeça da lista ligada
 		// (Isso é necessário para varrer a lista)
-		Elemento& getCabeca();
+		Elemento* getCabeca();
 
 		// Destrói a lista ligada, apagando todos os elementos criados
 		~ListaDeMensagens();

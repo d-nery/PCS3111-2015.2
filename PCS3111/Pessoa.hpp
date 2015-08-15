@@ -37,10 +37,10 @@ namespace Polikut {
 		void recebe(Mensagem& m);
 
 		// Obtêm a lista ligada com as mensagens recebidas
-		ListaDeMensagens& getMensagensRecebidas();
+		ListaDeMensagens getMensagensRecebidas();
 
 		// Obtêm a lista ligada com as mensagens enviadas
-		ListaDeMensagens& getMensagensEnviadas();
+		ListaDeMensagens getMensagensEnviadas();
 
 		// Apresenta em tela o nome dos contatos que esta pessoa possui
 		void verContatos();
