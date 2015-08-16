@@ -1,3 +1,14 @@
+/**
+Escola Politecnica da Universidade de Sao Paulo
+
+PCS3111 - Laboratorio de Programacao Orientada a Objetos
+Exercicio-Programa 1
+
+Turma 23
+ 	Daniel Nery Silva de Oliveira - 9349051
+	Mateus Almeida Barbosa        - 9349072
+**/
+
 #ifndef _PESSOA_HPP_
 #define _PESSOA_HPP_
 
