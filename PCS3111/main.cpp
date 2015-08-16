@@ -19,6 +19,7 @@ int main() {
 		 << "2) Logar Como Pessoa\n"
 		 << "3) Terminar\n" << endl
 		 << "Digite uma opcao: ";
+
 	while (opcao != 3) {
 		cin >> opcao;
 		switch (opcao) {

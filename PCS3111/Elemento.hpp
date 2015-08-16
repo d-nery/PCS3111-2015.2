@@ -5,12 +5,9 @@
 
 namespace Polikut {
 	class Elemento {
-	private:
+	public:
 		Mensagem mensagem;
 		Elemento* proximo;
-
-	public:
-		Mensagem getMsg();
 	};
 }
 
