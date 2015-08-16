@@ -8,6 +8,9 @@ namespace Polikut {
 	private:
 		Mensagem mensagem;
 		Elemento* proximo;
+
+	public:
+		Mensagem getMsg();
 	};
 }
 
