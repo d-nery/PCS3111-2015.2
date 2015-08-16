@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _LISTA_DE_MENSAGENS_HPP_
+#define _LISTA_DE_MENSAGENS_HPP_
 
 #include "Mensagem.hpp"
 #include "Elemento.hpp"
@@ -9,14 +10,16 @@ namespace Polikut {
 		// Cria uma lista ligada de mensagens
 		ListaDeMensagens();
 
+		// Destrói a lista ligada, apagando todos os elementos criados
+		~ListaDeMensagens();
+
 		// Adiciona uma mensagem à lista ligada
 		void adicionar(Mensagem& m);
 
 		// Obtém a cabeça da lista ligada
 		// (Isso é necessário para varrer a lista)
 		Elemento* getCabeca();
-
-		// Destrói a lista ligada, apagando todos os elementos criados
-		~ListaDeMensagens();
 	};
 }
+
+#endif /* end of include guard: _LISTA_DE_MENSAGENS_HPP_ */

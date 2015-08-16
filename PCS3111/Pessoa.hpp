@@ -1,6 +1,7 @@
-#pragma once
+#ifndef _PESSOA_HPP_
+#define _PESSOA_HPP_
 
-#include <iostream>
+#include <string>
 
 #include "ListaDeMensagens.hpp"
 #include "Mensagem.hpp"
@@ -46,3 +47,5 @@ namespace Polikut {
 		void verContatos();
 	};
 }
+
+#endif /* end of include guard: _PESSOA_HPP_ */
