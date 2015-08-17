@@ -25,6 +25,7 @@ namespace Polikut {
 		string nome;
 		string dataDeNascimento;
 		string pais;
+		Pessoa* contatos = new Pessoa [9];
 
 	public:
 		Pessoa();

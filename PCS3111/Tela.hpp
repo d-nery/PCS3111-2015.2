@@ -21,6 +21,10 @@ namespace Polikut {
 		void cadastro();
 		void login();
 		void info(Pessoa& pessoa);
+		void adicionarContato(Pessoa& pessoa);
+		void mensagensEnviadas(Pessoa& pessoa);
+		void mensagensRecebidas(Pessoa& pessoa);
+		void escreverMensagem(Pessoa& pessoa);
 	};
 }
 

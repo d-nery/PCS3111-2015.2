@@ -66,7 +66,7 @@ namespace Polikut {
 			return;
 
 			case 1: case 2: case 3: case 4: case 5:
-			case 6: case 7: case 8: case 9:
+			case 6: case 7: case 8: case 9: case 10:
 			tela.info(pessoas[opcao - 1]);
 			break;
 
@@ -75,6 +75,84 @@ namespace Polikut {
 			cin.clear();
 			while (cin.get() != '\n');
 		}
+	}
 
+	void Tela::info(Pessoa& pessoa) {
+		int opcao = 0;
+		cout << "Pessoa: " << pessoa.getNome() << endl;
+		cout << pessoa.getDataDeNascimento() << " | " << pessoa.getPais() << endl << endl;
+		cout << "\nContatos: \n";
+		pessoa.verContatos();
+		cout << "-----------------------------\n\n"
+			 << "Escolha uma opcao:\n"
+			 << "1) Adicionar contato\n"
+			 << "2) Ver mensagens enviadas\n"
+			 << "3) Ver mensgaens recebidas\n"
+			 << "4) Escrever mensagem\n"
+			 << "0) Voltar" << endl;
+
+		cout << "Digite uma opcao valida: ";
+ 		cin >> opcao;
+ 		switch (opcao) {
+ 			case 0:
+ 			return;
+
+ 			case 1:
+			tela.adicionarContato(pessoa);
+			tela.info(pessoa);
+			break;
+
+			case 2:
+			tela.mensagensEnviadas(pessoa);
+			tela.info(pessoa);
+			break;
+
+			case 3:
+			tela.mensagensRecebidas(pessoa);
+			tela.info(pessoa);
+			break;
+
+			case 4:
+			tela.escreverMensagem(pessoa);
+			tela.info(pessoa);
+ 			break;
+
+ 			default:
+ 			cout << "Digite uma opcao valida: ";
+ 			cin.clear();
+ 			while (cin.get() != '\n');
+ 		}
+	}
+
+	void Tela::adicionarContato(Pessoa& pessoa) {
+		int opcao = 0;
+		cout << "Pessoas\n"
+			 << "-------------------------\n";
+		for (int i = 0; i < numPessoas; i++)
+			cout << i + 1 << ") " << pessoas[i].getNome();
+		cout << "\nEscolha um contato para adicionar ou 0 para voltar: ";
+		cin >> opcao;
+		switch (opcao) {
+			case 0:
+			return;
+
+			case 1: case 2: case 3: case 4: case 5:
+			case 6: case 7: case 8: case 9: case 10:
+			pessoa.adiciona(pessoas[opcao - 1]);
+			cout << pessoas[opcao - 1].getNome() << " conectado a " << pessoa.getNome() << endl;
+			break;
+
+			default:
+			cout << "Digite uma opcao valida: ";
+			cin.clear();
+			while (cin.get() != '\n');
+		}
+	}
+
+	void Tela::mensagensEnviadas(Pessoa& pessoa) {
+		cout << "Mensagens Enviadas\n"
+		 	 << "-----------------------------------------\n";
+		for (int i = 0; i < pessoa.getMensagensEnviadas().getTotal(); i++)
+			cout << i + 1 << ") " << pessoa.getMensagensEnviadas().getMensagem(i) << endl;
 	}
 }
