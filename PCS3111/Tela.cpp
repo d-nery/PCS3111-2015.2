@@ -1,3 +1,14 @@
+/**
+Escola Politecnica da Universidade de Sao Paulo
+
+PCS3111 - Laboratorio de Programacao Orientada a Objetos
+Exercicio- Programa 1 - 2015
+
+Turma 23
+ 	Daniel Nery Silva de Oliveira - 9349051
+	Mateus Almeida Barbosa        - 9349072
+**/
+
 #include <iostream>
 #include <iomanip>
 
@@ -53,7 +64,7 @@ namespace Polikut {
 		switch (opcao) {
 			case 0:
 			return;
-			
+
 			case 1: case 2: case 3: case 4: case 5:
 			case 6: case 7: case 8: case 9:
 			tela.info(pessoas[opcao - 1]);
