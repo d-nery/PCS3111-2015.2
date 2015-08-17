@@ -70,19 +70,18 @@ void Polikut::cadastro() {
 		return;
 	}
 	string nome, dataDeNascimento, pais;
-	cout << "\nInforme os dados da pessoa: \n"
-		 << "Nome: ";
+	cout << "\nInforme os dados da pessoa: \n";
+
+	cout << "Nome: ";
 	cin.ignore();
 	getline(cin, nome);
 
 	cout << "Data de Nascimento: ";
-	cin.ignore();
 	getline(cin, dataDeNascimento);
 
 	cout << "Pais: ";
-	cin.ignore();
 	getline(cin, pais);
 
 	pessoas[numPessoas] = Pessoa(nome, dataDeNascimento, pais);
-	cout << pessoas[numPessoas++].getNome() << " cadastrado com sucesso.\n";
+	cout << pessoas[numPessoas++].getNome()	<< " cadastrado com sucesso.\n";
 }
