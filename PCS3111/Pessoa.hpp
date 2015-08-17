@@ -21,12 +21,13 @@ using namespace std;
 
 namespace Polikut {
 	class Pessoa {
-	private:
+	public:
 		string nome;
 		string dataDeNascimento;
 		string pais;
 
 	public:
+		Pessoa();
 		// Cria uma pessoa
 		Pessoa(string nome, string dataDeNascimento, string pais);
 

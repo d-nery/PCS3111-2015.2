@@ -17,33 +17,34 @@ Turma 23
 #include "Elemento.hpp"
 #include "Mensagem.hpp"
 #include "Pessoa.hpp"
+#include "main.hpp"
 
 using namespace std;
 using namespace Polikut;
 
+static int numPessoas = 0; // Colocar dentro da classe de Pessoa | incrementa no construtor
+static Pessoa* pessoas = new Pessoa [10];
+
 int main() {
 	int opcao = 0;
 
-	cout << "Polikut\n"
-	 	 << "--------------------\n"
-		 << "1) Cadastrar Pessoa\n"
-		 << "2) Logar Como Pessoa\n"
-		 << "3) Terminar\n" << endl
-		 << "Digite uma opcao: ";
+	menuPrincipal();
 
-	while (opcao != 3) {
+	for (;;) {
 		cin >> opcao;
 		switch (opcao) {
 			case 1:
-			cout << "cadastrar\n";
+			cadastro();
+			menuPrincipal();
 			break;
 
 			case 2:
-			cout << "logar\n";
 			break;
 
 			case 3:
-			cout << "sair\n";
+			cout << "Volte Sempre!\n";
+			delete[] pessoas;
+			return 0;
 			break;
 
 			default:
@@ -52,6 +53,36 @@ int main() {
 			while (cin.get() != '\n');
 		}
 	}
+}
 
-	return 0;
+void Polikut::menuPrincipal() {
+	cout << "\nPolikut\n"
+		 << "--------------------\n"
+		 << "1) Cadastrar Pessoa\n"
+		 << "2) Logar Como Pessoa\n"
+		 << "3) Terminar\n" << endl
+		 << "Digite uma opcao: ";
+}
+
+void Polikut::cadastro() {
+	if (numPessoas > 9) {
+		cout << "Numero maximo de pessoas cadastradas.";
+		return;
+	}
+	string nome, dataDeNascimento, pais;
+	cout << "\nInforme os dados da pessoa: \n"
+		 << "Nome: ";
+	cin.ignore();
+	getline(cin, nome);
+
+	cout << "Data de Nascimento: ";
+	cin.ignore();
+	getline(cin, dataDeNascimento);
+
+	cout << "Pais: ";
+	cin.ignore();
+	getline(cin, pais);
+
+	pessoas[numPessoas] = Pessoa(nome, dataDeNascimento, pais);
+	cout << pessoas[numPessoas++].getNome() << " cadastrado com sucesso.\n";
 }
