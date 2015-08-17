@@ -21,6 +21,7 @@ namespace Polikut {
 		int curtidas;
 
 	public:
+		Mensagem();
 		Mensagem(std::string conteudo);
 
 		std::string getConteudo();

@@ -8,3 +8,13 @@ Turma 23
  	Daniel Nery Silva de Oliveira - 9349051
 	Mateus Almeida Barbosa        - 9349072
 **/
+#include "Elemento.hpp"
+#include "Mensagem.hpp"
+
+namespace Polikut {
+    Elemento::Elemento(std::string msg, Elemento* proximo) {
+        mensagem = Mensagem(msg);
+        this->proximo = proximo;
+    }
+    Elemento::~Elemento() { delete proximo; }
+}

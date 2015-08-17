@@ -8,3 +8,22 @@ Turma 23
  	Daniel Nery Silva de Oliveira - 9349051
 	Mateus Almeida Barbosa        - 9349072
 **/
+#include "ListaDeMensagens.hpp"
+#include "Elemento.hpp"
+
+namespace Polikut {
+    ListaDeMensagens::ListaDeMensagens() {
+        total = 0;
+        cabeca = Elemento("", NULL);
+    }
+
+    ListaDeMensagens::~ListaDeMensagens() {}
+
+    void ListaDeMensagens::adicionar(Mensagem& m) {
+
+    }
+
+    Elemento ListaDeMensagens::getCabeca() {
+
+    }
+}

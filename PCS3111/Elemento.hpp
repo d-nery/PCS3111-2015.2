@@ -12,6 +12,8 @@ Turma 23
 #ifndef _ELEMENTO_HPP_
 #define _ELEMENTO_HPP_
 
+#include <string>
+
 #include "Mensagem.hpp"
 
 namespace Polikut {
@@ -19,6 +21,10 @@ namespace Polikut {
 	public:
 		Mensagem mensagem;
 		Elemento* proximo;
+
+		Elemento();
+		Elemento(std::string msg, Elemento* proximo);
+		~Elemento();
 	};
 }
 
