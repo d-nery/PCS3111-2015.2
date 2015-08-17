@@ -99,22 +99,18 @@ namespace Polikut {
 
  			case 1:
 			tela.adicionarContato(pessoa);
-			tela.info(pessoa);
 			break;
 
 			case 2:
 			tela.mensagensEnviadas(pessoa);
-			tela.info(pessoa);
 			break;
 
 			case 3:
 			tela.mensagensRecebidas(pessoa);
-			tela.info(pessoa);
 			break;
 
 			case 4:
 			tela.escreverMensagem(pessoa);
-			tela.info(pessoa);
  			break;
 
  			default:
@@ -131,21 +127,25 @@ namespace Polikut {
 		for (int i = 0; i < numPessoas; i++)
 			cout << i + 1 << ") " << pessoas[i].getNome();
 		cout << "\nEscolha um contato para adicionar ou 0 para voltar: ";
-		cin >> opcao;
-		switch (opcao) {
-			case 0:
-			return;
+		for (;;) {
+			cin >> opcao;
+			switch (opcao) {
+				case 0:
+				tela.info(pessoa);
+				break;
 
-			case 1: case 2: case 3: case 4: case 5:
-			case 6: case 7: case 8: case 9: case 10:
-			pessoa.adiciona(pessoas[opcao - 1]);
-			cout << pessoas[opcao - 1].getNome() << " conectado a " << pessoa.getNome() << endl;
-			break;
+				case 1: case 2: case 3: case 4: case 5:
+				case 6: case 7: case 8: case 9: case 10:
+				pessoa.adiciona(pessoas[opcao - 1]);
+				cout << pessoas[opcao - 1].getNome() << " conectado a " << pessoa.getNome() << endl;
+				tela.info(pessoa);
+				break;
 
-			default:
-			cout << "Digite uma opcao valida: ";
-			cin.clear();
-			while (cin.get() != '\n');
+				default:
+				cout << "Digite uma opcao valida: ";
+				cin.clear();
+				while (cin.get() != '\n');
+			}
 		}
 	}
 
@@ -153,6 +153,45 @@ namespace Polikut {
 		cout << "Mensagens Enviadas\n"
 		 	 << "-----------------------------------------\n";
 		for (int i = 0; i < pessoa.getMensagensEnviadas().getTotal(); i++)
-			cout << i + 1 << ") " << pessoa.getMensagensEnviadas().getMensagem(i) << endl;
+			cout << i + 1 << ") " << pessoa.getMensagensEnviadas().getMensagem(i).getConteudo() << endl;
+		tela.info(pessoa);
+	}
+
+	void Tela::mensagensRecebidas(Pessoa& pessoa) {
+		int opcao = 0;
+		cout << "Mensagens Recebidas\n"
+			 << "----------------------------\n";
+		for (int i = 0; i < pessoa.getMensagensRecebidas().getTotal(); i++)
+			cout << i + 1 << ") " << pessoa.getMensagensRecebidas().getMensagem(i).getConteudo() << "("
+			 	 << pessoa.getMensagensRecebidas().getMensagem(i).getCurtidas() << " curtidas)\n";
+
+		cout << "Digite o numero da mensagem para curtir ou 0 para voltar: ";
+		for (;;) {
+			cin >> opcao;
+			if (opcao == 0)
+				tela.info(pessoa);
+			if (opcao > 0 && opcao <= pessoa.getMensagensRecebidas().getTotal()) {
+				pessoa.getMensagensRecebidas().getMensagem(opcao).curtir();
+				cout << "Mensagem curtida\n";
+				tela.info(pessoa);
+			} else {
+				cout << "Digite uma opcao valida: ";
+				cin.clear();
+				while (cin.get() != '\n');
+			}
+		}
+	}
+
+	void Tela::escreverMensagem(Pessoa& pessoa) {
+		string mensagem;
+		cout << "Digite a mensagem: ";
+
+		cin.ignore();
+		getline(cin, mensagem);
+
+		pessoa.envia(mensagem);
+		cout << "Mensagem enviada a todos os contatos\n";
+
+		tela.info(pessoa);
 	}
 }

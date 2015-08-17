@@ -12,8 +12,20 @@ Turma 23
 #ifndef _MENSAGEM_HPP_
 #define _MENSAGEM_HPP_
 
+#include <string>
+
 namespace Polikut {
 	class Mensagem {
+	private:
+		std::string conteudo;
+		int curtidas;
+
+	public:
+		Mensagem(std::string conteudo);
+
+		std::string getConteudo();
+		int getCurtidas();
+		void curtir();
 
 	};
 }
