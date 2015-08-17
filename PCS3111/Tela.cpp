@@ -161,9 +161,7 @@ namespace Polikut {
 		int opcao = 0;
 		cout << "Mensagens Recebidas\n"
 			 << "----------------------------\n";
-		for (int i = 0; i < pessoa.getMensagensRecebidas().getTotal(); i++)
-			cout << i + 1 << ") " << pessoa.getMensagensRecebidas().getMensagem(i).getConteudo() << "("
-			 	 << pessoa.getMensagensRecebidas().getMensagem(i).getCurtidas() << " curtidas)\n";
+		pessoa.getMensagensRecebidas().listar();
 
 		cout << "Digite o numero da mensagem para curtir ou 0 para voltar: ";
 		for (;;) {

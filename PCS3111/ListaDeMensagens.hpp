@@ -36,6 +36,7 @@ namespace Polikut {
 		Elemento getCabeca();
 
 		int getTotal();
+		void listar();
 	};
 }
 

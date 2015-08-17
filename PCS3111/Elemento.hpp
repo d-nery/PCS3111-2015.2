@@ -24,6 +24,7 @@ namespace Polikut {
 
 		Elemento();
 		Elemento(std::string msg, Elemento* proximo);
+		Elemento(Mensagem& msg, Elemento* proximo);
 		~Elemento();
 	};
 }

@@ -12,9 +12,11 @@ Turma 23
 #include "Mensagem.hpp"
 
 namespace Polikut {
+    Elemento::Elemento() {}
     Elemento::Elemento(std::string msg, Elemento* proximo) {
         mensagem = Mensagem(msg);
         this->proximo = proximo;
     }
+    Elemento::Elemento(Mensagem& msg, Elemento* proximo) : mensagem(msg), proximo(proximo) {}
     Elemento::~Elemento() { delete proximo; }
 }
