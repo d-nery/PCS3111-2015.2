@@ -25,7 +25,7 @@ extern Tela tela;
 namespace Polikut {
 	void Tela::principal() {
 		cout << "\nPolikut\n"
-			 << "--------------------\n"
+			 << "-----------------------------------------\n"
 			 << "1) Cadastrar Pessoa\n"
 			 << "2) Logar Como Pessoa\n"
 			 << "3) Terminar\n" << endl
@@ -83,7 +83,7 @@ namespace Polikut {
 		cout << pessoa.getDataDeNascimento() << " | " << pessoa.getPais() << endl << endl;
 		cout << "\nContatos: \n";
 		pessoa.verContatos();
-		cout << "-----------------------------\n\n"
+		cout << "-----------------------------------------\n\n"
 			 << "Escolha uma opcao:\n"
 			 << "1) Adicionar contato\n"
 			 << "2) Ver mensagens enviadas\n"
@@ -123,7 +123,7 @@ namespace Polikut {
 	void Tela::adicionarContato(Pessoa& pessoa) {
 		int opcao = 0;
 		cout << "Pessoas\n"
-			 << "-------------------------\n";
+			 << "-----------------------------------------\n";
 		for (int i = 0; i < numPessoas; i++)
 			cout << i + 1 << ") " << pessoas[i].getNome();
 		cout << "\nEscolha um contato para adicionar ou 0 para voltar: ";
@@ -152,15 +152,15 @@ namespace Polikut {
 	void Tela::mensagensEnviadas(Pessoa& pessoa) {
 		cout << "Mensagens Enviadas\n"
 		 	 << "-----------------------------------------\n";
-		for (int i = 0; i < pessoa.getMensagensEnviadas().getTotal(); i++)
-			cout << i + 1 << ") " << pessoa.getMensagensEnviadas().getMensagem(i).getConteudo() << endl;
+		pessoa.getMensagensEnviadas().listar();
+
 		tela.info(pessoa);
 	}
 
 	void Tela::mensagensRecebidas(Pessoa& pessoa) {
 		int opcao = 0;
 		cout << "Mensagens Recebidas\n"
-			 << "----------------------------\n";
+			 << "-----------------------------------------\n";
 		pessoa.getMensagensRecebidas().listar();
 
 		cout << "Digite o numero da mensagem para curtir ou 0 para voltar: ";

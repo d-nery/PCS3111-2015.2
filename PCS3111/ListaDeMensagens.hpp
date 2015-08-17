@@ -33,7 +33,9 @@ namespace Polikut {
 
 		// Obtém a cabeça da lista ligada
 		// (Isso é necessário para varrer a lista)
-		Elemento getCabeca();
+		Elemento& getCabeca();
+
+		Mensagem& getMensagem(int id);
 
 		int getTotal();
 		void listar();

@@ -19,6 +19,7 @@ Turma 23
 namespace Polikut {
 	class Elemento {
 	public:
+		int id;
 		Mensagem mensagem;
 		Elemento* proximo;
 

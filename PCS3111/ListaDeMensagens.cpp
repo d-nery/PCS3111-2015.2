@@ -11,12 +11,11 @@ Turma 23
 #include <iostream>
 
 #include "ListaDeMensagens.hpp"
-#include "Elemento.hpp"
 
 namespace Polikut {
     ListaDeMensagens::ListaDeMensagens() {
         total = 0;
-        cabeca = Elemento("", NULL);
+        cabeca = Elemento("__cabeca__", NULL);
     }
 
     ListaDeMensagens::~ListaDeMensagens() {}
@@ -24,11 +23,21 @@ namespace Polikut {
     void ListaDeMensagens::adicionar(Mensagem& m) {
         Elemento novo(m, cabeca.proximo);
         cabeca.proximo = &novo;
-        total++;
+        novo.id = ++total;
     }
 
-    Elemento ListaDeMensagens::getCabeca() {
+    Elemento& ListaDeMensagens::getCabeca() {
         return cabeca;
+    }
+
+    Mensagem& ListaDeMensagens::getMensagem(int id) {
+        Elemento x = cabeca;
+        while (x.proximo != NULL) {
+            if (total - x.proximo->id + 1 == id)
+                return x.proximo->mensagem;
+            x.proximo = x.proximo->proximo;
+        }
+        return cabeca.mensagem;
     }
 
     int ListaDeMensagens::getTotal() {
@@ -37,9 +46,9 @@ namespace Polikut {
 
     void ListaDeMensagens::listar() {
         Elemento x = cabeca;
-        int i = 1;
         while (x.proximo != NULL) {
-            std::cout << i << ") " << x.proximo->mensagem.getConteudo() << std::endl;
+            std::cout << total - x.proximo->id + 1 << ") " << x.proximo->mensagem.getConteudo() << std::endl;
+            x.proximo = x.proximo->proximo;
         }
     }
 }
