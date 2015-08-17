@@ -2,7 +2,7 @@
 Escola Politecnica da Universidade de Sao Paulo
 
 PCS3111 - Laboratorio de Programacao Orientada a Objetos
-Exercicio-Programa 1
+Exercicio- Programa 1 - 2015
 
 Turma 23
  	Daniel Nery Silva de Oliveira - 9349051
@@ -17,28 +17,31 @@ Turma 23
 #include "Elemento.hpp"
 #include "Mensagem.hpp"
 #include "Pessoa.hpp"
-#include "main.hpp"
+#include "Tela.hpp"
 
 using namespace std;
 using namespace Polikut;
 
-static int numPessoas = 0; // Colocar dentro da classe de Pessoa | incrementa no construtor
-static Pessoa* pessoas = new Pessoa [10];
+int numPessoas = 0;
+Pessoa* pessoas = new Pessoa [10];
+Tela tela;
 
 int main() {
 	int opcao = 0;
 
-	menuPrincipal();
+	tela.principal();
 
 	for (;;) {
 		cin >> opcao;
 		switch (opcao) {
 			case 1:
-			cadastro();
-			menuPrincipal();
+			tela.cadastro();
+			tela.principal();
 			break;
 
 			case 2:
+			tela.login();
+			tela.principal();
 			break;
 
 			case 3:
@@ -53,35 +56,4 @@ int main() {
 			while (cin.get() != '\n');
 		}
 	}
-}
-
-void Polikut::menuPrincipal() {
-	cout << "\nPolikut\n"
-		 << "--------------------\n"
-		 << "1) Cadastrar Pessoa\n"
-		 << "2) Logar Como Pessoa\n"
-		 << "3) Terminar\n" << endl
-		 << "Digite uma opcao: ";
-}
-
-void Polikut::cadastro() {
-	if (numPessoas > 9) {
-		cout << "Numero maximo de pessoas cadastradas.";
-		return;
-	}
-	string nome, dataDeNascimento, pais;
-	cout << "\nInforme os dados da pessoa: \n";
-
-	cout << "Nome: ";
-	cin.ignore();
-	getline(cin, nome);
-
-	cout << "Data de Nascimento: ";
-	getline(cin, dataDeNascimento);
-
-	cout << "Pais: ";
-	getline(cin, pais);
-
-	pessoas[numPessoas] = Pessoa(nome, dataDeNascimento, pais);
-	cout << pessoas[numPessoas++].getNome()	<< " cadastrado com sucesso.\n";
 }
