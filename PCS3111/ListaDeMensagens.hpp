@@ -25,7 +25,7 @@ namespace Polikut {
 		// Cria uma lista ligada de mensagens
 		ListaDeMensagens();
 
-		// Destrói a lista ligada, apagando todos os elementos criados
+		// Destroi a lista ligada, apagando todos os elementos criados
 		~ListaDeMensagens();
 
 		// Adiciona uma mensagem à lista ligada

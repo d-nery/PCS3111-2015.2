@@ -8,7 +8,7 @@ Turma 23
  	Daniel Nery Silva de Oliveira - 9349051
 	Mateus Almeida Barbosa        - 9349072
 **/
-
+#include <iostream>
 #include "Pessoa.hpp"
 
 using namespace std;
@@ -64,8 +64,8 @@ namespace Polikut {
   }
 
   void Pessoa::verContatos() {
-      for(int i = 0; i < this->numeroContatos, i++)
+      for(int i = 0; i < this->numeroContatos; i++)
         cout << "\t" << contatos[i].getNome() << endl;
   }
-  
+
 }
