@@ -41,14 +41,14 @@ namespace Polikut {
   void Pessoa::adiciona(Pessoa& contato) {
       if (this->numeroContatos >= 9)
         return;
-      this->contatos[this->numeroContatos] = contato;
+      this->contatos[this->numeroContatos] = &contato;
       this->numeroContatos++;
   }
 
   void Pessoa::envia(string texto) {
       Mensagem mensagem(texto);
       for (int i = 0; i < this->numeroContatos; i++)
-          contatos[i].recebe(mensagem);
+          contatos[i]->recebe(mensagem);
       this->enviadas.adicionar(mensagem);
   }
 
@@ -66,7 +66,7 @@ namespace Polikut {
 
   void Pessoa::verContatos() {
       for(int i = 0; i < this->numeroContatos; i++)
-        cout << "\t" << contatos[i].getNome() << endl;
+        cout << "\t" << contatos[i]->getNome() << endl;
   }
 
 }
