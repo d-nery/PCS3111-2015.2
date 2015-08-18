@@ -10,3 +10,49 @@ Turma 23
 **/
 
 #include "Pessoa.hpp"
+
+using namespace std;
+
+namespace Polikut {
+  Pessoa::Pessoa() {}
+
+  Pessoa::Pessoa (string nome, string dataDeNascimento, string pais) {
+      this->nome = nome;
+      this->dataDeNascimento = dataDeNascimento;
+      this->pais = pais;
+      this->numeroContatos = 0;
+  }
+
+  Pessoa::~Pessoa() {}
+
+  string Pessoa::getNome() {
+      return this->nome;
+  }
+
+  string Pessoa::getDataDeNascimento() {
+      return this->dataDeNascimento;
+  }
+
+  string Pessoa::getPais() {
+      return this->pais;
+  }
+
+  void Pessoa::adiciona(Pessoa& contato) {
+      if (this->numeroContatos >= 9)
+        return;
+      this->contatos[this->numeroContatos] = contato;
+      this->numeroContatos++;
+  }
+
+  void Pessoa::envia(string texto) {
+      Mensagem mensagem(texto);
+      for (int i = 0; i < numeroContatos; i++)
+          contatos[i].recebe(mensagem);
+      this->enviadas.adicionar(mensagem);
+  }
+
+  void Pessoa::recebe(Mensagem& m) {
+      this->recebidas.adicionar(m);
+  }
+
+}

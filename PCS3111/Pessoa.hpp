@@ -21,13 +21,14 @@ using namespace std;
 
 namespace Polikut {
 	class Pessoa {
-	public:
+	private:
 		string nome;
 		string dataDeNascimento;
 		string pais;
 		Pessoa* contatos = new Pessoa [9];
 		ListaDeMensagens recebidas;
 		ListaDeMensagens enviadas;
+		int numeroContatos;
 
 	public:
 		Pessoa();
