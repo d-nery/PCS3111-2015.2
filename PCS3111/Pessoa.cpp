@@ -46,7 +46,7 @@ namespace Polikut {
 
   void Pessoa::envia(string texto) {
       Mensagem mensagem(texto);
-      for (int i = 0; i < numeroContatos; i++)
+      for (int i = 0; i < this->numeroContatos; i++)
           contatos[i].recebe(mensagem);
       this->enviadas.adicionar(mensagem);
   }
@@ -55,4 +55,17 @@ namespace Polikut {
       this->recebidas.adicionar(m);
   }
 
+  ListaDeMensagens& Pessoa::getMensagensRecebidas() {
+      return this->recebidas;
+  }
+
+  ListaDeMensagens& Pessoa::getMensagensEnviadas() {
+      return this->enviadas;
+  }
+
+  void Pessoa::verContatos() {
+      for(int i = 0; i < this->numeroContatos, i++)
+        cout << "\t" << contatos[i].getNome() << endl;
+  }
+  
 }
