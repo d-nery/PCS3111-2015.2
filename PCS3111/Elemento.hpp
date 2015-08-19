@@ -18,15 +18,20 @@ Turma 23
 
 namespace Polikut {
 	class Elemento {
-	public:
+	private:
 		int id;
-		Mensagem mensagem;
+		Mensagem* mensagem;
 		Elemento* proximo;
 
+	public:
 		Elemento();
-		Elemento(std::string msg, Elemento* proximo);
-		Elemento(Mensagem& msg, Elemento* proximo);
 		~Elemento();
+		void setId(int id);
+		void setMensagem(Mensagem* msg);
+		void setProximo(Elemento* prx);
+		int getId();
+		Mensagem* getMensagem();
+		Elemento* getProximo();
 	};
 }
 

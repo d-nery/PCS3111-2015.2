@@ -72,17 +72,11 @@ namespace Polikut {
 				cout << i + 1 << ") " << pessoas[i].getNome() << endl;
 			cout << "Digite um numero ou 0 para voltar: ";
 			cin >> opcao;
-			switch (opcao) {
-				case 0:
+			if (opcao == 0)
 				return;
-
-				case 1: case 2: case 3: case 4: case 5:
-				case 6: case 7: case 8: case 9: case 10:
+			if (opcao >= 1 && opcao <= numPessoas)
 				tela.info(pessoas[opcao - 1]);
-				break;
-
-				default:
-				cout << "Digite uma opcao valida: ";
+			else {
 				cin.clear();
 				while (cin.get() != '\n');
 			}
@@ -147,23 +141,18 @@ namespace Polikut {
 		cout << "\nEscolha um contato para adicionar ou 0 para voltar: ";
 		for (;;) {
 			cin >> opcao;
-			switch (opcao) {
-				case 0:
+			if (opcao == 0)
 				return;
-
-				case 1: case 2: case 3: case 4: case 5:
-				case 6: case 7: case 8: case 9: case 10:
+			if (opcao >= 1 && opcao <= numPessoas) {
 				pessoa.adiciona(&pessoas[opcao - 1]);
 				cout << pessoas[opcao - 1].getNome() << " conectado a " << pessoa.getNome() << endl;
 				cout << "Aperte qualquer tecla para retornar\n";
                 cin.get(); cin.get();
 				return;
-
-				default:
-				cout << "Digite uma opcao valida: ";
-				cin.clear();
-				while (cin.get() != '\n');
 			}
+			cout << "Digite uma opcao valida: ";
+			cin.clear();
+			while (cin.get() != '\n');
 		}
 	}
 
@@ -179,24 +168,21 @@ namespace Polikut {
 	}
 
 	void Tela::mensagensRecebidas(Pessoa& pessoa) {
-	    CLEAR
-		//CBLUE cerr << "Tela mensagens recebidas criada" << endl; CRESET
-		int opcao = 0;
-		cout << "Mensagens Recebidas\n"
-			 << "-----------------------------------------\n";
-		pessoa.getMensagensRecebidas().listar();
-
-		cout << "Digite o numero da mensagem para curtir ou 0 para voltar: ";
 		for (;;) {
+		    CLEAR
+			//CBLUE cerr << "Tela mensagens recebidas criada" << endl; CRESET
+			int opcao = 0;
+			cout << "Mensagens Recebidas\n"
+				 << "-----------------------------------------\n";
+			pessoa.getMensagensRecebidas().listar();
+
+			cout << "Digite o numero da mensagem para curtir ou 0 para voltar: ";
 			cin >> opcao;
 			if (opcao == 0)
 				return;
 			if (opcao > 0 && opcao <= pessoa.getMensagensRecebidas().getTotal()) {
-				pessoa.getMensagensRecebidas().getMensagem(opcao).curtir();
+				pessoa.getMensagensRecebidas().getMensagem(opcao)->curtir();
 				cout << "Mensagem curtida\n";
-				cout << "Aperte qualquer tecla para retornar\n";
-                cin.get();
-				return;
 			} else {
 				cout << "Digite uma opcao valida: ";
 				cin.clear();

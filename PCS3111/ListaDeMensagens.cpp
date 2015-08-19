@@ -16,43 +16,47 @@ Turma 23
 namespace Polikut {
     ListaDeMensagens::ListaDeMensagens() {
         total = 0;
-        cabeca = Elemento("__cabeca__", NULL);
+        cabeca = nullptr;
         // CRED std::cerr << "LdM criada" << std::endl; CRESET
     }
 
-    ListaDeMensagens::~ListaDeMensagens() {}
-
-    void ListaDeMensagens::adicionar(Mensagem* m) {
-        // CGREEN std::cerr << "Adicinando mensagem\n"; CRESET
-        Elemento* novo = new Elemento(*m, cabeca.proximo);
-        // CGREEN std::cerr << cabeca.proximo << std::endl; CRESET
-        // CGREEN std::cerr << novo->mensagem.getConteudo() << std::endl; CRESET
-        // CGREEN std::cerr << novo << std::endl; CRESET
-        cabeca.proximo = novo;
-        // CGREEN std::cerr << cabeca.proximo << std::endl; CRESET
-        novo->id = ++total;
-        // CGREEN std::cerr << novo->id << std::endl; CRESET
-        // CGREEN std::cerr << total << std::endl; CRESET
-
-
+    ListaDeMensagens::~ListaDeMensagens() {
+        delete cabeca;
     }
 
-    Elemento ListaDeMensagens::getCabeca() {
+    void ListaDeMensagens::adicionar(Mensagem* m) {
+        Elemento* novo = new Elemento();
+        novo->setId(++total);
+        novo->setMensagem(m);
+        novo->setProximo(nullptr);
+
+        Elemento* x = cabeca;
+        if (x != nullptr) {
+            while (x->getProximo() != nullptr) {
+                x = x->getProximo();
+            }
+            x->setProximo(novo);
+        } else {
+            cabeca = novo;
+        }
+    }
+
+    Elemento* ListaDeMensagens::getCabeca() {
         return cabeca;
     }
 
-    Mensagem& ListaDeMensagens::getMensagem(int _id) {
+    Mensagem* ListaDeMensagens::getMensagem(int _id) {
         //CGREEN std::cerr << "Retornarndo msg de id: " << _id << "\n"; CRESET
-        Elemento x = cabeca;
-        while (x.proximo != NULL) {
-            //CGREEN std::cerr << total - x.proximo->id + 1 << std::endl; CRESET
-            if (total - x.proximo->id + 1 == _id) {
-                //CGREEN std::cerr << "Entrando no if" << std::endl; CRESET
-                return x.proximo->mensagem;
-            }
-            x.proximo = x.proximo->proximo;
+        if (_id == 0) {
+            return nullptr;
         }
-        return cabeca.mensagem;
+        Elemento* x = cabeca;
+        if (x != nullptr) {
+            while (x->getProximo() != nullptr && x->getProximo()->getId() != _id) {
+                x = x->getProximo();
+            }
+            return x->getProximo()->getMensagem();
+        }
     }
 
     int ListaDeMensagens::getTotal() {
@@ -61,15 +65,21 @@ namespace Polikut {
 
     void ListaDeMensagens::listar() {
         //CGREEN std::cerr << "Tentando listar\n"; CRESET
-        Elemento x = cabeca;
-        //CGREEN std::cerr << "Elemento x criado\n"; CRESET
-        //CGREEN std::cerr << x.proximo << std::endl; CRESET
-        while (x.proximo != NULL) {
-            //CGREEN std::cerr << "Entrando no while\n"; CRESET
-            //CGREEN std::cerr << "Elemento x id " << x.proximo->id << std::endl; CRESET
-            std::cerr << this->total - x.proximo->id + 1 << ") " << x.proximo->mensagem.getConteudo()
-                << " (" << x.proximo->mensagem.getCurtidas() << " curtidas)"<< std::endl;
-            x.proximo = x.proximo->proximo;
+        Elemento* x = cabeca;
+        if (x == nullptr) {
+            std::cout << "Não há mensagens\n";
+            return;
+        }
+
+        if (x->getProximo() == nullptr) {
+            std::cout << x->getId() << ") " << x->getMensagem()->getConteudo() << " ("
+                << x->getMensagem()->getCurtidas() << " curtidas)\n";
+        } else {
+            do {
+                std::cout << x->getId() << ") " << x->getMensagem()->getConteudo() << " ("
+                    << x->getMensagem()->getCurtidas() << " curtidas)\n";
+                x = x->getProximo();
+            } while (x != nullptr);
         }
     }
 }

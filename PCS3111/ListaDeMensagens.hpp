@@ -19,7 +19,7 @@ namespace Polikut {
 	class ListaDeMensagens {
 	private:
 		int total;
-		Elemento cabeca;
+		Elemento* cabeca;
 
 	public:
 		// Cria uma lista ligada de mensagens
@@ -33,9 +33,9 @@ namespace Polikut {
 
 		// Obtém a cabeça da lista ligada
 		// (Isso é necessário para varrer a lista)
-		Elemento getCabeca();
+		Elemento* getCabeca();
 
-		Mensagem& getMensagem(int id);
+		Mensagem* getMensagem(int id);
 
 		int getTotal();
 		void listar();

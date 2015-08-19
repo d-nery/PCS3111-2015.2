@@ -25,7 +25,7 @@ HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 #define CRED   std::cout << "\033[38;5;196m";
 #define CGREEN std::cout << "\033[38;5;120m";
 #define CPINK  std::cout << "\033[38;5;201m";
-#define CLEAR  system("clear");
+#define CLEAR  system("reset");
 
 #endif // Win32 or linux
 

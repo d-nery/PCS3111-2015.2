@@ -50,10 +50,10 @@ namespace Polikut {
     }
 
     void Pessoa::envia(string texto) {
-        Mensagem mensagem(texto);
+        Mensagem* mensagem = new Mensagem(texto);
         for (int i = 0; i < this->numeroContatos; i++)
-            contatos[i]->recebe(&mensagem);
-        this->enviadas.adicionar(&mensagem);
+            contatos[i]->recebe(mensagem);
+        this->enviadas.adicionar(mensagem);
     }
 
     void Pessoa::recebe(Mensagem* m) {
