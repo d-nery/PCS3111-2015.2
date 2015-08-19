@@ -25,6 +25,10 @@ int numPessoas = 0;
 Pessoa* pessoas = new Pessoa [10];
 Tela tela;
 
+#ifdef _WIN32
+HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+#endif //
+
 int main() {
 #ifdef _WIN32
 //GetConsoleScreenBufferInfo(hOut, &original);

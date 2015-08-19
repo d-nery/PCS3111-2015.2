@@ -12,12 +12,12 @@ Turma 23
 #include <iostream>
 
 #include "ListaDeMensagens.hpp"
+#include "colors.hpp"
 
 namespace Polikut {
     ListaDeMensagens::ListaDeMensagens() {
         total = 0;
         cabeca = nullptr;
-        // CRED std::cerr << "LdM criada" << std::endl; CRESET
     }
 
     ListaDeMensagens::~ListaDeMensagens() {
@@ -46,16 +46,18 @@ namespace Polikut {
     }
 
     Mensagem* ListaDeMensagens::getMensagem(int _id) {
-        //CGREEN std::cerr << "Retornarndo msg de id: " << _id << "\n"; CRESET
         if (_id == 0) {
             return nullptr;
         }
         Elemento* x = cabeca;
+        if (_id == 1) {
+            return x->getMensagem();
+        }
         if (x != nullptr) {
             while (x->getProximo() != nullptr && x->getProximo()->getId() != _id) {
                 x = x->getProximo();
             }
-            return x->getProximo()->getMensagem();
+                return x->getProximo()->getMensagem();
         }
     }
 
@@ -64,7 +66,6 @@ namespace Polikut {
     }
 
     void ListaDeMensagens::listar() {
-        //CGREEN std::cerr << "Tentando listar\n"; CRESET
         Elemento* x = cabeca;
         if (x == nullptr) {
             std::cout << "Não há mensagens\n";

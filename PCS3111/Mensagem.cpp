@@ -22,6 +22,8 @@ namespace Polikut {
         this->curtidas = 0;
     }
 
+    Mensagem::~Mensagem() {}
+
     string Mensagem::getConteudo() {
         return this->conteudo;
     }

@@ -24,6 +24,8 @@ namespace Polikut {
 		Mensagem();
 		Mensagem(std::string conteudo);
 
+		~Mensagem();
+
 		std::string getConteudo();
 		int getCurtidas();
 		void curtir();

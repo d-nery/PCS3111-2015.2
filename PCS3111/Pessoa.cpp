@@ -22,11 +22,6 @@ namespace Polikut {
         this->dataDeNascimento = dataDeNascimento;
         this->pais = pais;
         this->numeroContatos = 0;
-        //   this->recebidas = ListaDeMensagens();
-        //   this->enviadas = ListaDeMensagens();
-        //CRED
-        //cerr << "Pessoa criada" << endl;
-        //CRESET
     }
 
     Pessoa::~Pessoa() {}
@@ -61,22 +56,16 @@ namespace Polikut {
     }
 
     ListaDeMensagens& Pessoa::getMensagensRecebidas() {
-        //CGREEN cerr << "retornando mensagens recebidas\n"; CRESET
         return this->recebidas;
     }
 
     ListaDeMensagens& Pessoa::getMensagensEnviadas() {
-        //CGREEN cerr << "retornando mensagens enviadas\n"; CRESET
         return this->enviadas;
     }
 
     void Pessoa::verContatos() {
-        //CRED cerr << "Vendo contatos\n"; CRESET
         for (int i = 0; i < this->numeroContatos; i++) {
-            //cerr << "Contato visto\n"; CRESET
             cout << "\t" << contatos[i]->getNome() << endl;
         }
-        //CRED cerr << "Fim de ver contatos\n"; CRESET
     }
-
 }

@@ -26,7 +26,6 @@ extern Tela tela;
 namespace Polikut {
 	void Tela::principal() {
 	    CLEAR
-		//CBLUE cerr << "Tela principal criada" << endl; CRESET
 		cout << "\nPolikut\n"
 			 << "-----------------------------------------\n"
 			 << "1) Cadastrar Pessoa\n"
@@ -37,7 +36,6 @@ namespace Polikut {
 
 	void Tela::cadastro() {
 	    CLEAR
-		//CBLUE cerr << "Tela de cadastro criada" << endl; CRESET
 		if (numPessoas > 9) {
 			cout << "Numero maximo de pessoas cadastradas.";
 			return;
@@ -58,25 +56,32 @@ namespace Polikut {
 		pessoas[numPessoas] = Pessoa(nome, dataDeNascimento, pais);
 		cout << pessoas[numPessoas++].getNome()	<< " cadastrado com sucesso.\n";
 
-        cout << "Aperte qualquer tecla para retornar\n";
-        cin.get();
+        cout << "\nAperte Enter para retornar\n";
+        while (cin.get() != '\n');
 	}
 
 	void Tela::login() {
-		//CBLUE cerr << "Tela login criada" << endl; CRESET
 		for(;;) {
 	    CLEAR
 			int opcao;
-			cout << "\nEscolha uma das pessoas:\n";
-			for (int i = 0; i < numPessoas; i++)
-				cout << i + 1 << ") " << pessoas[i].getNome() << endl;
-			cout << "Digite um numero ou 0 para voltar: ";
-			cin >> opcao;
-			if (opcao == 0)
+			if (numPessoas > 0) {
+				cout << "\nEscolha uma das pessoas:\n";
+				for (int i = 0; i < numPessoas; i++)
+					cout << i + 1 << ") " << pessoas[i].getNome() << endl;
+				cout << "Digite um numero ou 0 para voltar: ";
+			} else {
+				cout << "\n--Não há pessoas cadastradas no sistema--\n"
+					 <<   "      Aperte Enter para retornar\n";
+				cin.get();
+				while (cin.get() != '\n');
 				return;
-			if (opcao >= 1 && opcao <= numPessoas)
-				tela.info(pessoas[opcao - 1]);
-			else {
+			}
+			if (cin >> opcao) {
+				if (opcao == 0)
+					return;
+				if (opcao >= 1 && opcao <= numPessoas)
+					tela.info(pessoas[opcao - 1]);
+			} else {
 				cin.clear();
 				while (cin.get() != '\n');
 			}
@@ -84,7 +89,6 @@ namespace Polikut {
 	}
 
 	void Tela::info(Pessoa& pessoa) {
-		//CBLUE cerr << "Tela info criada" << endl; CRESET
 		for (;;) {
 	    CLEAR
 			int opcao = 0;
@@ -132,7 +136,6 @@ namespace Polikut {
 
 	void Tela::adicionarContato(Pessoa& pessoa) {
 	    CLEAR
-		//CBLUE cerr << "Tela adicionar contato criada" << endl; CRESET
 		int opcao = 0;
 		cout << "Pessoas\n"
 			 << "-----------------------------------------\n";
@@ -140,49 +143,51 @@ namespace Polikut {
 			cout << i + 1 << ") " << pessoas[i].getNome() << "\n";
 		cout << "\nEscolha um contato para adicionar ou 0 para voltar: ";
 		for (;;) {
-			cin >> opcao;
-			if (opcao == 0)
-				return;
-			if (opcao >= 1 && opcao <= numPessoas) {
-				pessoa.adiciona(&pessoas[opcao - 1]);
-				cout << pessoas[opcao - 1].getNome() << " conectado a " << pessoa.getNome() << endl;
-				cout << "Aperte qualquer tecla para retornar\n";
-                cin.get(); cin.get();
-				return;
+			if(cin >> opcao) {
+				if (opcao == 0)
+					return;
+				if (opcao >= 1 && opcao <= numPessoas) {
+					pessoa.adiciona(&pessoas[opcao - 1]);
+					cout << pessoas[opcao - 1].getNome() << " conectado a " << pessoa.getNome() << endl;
+					cout << "\nAperte Enter para retornar\n";
+					cin.get();
+	                while (cin.get() != '\n');
+					return;
+				}
+			} else {
+				cout << "Digite uma opcao valida: ";
+				cin.clear();
+				while (cin.get() != '\n');
 			}
-			cout << "Digite uma opcao valida: ";
-			cin.clear();
-			while (cin.get() != '\n');
 		}
 	}
 
 	void Tela::mensagensEnviadas(Pessoa& pessoa) {
 	    CLEAR
-		//CBLUE cerr << "Tela mensagens enviadas criada" << endl; CRESET
 		cout << "Mensagens Enviadas\n"
 		 	 << "-----------------------------------------\n";
 		pessoa.getMensagensEnviadas().listar();
-        cout << "Aperte qualquer tecla para retornar\n";
-		cin.get(); cin.get();
+        cout << "\nAperte Enter para retornar\n";
+		cin.get();
+		while (cin.get() != '\n');
 		return;
 	}
 
 	void Tela::mensagensRecebidas(Pessoa& pessoa) {
 		for (;;) {
 		    CLEAR
-			//CBLUE cerr << "Tela mensagens recebidas criada" << endl; CRESET
 			int opcao = 0;
 			cout << "Mensagens Recebidas\n"
 				 << "-----------------------------------------\n";
 			pessoa.getMensagensRecebidas().listar();
 
 			cout << "Digite o numero da mensagem para curtir ou 0 para voltar: ";
-			cin >> opcao;
-			if (opcao == 0)
-				return;
-			if (opcao > 0 && opcao <= pessoa.getMensagensRecebidas().getTotal()) {
-				pessoa.getMensagensRecebidas().getMensagem(opcao)->curtir();
-				cout << "Mensagem curtida\n";
+			if(cin >> opcao) {
+				if (opcao == 0)
+					return;
+				if (opcao > 0 && opcao <= pessoa.getMensagensRecebidas().getTotal()) {
+					pessoa.getMensagensRecebidas().getMensagem(opcao)->curtir();
+				}
 			} else {
 				cout << "Digite uma opcao valida: ";
 				cin.clear();
@@ -193,7 +198,6 @@ namespace Polikut {
 
 	void Tela::escreverMensagem(Pessoa& pessoa) {
 	    CLEAR
-		//CBLUE cerr << "Tela escrever mensagem criada" << endl; CRESET
 		string mensagem;
 		cout << "Digite a mensagem: ";
 
@@ -202,7 +206,7 @@ namespace Polikut {
 
 		pessoa.envia(mensagem);
 		cout << "Mensagem enviada a todos os contatos\n";
-		cout << "Aperte qualquer tecla para retornar\n";
-		cin.get();
+		cout << "\nAperte Enter para retornar\n";
+		while (cin.get() != '\n');
 	}
 }

@@ -7,7 +7,6 @@
 #include <winnt.h>
 #include <stdio.h>
 
-HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 //CONSOLE_SCREEN_BUFFER_INFO original;
 
 #define CRESET SetConsoleTextAttribute(hOut, FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN/*original.wAttributes*/);
@@ -25,7 +24,7 @@ HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 #define CRED   std::cout << "\033[38;5;196m";
 #define CGREEN std::cout << "\033[38;5;120m";
 #define CPINK  std::cout << "\033[38;5;201m";
-#define CLEAR  system("reset");
+#define CLEAR  system("clear");
 
 #endif // Win32 or linux
 
