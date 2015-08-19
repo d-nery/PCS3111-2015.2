@@ -27,10 +27,10 @@ namespace Polikut {
     }
 
     int Mensagem::getCurtidas() {
-        return curtidas;
+        return this->curtidas;
     }
 
     void Mensagem::curtir() {
-        curtidas++;
+        this->curtidas++;
     }
 }

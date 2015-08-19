@@ -17,6 +17,7 @@ Turma 23
 #include "Mensagem.hpp"
 #include "Pessoa.hpp"
 #include "Tela.hpp"
+#include "colors.hpp"
 
 using namespace std;
 using namespace Polikut;
@@ -33,6 +34,7 @@ int main() {
 		cin >> opcao;
 		switch (opcao) {
 			case 1:
+			CLEAR
 			tela.cadastro();
 			tela.principal();
 			break;

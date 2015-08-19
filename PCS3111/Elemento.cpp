@@ -18,7 +18,7 @@ namespace Polikut {
     Elemento::Elemento() {}
 
     Elemento::Elemento(std::string msg, Elemento* proximo) {
-        CGREEN std::cerr << "Elemento criado\n"; CRESET
+        // CGREEN std::cerr << "Elemento criado\n"; CRESET
         mensagem = Mensagem(msg);
         this->proximo = proximo;
         id = 0;

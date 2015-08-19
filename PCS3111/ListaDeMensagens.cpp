@@ -18,7 +18,7 @@ namespace Polikut {
     ListaDeMensagens::ListaDeMensagens() {
         total = 0;
         cabeca = Elemento("__cabeca__", NULL);
-        CRED std::cerr << "LdM criada" << std::endl; CRESET
+        // CRED std::cerr << "LdM criada" << std::endl; CRESET
     }
 
     ListaDeMensagens::~ListaDeMensagens() {}
@@ -38,14 +38,16 @@ namespace Polikut {
 
     }
 
-    Elemento& ListaDeMensagens::getCabeca() {
+    Elemento ListaDeMensagens::getCabeca() {
         return cabeca;
     }
 
-    Mensagem& ListaDeMensagens::getMensagem(int id) {
+    Mensagem& ListaDeMensagens::getMensagem(int _id) {
+        CGREEN std::cerr << "Retornarndo msg de id: " << _id << "\n"; CRESET
         Elemento x = cabeca;
         while (x.proximo != NULL) {
-            if (total - x.proximo->id + 1 == id)
+            CGREEN std::cerr << total - x.proximo->id + 1 << std::endl; CRESET
+            if (total - x.proximo->id + 1 == _id)
                 return x.proximo->mensagem;
             x.proximo = x.proximo->proximo;
         }
@@ -64,7 +66,7 @@ namespace Polikut {
         while (x.proximo != NULL) {
             CGREEN std::cerr << "Entrando no while\n"; CRESET
             CGREEN std::cerr << "Elemento x id " << x.proximo->id << std::endl; CRESET
-            std::cout << total - x.proximo->id + 1 << ") " << x.proximo->mensagem.getConteudo()
+            std::cerr << this->total - x.proximo->id + 1 << ") " << x.proximo->mensagem.getConteudo()
                 << " (" << x.proximo->mensagem.getCurtidas() << " curtidas)"<< std::endl;
             x.proximo = x.proximo->proximo;
         }
