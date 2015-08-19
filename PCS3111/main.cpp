@@ -52,7 +52,6 @@ int main() {
 
 			case 3:
 			cout << "Volte Sempre!\n";
-			delete[] pessoas;
 			return 0;
 			break;
 
