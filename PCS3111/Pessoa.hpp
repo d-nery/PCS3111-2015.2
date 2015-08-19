@@ -51,7 +51,7 @@ namespace Polikut {
 
 		// Recebe uma mensagem enviada por uma pessoa que tem esta pessoa como contato.
 		// Este método é chamado pelo "envia" da pessoa que está enviando a mensagem
-		void recebe(Mensagem& m);
+		void recebe(Mensagem* m);
 
 		// Obtêm a lista ligada com as mensagens recebidas
 		ListaDeMensagens& getMensagensRecebidas();

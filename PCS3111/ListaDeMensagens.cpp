@@ -23,17 +23,17 @@ namespace Polikut {
 
     ListaDeMensagens::~ListaDeMensagens() {}
 
-    void ListaDeMensagens::adicionar(Mensagem& m) {
-        CGREEN std::cerr << "Adicinando mensagem\n"; CRESET
-        Elemento* novo = new Elemento(m, cabeca.proximo);
-        CGREEN std::cerr << cabeca.proximo << std::endl; CRESET
-        CGREEN std::cerr << novo->mensagem.getConteudo() << std::endl; CRESET
-        CGREEN std::cerr << novo << std::endl; CRESET
+    void ListaDeMensagens::adicionar(Mensagem* m) {
+        // CGREEN std::cerr << "Adicinando mensagem\n"; CRESET
+        Elemento* novo = new Elemento(*m, cabeca.proximo);
+        // CGREEN std::cerr << cabeca.proximo << std::endl; CRESET
+        // CGREEN std::cerr << novo->mensagem.getConteudo() << std::endl; CRESET
+        // CGREEN std::cerr << novo << std::endl; CRESET
         cabeca.proximo = novo;
-        CGREEN std::cerr << cabeca.proximo << std::endl; CRESET
+        // CGREEN std::cerr << cabeca.proximo << std::endl; CRESET
         novo->id = ++total;
-        CGREEN std::cerr << novo->id << std::endl; CRESET
-        CGREEN std::cerr << total << std::endl; CRESET
+        // CGREEN std::cerr << novo->id << std::endl; CRESET
+        // CGREEN std::cerr << total << std::endl; CRESET
 
 
     }
@@ -47,8 +47,10 @@ namespace Polikut {
         Elemento x = cabeca;
         while (x.proximo != NULL) {
             CGREEN std::cerr << total - x.proximo->id + 1 << std::endl; CRESET
-            if (total - x.proximo->id + 1 == _id)
+            if (total - x.proximo->id + 1 == _id) {
+                CGREEN std::cerr << "Entrando no if" << std::endl; CRESET
                 return x.proximo->mensagem;
+            }
             x.proximo = x.proximo->proximo;
         }
         return cabeca.mensagem;

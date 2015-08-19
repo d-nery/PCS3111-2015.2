@@ -10,7 +10,7 @@
 HANDLE consolehwnd = GetStdHandle(STD_OUTPUT_HANDLE);
 CONSOLE_SCREEN_BUFFER_INFO original;
 
-if (!(GetConsoleScreenBufferInfo(consolehwnd, &original))) {}
+if (!(GetConsoleScreenBufferInfo(consolehwnd, &original))) { std::cerr << "Original fail" << std::end; }
 
 #define CRESET SetConsoleTextAttribute(consolehwnd, original);
 #define CPINK  SetConsoleTextAttribute(consolehwnd, FOREGROUND_RED | FOREGROUND_INTENSITY);
@@ -26,7 +26,7 @@ if (!(GetConsoleScreenBufferInfo(consolehwnd, &original))) {}
 #define CBLUE  std::cout << "\033[38;5;33m";
 #define CRED   std::cout << "\033[38;5;196m";
 #define CGREEN std::cout << "\033[38;5;120m";
-#define CPINK std::cout << "\033[38;5;201m";
+#define CPINK  std::cout << "\033[38;5;201m";
 #define CLEAR  system("clear");
 
 #endif // Win32 or linux
