@@ -102,7 +102,7 @@ namespace Polikut {
 				 << "Escolha uma opcao:\n"
 				 << "1) Adicionar contato\n"
 				 << "2) Ver mensagens enviadas\n"
-				 << "3) Ver mensgaens recebidas\n"
+				 << "3) Ver mensagens recebidas\n"
 				 << "4) Escrever mensagem\n"
 				 << "0) Voltar" << endl;
 
