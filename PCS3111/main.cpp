@@ -17,7 +17,6 @@ Turma 23
 #include "Mensagem.hpp"
 #include "Pessoa.hpp"
 #include "Tela.hpp"
-#include "colors.hpp"
 
 using namespace std;
 using namespace Polikut;
@@ -27,6 +26,10 @@ Pessoa* pessoas = new Pessoa [10];
 Tela tela;
 
 int main() {
+#ifdef _WIN32
+//GetConsoleScreenBufferInfo(hOut, &original);
+#endif // _WIN32
+
 	int opcao = 0;
 
 	tela.principal();
@@ -34,7 +37,6 @@ int main() {
 		cin >> opcao;
 		switch (opcao) {
 			case 1:
-			CLEAR
 			tela.cadastro();
 			tela.principal();
 			break;

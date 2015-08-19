@@ -12,7 +12,6 @@ Turma 23
 
 #include "Elemento.hpp"
 #include "Mensagem.hpp"
-#include "colors.hpp"
 
 namespace Polikut {
     Elemento::Elemento() {}

@@ -7,17 +7,15 @@
 #include <winnt.h>
 #include <stdio.h>
 
-HANDLE consolehwnd = GetStdHandle(STD_OUTPUT_HANDLE);
-CONSOLE_SCREEN_BUFFER_INFO original;
+HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+//CONSOLE_SCREEN_BUFFER_INFO original;
 
-if (!(GetConsoleScreenBufferInfo(consolehwnd, &original))) { std::cerr << "Original fail" << std::end; }
-
-#define CRESET SetConsoleTextAttribute(consolehwnd, original);
-#define CPINK  SetConsoleTextAttribute(consolehwnd, FOREGROUND_RED | FOREGROUND_INTENSITY);
-#define CBLUE  SetConsoleTextAttribute(consolehwnd, FOREGROUND_BLUE);
-#define CRED   SetConsoleTextAttribute(consolehwnd, FOREGROUND_RED);
-#define CGREEN SetConsoleTextAttribute(consolehwnd, FOREGROUND_GREEN);
-#define CLEAR  System("cls");
+#define CRESET SetConsoleTextAttribute(hOut, FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN/*original.wAttributes*/);
+#define CPINK  SetConsoleTextAttribute(hOut, FOREGROUND_RED | FOREGROUND_INTENSITY);
+#define CBLUE  SetConsoleTextAttribute(hOut, FOREGROUND_BLUE);
+#define CRED   SetConsoleTextAttribute(hOut, FOREGROUND_RED);
+#define CGREEN SetConsoleTextAttribute(hOut, FOREGROUND_GREEN);
+#define CLEAR  system("cls");
 
 
 #else
