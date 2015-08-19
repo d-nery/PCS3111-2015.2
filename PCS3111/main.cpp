@@ -28,16 +28,18 @@ Tela tela;
 int main() {
 	int opcao = 0;
 
+	tela.principal();
 	for (;;) {
-		tela.principal();
 		cin >> opcao;
 		switch (opcao) {
 			case 1:
 			tela.cadastro();
+			tela.principal();
 			break;
 
 			case 2:
 			tela.login();
+			tela.principal();
 			break;
 
 			case 3:

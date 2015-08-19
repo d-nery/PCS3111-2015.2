@@ -12,19 +12,30 @@ Turma 23
 #include <iostream>
 
 #include "ListaDeMensagens.hpp"
+#include "colors.hpp"
 
 namespace Polikut {
     ListaDeMensagens::ListaDeMensagens() {
         total = 0;
         cabeca = Elemento("__cabeca__", NULL);
+        CRED std::cerr << "LdM criada" << std::endl; CRESET
     }
 
     ListaDeMensagens::~ListaDeMensagens() {}
 
     void ListaDeMensagens::adicionar(Mensagem& m) {
-        Elemento novo(m, cabeca.proximo);
-        cabeca.proximo = &novo;
-        novo.id = ++total;
+        CGREEN std::cerr << "Adicinando mensagem\n"; CRESET
+        Elemento* novo = new Elemento(m, cabeca.proximo);
+        CGREEN std::cerr << cabeca.proximo << std::endl; CRESET
+        CGREEN std::cerr << novo->mensagem.getConteudo() << std::endl; CRESET
+        CGREEN std::cerr << novo << std::endl; CRESET
+        cabeca.proximo = novo;
+        CGREEN std::cerr << cabeca.proximo << std::endl; CRESET
+        novo->id = ++total;
+        CGREEN std::cerr << novo->id << std::endl; CRESET
+        CGREEN std::cerr << total << std::endl; CRESET
+
+
     }
 
     Elemento& ListaDeMensagens::getCabeca() {
@@ -46,9 +57,15 @@ namespace Polikut {
     }
 
     void ListaDeMensagens::listar() {
+        CGREEN std::cerr << "Tentando listar\n"; CRESET
         Elemento x = cabeca;
+        CGREEN std::cerr << "Elemento x criado\n"; CRESET
+        CGREEN std::cerr << x.proximo << std::endl; CRESET
         while (x.proximo != NULL) {
-            std::cout << total - x.proximo->id + 1 << ") " << x.proximo->mensagem.getConteudo() << std::endl;
+            CGREEN std::cerr << "Entrando no while\n"; CRESET
+            CGREEN std::cerr << "Elemento x id " << x.proximo->id << std::endl; CRESET
+            std::cout << total - x.proximo->id + 1 << ") " << x.proximo->mensagem.getConteudo()
+                << " (" << x.proximo->mensagem.getCurtidas() << " curtidas)"<< std::endl;
             x.proximo = x.proximo->proximo;
         }
     }

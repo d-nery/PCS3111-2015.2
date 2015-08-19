@@ -44,7 +44,7 @@ namespace Polikut {
 		string getPais();
 
 		// Adiciona uma outra pessoa como contato desta pessoa
-		void adiciona(Pessoa& contato);
+		void adiciona(Pessoa* contato);
 
 		// Envia um texto como mensagem para todos os contatos da pessoa
 		void envia(string texto);
