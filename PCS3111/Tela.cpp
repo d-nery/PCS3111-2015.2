@@ -113,31 +113,31 @@ namespace Polikut {
 				 << "0) Voltar" << endl;
 
 			cout << "Digite uma opcao: ";
-	 		cin >> opcao;
-	 		switch (opcao) {
-	 			case 0:
-	 			return;
+	 		if(cin >> opcao)
+		 		switch (opcao) {
+		 			case 0:
+		 			return;
 
-	 			case 1:
-				tela.adicionarContato(pessoa);
-				break;
+		 			case 1:
+					tela.adicionarContato(pessoa);
+					break;
 
-				case 2:
-				tela.mensagensEnviadas(pessoa);
-				break;
+					case 2:
+					tela.mensagensEnviadas(pessoa);
+					break;
 
-				case 3:
-				tela.mensagensRecebidas(pessoa);
-				break;
+					case 3:
+					tela.mensagensRecebidas(pessoa);
+					break;
 
-				case 4:
-				tela.escreverMensagem(pessoa);
-	 			break;
-
-	 			default:
+					case 4:
+					tela.escreverMensagem(pessoa);
+		 			break;
+	 			}
+ 			else {
 	 			cin.clear();
 	 			while (cin.get() != '\n');
-	 		}
+			}
 		}
 	}
 
