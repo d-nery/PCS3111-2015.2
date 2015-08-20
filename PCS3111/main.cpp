@@ -16,6 +16,7 @@ Turma 23
 #include "Elemento.hpp"
 #include "Mensagem.hpp"
 #include "Pessoa.hpp"
+#include "colors.hpp"
 #include "Tela.hpp"
 
 using namespace std;
@@ -27,11 +28,12 @@ Tela tela;
 
 #ifdef _WIN32
 HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+CONSOLE_SCREEN_BUFFER_INFO original;
 #endif //
 
 int main() {
 #ifdef _WIN32
-//GetConsoleScreenBufferInfo(hOut, &original);
+GetConsoleScreenBufferInfo(hOut, &original);
 #endif // _WIN32
 
 	int opcao = 0;

@@ -23,11 +23,16 @@ extern int numPessoas;
 extern Pessoa* pessoas;
 extern Tela tela;
 
+#ifdef _WIN32
+extern HANDLE hOut;
+extern CONSOLE_SCREEN_BUFFER_INFO original;
+#endif //
+
 namespace Polikut {
 	void Tela::principal() {
 	    CLEAR
-		cout << "\nPolikut\n"
-			 << "-----------------------------------------\n"
+		cout << "\nPoli"; CBLUE cout << "Social\n"; CRESET
+        cout << "-----------------------------------------\n"
 			 << "1) Cadastrar Pessoa\n"
 			 << "2) Logar Como Pessoa\n"
 			 << "3) Terminar\n" << endl
@@ -43,18 +48,18 @@ namespace Polikut {
 		string nome, dataDeNascimento, pais;
 		cout << "\nInforme os dados da pessoa: \n";
 
-		cout << "Nome: ";
+		cout << "Nome: "; CRED
 		cin.ignore();
-		getline(cin, nome);
+		getline(cin, nome); CRESET
 
-		cout << "Data de Nascimento: ";
-		getline(cin, dataDeNascimento);
+		cout << "Data de Nascimento: "; CRED
+		getline(cin, dataDeNascimento); CRESET
 
-		cout << "Pais: ";
-		getline(cin, pais);
+		cout << "Pais: "; CRED
+		getline(cin, pais); CRESET
 
 		pessoas[numPessoas] = Pessoa(nome, dataDeNascimento, pais);
-		cout << pessoas[numPessoas++].getNome()	<< " cadastrado com sucesso.\n";
+		CRED cout << pessoas[numPessoas++].getNome(); CRESET cout << " cadastrado com sucesso.\n";
 
         cout << "\nAperte Enter para retornar\n";
         while (cin.get() != '\n');
@@ -65,10 +70,10 @@ namespace Polikut {
 	    CLEAR
 			int opcao;
 			if (numPessoas > 0) {
-				cout << "\nEscolha uma das pessoas:\n";
+				cout << "\nEscolha uma das pessoas:\n"; CRED
 				for (int i = 0; i < numPessoas; i++)
 					cout << i + 1 << ") " << pessoas[i].getNome() << endl;
-				cout << "Digite um numero ou 0 para voltar: ";
+				CRESET cout << "Digite um numero ou 0 para voltar: ";
 			} else {
 				cout << "\n--Não há pessoas cadastradas no sistema--\n"
 					 <<   "      Aperte Enter para retornar\n";
@@ -92,10 +97,10 @@ namespace Polikut {
 		for (;;) {
 	    CLEAR
 			int opcao = 0;
-			cout << "Pessoa: " << pessoa.getNome() << endl;
-			cout << pessoa.getDataDeNascimento() << " | " << pessoa.getPais() << endl;
-			cout << "\nContatos: \n";
-			pessoa.verContatos();
+			cout << "Pessoa: "; CRED cout << pessoa.getNome() << endl;
+			cout << pessoa.getDataDeNascimento(); CRESET cout << " | "; CRED cout << pessoa.getPais() << endl;
+			CRESET cout << "\nContatos: \n";
+			CRED pessoa.verContatos(); CRESET
 			cout << "-----------------------------------------\n\n"
 				 << "Escolha uma opcao:\n"
 				 << "1) Adicionar contato\n"

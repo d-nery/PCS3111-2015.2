@@ -7,24 +7,31 @@
 #include <winnt.h>
 #include <stdio.h>
 
-//CONSOLE_SCREEN_BUFFER_INFO original;
+#define CRESET  SetConsoleTextAttribute(hOut, original.wAttributes);
 
-#define CRESET SetConsoleTextAttribute(hOut, FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN/*original.wAttributes*/);
-#define CPINK  SetConsoleTextAttribute(hOut, FOREGROUND_RED | FOREGROUND_INTENSITY);
-#define CBLUE  SetConsoleTextAttribute(hOut, FOREGROUND_BLUE);
-#define CRED   SetConsoleTextAttribute(hOut, FOREGROUND_RED);
-#define CGREEN SetConsoleTextAttribute(hOut, FOREGROUND_GREEN);
-#define CLEAR  system("cls");
+#define CPINK   SetConsoleTextAttribute(hOut, FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+#define CBLUE   SetConsoleTextAttribute(hOut, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+#define CYELLOW SetConsoleTextAttribute(hOut, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+#define CRED    SetConsoleTextAttribute(hOut, FOREGROUND_RED | FOREGROUND_INTENSITY);
+#define CGOLD   SetConsoleTextAttribute(hOut, FOREGROUND_RED | FOREGROUND_GREEN);
+#define CPURPLE SetConsoleTextAttribute(hOut, FOREGROUND_RED | FOREGROUND_BLUE);
+#define CGREEN  SetConsoleTextAttribute(hOut, FOREGROUND_GREEN);
 
+#define CLEAR   system("cls");
 
 #else
 
-#define CRESET std::cout << "\033[0m";
-#define CBLUE  std::cout << "\033[38;5;33m";
-#define CRED   std::cout << "\033[38;5;196m";
-#define CGREEN std::cout << "\033[38;5;120m";
-#define CPINK  std::cout << "\033[38;5;201m";
-#define CLEAR  system("clear");
+#define CRESET  std::cout << "\033[0m";
+
+#define CPINK   std::cout << "\033[38;5;201m";
+#define CBLUE   std::cout << "\033[38;5;33m";
+#define CYELLOW
+#define CRED    std::cout << "\033[38;5;196m";
+#define CGOLD
+#define CPURPLE
+#define CGREEN  std::cout << "\033[38;5;120m";
+
+#define CLEAR   system("clear");
 
 #endif // Win32 or linux
 
