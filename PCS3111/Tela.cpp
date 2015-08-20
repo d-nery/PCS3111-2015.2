@@ -135,7 +135,6 @@ namespace Polikut {
 	 			break;
 
 	 			default:
-	 			cout << "Digite uma opcao valida: ";
 	 			cin.clear();
 	 			while (cin.get() != '\n');
 	 		}
@@ -172,7 +171,6 @@ namespace Polikut {
                     return;
 				}
 			} else {
-				cout << "Digite uma opcao valida: ";
 				cin.clear();
 				while (cin.get() != '\n');
 			}
@@ -198,7 +196,7 @@ namespace Polikut {
 				 << "-----------------------------------------\n";
 			pessoa.getMensagensRecebidas().listar();
 
-			cout << "Digite o numero da mensagem para curtir ou 0 para voltar: ";
+			cout << "\nDigite o numero da mensagem para curtir ou 0 para voltar: ";
 			if(cin >> opcao) {
 				if (opcao == 0)
 					return;
@@ -206,7 +204,6 @@ namespace Polikut {
 					pessoa.getMensagensRecebidas().getMensagem(opcao)->curtir();
 				}
 			} else {
-				cout << "Digite uma opcao valida: ";
 				cin.clear();
 				while (cin.get() != '\n');
 			}
@@ -216,7 +213,7 @@ namespace Polikut {
 	void Tela::escreverMensagem(Pessoa& pessoa) {
 	    CLEAR
 	    if (pessoa.getNumContatos() == 0) {
-            cout << "Voce nao nenhum contato :(\n"
+            cout << "Voce nao tem nenhum contato :(\n"
                 << "Por que nao adiciona algum na tela anterior? =D\n";
             cout << "\nAperte Enter para retornar\n";
             cin.get();
