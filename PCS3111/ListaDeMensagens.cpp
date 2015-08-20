@@ -68,7 +68,7 @@ namespace Polikut {
     void ListaDeMensagens::listar() {
         Elemento* x = cabeca;
         if (x == nullptr) {
-            std::cout << "Não há mensagens\n";
+            std::cout << "Nao ha mensagens\n";
             return;
         }
 

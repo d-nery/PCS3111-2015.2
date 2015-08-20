@@ -7,7 +7,7 @@
 #include <winnt.h>
 #include <stdio.h>
 
-#define CRESET  SetConsoleTextAttribute(hOut, original.wAttributes);
+#define CRESET  SetConsoleTextAttribute(hOut, FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY | FOREGROUND_GREEN/*original.wAttributes*/);
 
 #define CPINK   SetConsoleTextAttribute(hOut, FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 #define CBLUE   SetConsoleTextAttribute(hOut, FOREGROUND_BLUE | FOREGROUND_INTENSITY);

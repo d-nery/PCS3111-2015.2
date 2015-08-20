@@ -35,7 +35,7 @@ int main() {
 #ifdef _WIN32
 GetConsoleScreenBufferInfo(hOut, &original);
 #endif // _WIN32
-
+    CRESET
 	int opcao = 0;
 
 	tela.principal();

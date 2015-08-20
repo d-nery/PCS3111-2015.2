@@ -43,6 +43,9 @@ namespace Polikut {
 	    CLEAR
 		if (numPessoas > 9) {
 			cout << "Numero maximo de pessoas cadastradas.";
+            cout << "\nAperte Enter para retornar\n";
+            cin.get();
+            while (cin.get() != '\n');
 			return;
 		}
 		string nome, dataDeNascimento, pais;
@@ -140,24 +143,33 @@ namespace Polikut {
 	}
 
 	void Tela::adicionarContato(Pessoa& pessoa) {
-	    CLEAR
-		int opcao = 0;
-		cout << "Pessoas\n"
-			 << "-----------------------------------------\n";
-		for (int i = 0; i < numPessoas; i++)
-			cout << i + 1 << ") " << pessoas[i].getNome() << "\n";
-		cout << "\nEscolha um contato para adicionar ou 0 para voltar: ";
 		for (;;) {
+	    CLEAR
+            int opcao = 0;
+            cout << "Pessoas\n"
+                 << "-----------------------------------------\n";
+            for (int i = 0; i < numPessoas; i++)
+                cout << i + 1 << ") " << pessoas[i].getNome() << "\n";
+            cout << "\nEscolha um contato para adicionar ou 0 para voltar: ";
 			if(cin >> opcao) {
 				if (opcao == 0)
 					return;
 				if (opcao >= 1 && opcao <= numPessoas) {
-					pessoa.adiciona(&pessoas[opcao - 1]);
-					cout << pessoas[opcao - 1].getNome() << " conectado a " << pessoa.getNome() << endl;
-					cout << "\nAperte Enter para retornar\n";
-					cin.get();
-	                while (cin.get() != '\n');
-					return;
+					switch(pessoa.adiciona(&pessoas[opcao - 1])) {
+                    case 0:
+                        cout << pessoas[opcao - 1].getNome() << " conectado a " << pessoa.getNome() << endl;
+                        break;
+                    case (-1):
+                        cout << "Contato ja adicionado!\n";
+                        break;
+                    case (-2):
+                        cout << "Voce nao pode adicionar a si mesmo!\n";
+                        break;
+                    }
+                    cout << "\nAperte Enter para retornar\n";
+                    cin.get();
+                    while (cin.get() != '\n');
+                    return;
 				}
 			} else {
 				cout << "Digite uma opcao valida: ";
@@ -203,14 +215,22 @@ namespace Polikut {
 
 	void Tela::escreverMensagem(Pessoa& pessoa) {
 	    CLEAR
-		string mensagem;
-		cout << "Digite a mensagem: ";
+	    if (pessoa.getNumContatos() == 0) {
+            cout << "Voce nao nenhum contato :(\n"
+                << "Por que nao adiciona algum na tela anterior? =D\n";
+            cout << "\nAperte Enter para retornar\n";
+            cin.get();
+            while (cin.get() != '\n');
+            return;
+	    }
+        string mensagem;
+        cout << "Digite a mensagem: ";
 
-		cin.ignore();
-		getline(cin, mensagem);
+        cin.ignore();
+        getline(cin, mensagem);
 
-		pessoa.envia(mensagem);
-		cout << "Mensagem enviada a todos os contatos\n";
+        pessoa.envia(mensagem);
+        cout << "Mensagem enviada a todos os contatos\n";
 		cout << "\nAperte Enter para retornar\n";
 		while (cin.get() != '\n');
 	}

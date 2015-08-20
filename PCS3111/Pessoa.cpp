@@ -38,10 +38,15 @@ namespace Polikut {
         return this->pais;
     }
 
-    void Pessoa::adiciona(Pessoa* contato) {
-        if (this->numeroContatos >= 9)
-            return;
+    int Pessoa::adiciona(Pessoa* contato) {
+        if (contato == this)
+            return -2;
+        for (int i = 0; i < numeroContatos; i++) {
+            if (contato == this->contatos[i])
+                return -1;
+        }
         this->contatos[this->numeroContatos++] = contato;
+        return 0;
     }
 
     void Pessoa::envia(string texto) {
@@ -67,5 +72,9 @@ namespace Polikut {
         for (int i = 0; i < this->numeroContatos; i++) {
             cout << "\t" << contatos[i]->getNome() << endl;
         }
+    }
+
+    int Pessoa::getNumContatos() {
+        return this->numeroContatos;
     }
 }
