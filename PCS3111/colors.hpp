@@ -39,11 +39,11 @@ Professor Jaime S. Sichman
 
 #define CPINK   std::cout << "\033[38;5;201m";
 #define CBLUE   std::cout << "\033[38;5;33m";
-#define CYELLOW
+#define CYELLOW std::cout << "\033[38;5;227m";
 #define CRED    std::cout << "\033[38;5;196m";
-#define CGOLD
-#define CPURPLE
-#define CGREEN  std::cout << "\033[38;5;120m";
+#define CGOLD   std::cout << "\033[38;5;220m";
+#define CPURPLE std::cout << "\033[38;5;99m";
+#define CGREEN  std::cout << "\033[38;5;114m";
 
 #define CLEAR   system("clear");
 

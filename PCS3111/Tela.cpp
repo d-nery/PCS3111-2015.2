@@ -54,18 +54,18 @@ namespace Polikut {
 		string nome, dataDeNascimento, pais;
 		cout << "\nInforme os dados da pessoa: \n";
 
-		cout << "Nome: "; CRED
+		cout << "Nome: "; CGREEN
 		cin.ignore();
 		getline(cin, nome); CRESET
 
-		cout << "Data de Nascimento: "; CRED
+		cout << "Data de Nascimento: "; CGREEN
 		getline(cin, dataDeNascimento); CRESET
 
-		cout << "Pais: "; CRED
+		cout << "Pais: "; CGREEN
 		getline(cin, pais); CRESET
 
 		pessoas[numPessoas] = Pessoa(nome, dataDeNascimento, pais);
-		CRED cout << pessoas[numPessoas++].getNome(); CRESET cout << " cadastrado com sucesso.\n";
+		CGREEN cout << pessoas[numPessoas++].getNome(); CRESET cout << " cadastrado com sucesso.\n";
 
         cout << "\nAperte Enter para retornar\n";
         while (cin.get() != '\n');
@@ -76,7 +76,7 @@ namespace Polikut {
 	    CLEAR
 			int opcao = 0;
 			if (numPessoas > 0) {
-				cout << "\nEscolha uma das pessoas:\n"; CRED
+				cout << "\nEscolha uma das pessoas:\n"; CGREEN
 				for (int i = 0; i < numPessoas; i++)
 					cout << i + 1 << ") " << pessoas[i].getNome() << endl;
 				CRESET cout << "\nDigite um numero para logar ou 0 para voltar: ";
@@ -103,10 +103,10 @@ namespace Polikut {
 		for (;;) {
 	    CLEAR
 			int opcao = 0;
-			cout << "Pessoa: "; CRED cout << pessoa.getNome() << endl;
-			cout << pessoa.getDataDeNascimento(); CRESET cout << " | "; CRED cout << pessoa.getPais() << endl;
+			cout << "Pessoa: "; CGREEN cout << pessoa.getNome() << endl;
+			cout << pessoa.getDataDeNascimento(); CRESET cout << " | "; CGREEN cout << pessoa.getPais() << endl;
 			CRESET cout << "\nContatos: \n";
-			CRED pessoa.verContatos(); CRESET
+			CGREEN pessoa.verContatos(); CRESET
 			cout << "-----------------------------------------\n\n"
 				 << "Escolha uma opcao:\n"
 				 << "1) Adicionar contato\n"
@@ -151,7 +151,7 @@ namespace Polikut {
             cout << "Pessoas\n"
                  << "-----------------------------------------\n";
 			for (int i = 0; i < numPessoas; i++) {
-				CRED cout << i + 1 << ") " << pessoas[i].getNome() << "\n"; CRESET
+				CGREEN cout << i + 1 << ") " << pessoas[i].getNome() << "\n"; CRESET
 			}
             cout << "\nEscolha um contato para adicionar ou 0 para voltar: ";
 			if(cin >> opcao) {
@@ -160,9 +160,9 @@ namespace Polikut {
 				if (opcao >= 1 && opcao <= numPessoas) {
 					switch(pessoa.adiciona(&pessoas[opcao - 1])) {
                     case 0:
-						CRED cout << pessoas[opcao - 1].getNome(); CRESET
+						CGREEN cout << pessoas[opcao - 1].getNome(); CRESET
 						cout << " conectado a ";
-						CRED cout << pessoa.getNome() << endl; CRESET
+						CGREEN cout << pessoa.getNome() << endl; CRESET
                         break;
                     case (-1):
                         cout << "Contato ja adicionado!\n";
@@ -202,7 +202,7 @@ namespace Polikut {
 				 << "-----------------------------------------\n";
 			pessoa.getMensagensRecebidas().listar();
 
-			if (pessoa.getMensagensRecebidas().getTotal() > 0) 
+			if (pessoa.getMensagensRecebidas().getTotal() > 0)
 				cout << "\nDigite o numero da mensagem para curtir ou 0 para voltar: ";
 			else
 				cout << "\nDigite 0 para voltar: ";
