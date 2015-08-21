@@ -1,18 +1,19 @@
 /**
 Escola Politecnica da Universidade de Sao Paulo
+2 de setembro de 2015
 
 PCS3111 - Laboratorio de Programacao Orientada a Objetos
 Exercicio Programa 1 - 2015
 
 Turma 23
- 	Daniel Nery Silva de Oliveira - 9349051
+	Daniel Nery Silva de Oliveira - 9349051
 	Mateus Almeida Barbosa        - 9349072
 
 Professor Jaime S. Sichman
 **/
 
 #include <iostream>
-#include <iomanip>
+#include <string>
 
 #include "Pessoa.hpp"
 #include "Tela.hpp"
@@ -73,12 +74,12 @@ namespace Polikut {
 	void Tela::login() {
 		for(;;) {
 	    CLEAR
-			int opcao;
+			int opcao = 0;
 			if (numPessoas > 0) {
 				cout << "\nEscolha uma das pessoas:\n"; CRED
 				for (int i = 0; i < numPessoas; i++)
 					cout << i + 1 << ") " << pessoas[i].getNome() << endl;
-				CRESET cout << "Digite um numero ou 0 para voltar: ";
+				CRESET cout << "\nDigite um numero para logar ou 0 para voltar: ";
 			} else {
 				cout << "\n--Não há pessoas cadastradas no sistema--\n"
 					 <<   "      Aperte Enter para retornar\n";
@@ -114,7 +115,7 @@ namespace Polikut {
 				 << "4) Escrever mensagem\n"
 				 << "0) Voltar" << endl;
 
-			cout << "Digite uma opcao: ";
+			cout << "\nDigite uma opcao: ";
 	 		if(cin >> opcao)
 		 		switch (opcao) {
 		 			case 0:
@@ -149,8 +150,9 @@ namespace Polikut {
             int opcao = 0;
             cout << "Pessoas\n"
                  << "-----------------------------------------\n";
-            for (int i = 0; i < numPessoas; i++)
-                cout << i + 1 << ") " << pessoas[i].getNome() << "\n";
+			for (int i = 0; i < numPessoas; i++) {
+				CRED cout << i + 1 << ") " << pessoas[i].getNome() << "\n"; CRESET
+			}
             cout << "\nEscolha um contato para adicionar ou 0 para voltar: ";
 			if(cin >> opcao) {
 				if (opcao == 0)
@@ -158,7 +160,9 @@ namespace Polikut {
 				if (opcao >= 1 && opcao <= numPessoas) {
 					switch(pessoa.adiciona(&pessoas[opcao - 1])) {
                     case 0:
-                        cout << pessoas[opcao - 1].getNome() << " conectado a " << pessoa.getNome() << endl;
+						CRED cout << pessoas[opcao - 1].getNome(); CRESET
+						cout << " conectado a ";
+						CRED cout << pessoa.getNome() << endl; CRESET
                         break;
                     case (-1):
                         cout << "Contato ja adicionado!\n";
@@ -198,7 +202,11 @@ namespace Polikut {
 				 << "-----------------------------------------\n";
 			pessoa.getMensagensRecebidas().listar();
 
-			cout << "\nDigite o numero da mensagem para curtir ou 0 para voltar: ";
+			if (pessoa.getMensagensRecebidas().getTotal() > 0) 
+				cout << "\nDigite o numero da mensagem para curtir ou 0 para voltar: ";
+			else
+				cout << "\nDigite 0 para voltar: ";
+
 			if(cin >> opcao) {
 				if (opcao == 0)
 					return;
