@@ -83,7 +83,9 @@ namespace Polikut {
         } else {
             do {
                 std::cout << x->getId() << ") " << x->getMensagem()->getConteudo() << " ("
-                    << x->getMensagem()->getCurtidas() << " curtidas)\n";
+                    << x->getMensagem()->getCurtidas() << " curtida";
+				if (x->getMensagem()->getCurtidas() > 1) std::cout << "s)\n";
+				else std::cout << ")\n";
                 x = x->getProximo();
             } while (x != nullptr);
         }
