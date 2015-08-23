@@ -105,7 +105,8 @@ namespace Polikut {
 			int opcao = 0;
 			cout << "Pessoa: "; CGREEN cout << pessoa.getNome() << endl;
 			cout << pessoa.getDataDeNascimento(); CRESET cout << " | "; CGREEN cout << pessoa.getPais() << endl;
-			CRESET cout << "\nContatos: \n";
+			CRESET
+			if (pessoa.getNumContatos() > 0 ) cout << "\nContatos: \n";
 			CGREEN pessoa.verContatos(); CRESET
 			cout << "-----------------------------------------\n\n"
 				 << "Escolha uma opcao:\n"
