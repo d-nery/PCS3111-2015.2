@@ -36,7 +36,8 @@ Professor Jaime S. Sichman
 
 #define CLEAR   system("cls");   // Limpa a tela (Usado na transicao entre as diferentes telas do programa)
 
-#else
+#else // Not Win32
+#ifdef __linux__
 
 #define CRESET  std::cout << "\033[0m";
 
@@ -50,6 +51,22 @@ Professor Jaime S. Sichman
 
 #define CLEAR   system("clear");
 
-#endif // Win32 or linux
+#else  // Outro SO nao tera cores
+
+#define CRESET
+
+#define CPINK
+#define CBLUE
+#define CYELLOW
+#define CRED
+#define CGOLD
+#define CPURPLE
+#define CGREEN
+
+#define CLEAR
+
+#endif // linux ou outro
+
+#endif // _win32
 
 #endif /* end of include guard: _COLORS_HPP_ */

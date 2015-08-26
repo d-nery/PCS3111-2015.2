@@ -26,7 +26,7 @@ int numPessoas = 0;                  ///< Numero de pessoas cadastradas no siste
 Pessoa* pessoas = new Pessoa [10];   ///< Vetor de pessoas cadastradas no sistema
 Tela tela;                           ///< Interface com o usuário
 
-#ifdef _WIN32                                 
+#ifdef _WIN32
 HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);   // Informãcoes da tela caso o programa seja
 CONSOLE_SCREEN_BUFFER_INFO original;             // compilado para Windows, usados pelas macros
 #endif // _WIN32                                 // do colors.hpp **
@@ -57,6 +57,7 @@ int main() {
 			case 3:
 				cout << "Volte Sempre!\n";
 				cin.get(); cin.get(); // Espera enter para não fechar rapido demais
+                if (numPessoas > 0) delete pessoas;
 				return 0;
 
 			default:                        // Nenhuma das opcoes foi digitada

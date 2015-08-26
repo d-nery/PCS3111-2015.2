@@ -27,7 +27,9 @@ namespace Polikut {
         this->numeroContatos = 0;
     }
 
-    Pessoa::~Pessoa() {}
+    Pessoa::~Pessoa() {
+        delete contatos;
+    }
 
     string Pessoa::getNome() {
         return this->nome;
