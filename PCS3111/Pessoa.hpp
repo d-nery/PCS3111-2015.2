@@ -29,7 +29,7 @@ namespace Polikut {
 		string pais;
 
 		// Ponteiros para os contatos da pessoa
-		Pessoa *contatos[9];
+		Pessoa* contatos[9];
 
 		// Listas de Mensagens enviadas e recebidas da pessoa
 		ListaDeMensagens recebidas;
@@ -41,7 +41,7 @@ namespace Polikut {
 	public:
 		// Cria uma pessoa vazia
 		Pessoa();
-		
+
 		// Cria uma pessoa com atributos
 		Pessoa(string nome, string dataDeNascimento, string pais);
 
@@ -71,7 +71,7 @@ namespace Polikut {
 
 		// Apresenta em tela o nome dos contatos que esta pessoa possui
 		void verContatos();
-		
+
 		// Retorna o numero de contatos da pessoa
 		int getNumContatos();
 	};

@@ -34,7 +34,7 @@ extern CONSOLE_SCREEN_BUFFER_INFO original;
 namespace Polikut {
 	void Tela::principal() {
 	    CLEAR
-		cout << "\nPoli"; CBLUE cout << "Social\n"; CRESET
+		cout << "\nPoli"; CPINK cout << "Kut\n"; CRESET
         cout << "-----------------------------------------\n"
 			 << "1) Cadastrar Pessoa\n"
 			 << "2) Logar Como Pessoa\n"
