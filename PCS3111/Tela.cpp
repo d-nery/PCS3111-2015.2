@@ -29,7 +29,7 @@ extern Tela tela;
 #ifdef _WIN32
 extern HANDLE hOut;
 extern CONSOLE_SCREEN_BUFFER_INFO original;
-#endif //
+#endif // _WIN32
 
 namespace Polikut {
 	void Tela::principal() {

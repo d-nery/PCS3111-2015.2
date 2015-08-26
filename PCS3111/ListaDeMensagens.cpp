@@ -27,17 +27,14 @@ namespace Polikut {
     }
 
     void ListaDeMensagens::adicionar(Mensagem* m) {
-        Elemento* novo = new Elemento();
-        novo->setId(++total);
-        novo->setMensagem(m);
-        novo->setProximo(nullptr);
+        Elemento* novo = new Elemento(++total, m, nullptr); // Cria um novo elemento
 
-        Elemento* x = cabeca;
-        if (x != nullptr) {
+        Elemento* x = cabeca;                     // Iterador para percorrer a lista até o final
+        if (x != nullptr) {                       // Checa se a lista está vazia
             while (x->getProximo() != nullptr) {
                 x = x->getProximo();
             }
-            x->setProximo(novo);
+            x->setProximo(novo);                  // Adiciona o novo elemento ao final da lista
         } else {
             cabeca = novo;
         }
@@ -48,18 +45,18 @@ namespace Polikut {
     }
 
     Mensagem* ListaDeMensagens::getMensagem(int _id) {
-        if (_id == 0) {
+        if (_id == 0) {               // Nao ha item de id 0                       
             return nullptr;
         }
         Elemento* x = cabeca;
-        if (_id == 1) {
+        if (_id == 1) {               // Primeiro item da lista
             return x->getMensagem();
         }
         if (x != nullptr) {
-            while (x->getProximo() != nullptr && x->getProximo()->getId() != _id) {
+            while (x->getProximo() != nullptr && x->getProximo()->getId() != _id) { // Percorre a lista até o final ou até achar o id
                 x = x->getProximo();
             }
-                return x->getProximo()->getMensagem();
+			return x->getProximo()->getMensagem();
         }
 	    return nullptr;
     }
@@ -75,12 +72,12 @@ namespace Polikut {
             return;
         }
 
-        if (x->getProximo() == nullptr) {
+        if (x->getProximo() == nullptr) {        // 1 item na lista
             std::cout << x->getId() << ") " << x->getMensagem()->getConteudo() << " ("
                 << x->getMensagem()->getCurtidas() << " curtida";
             if(x->getMensagem()->getCurtidas() > 1) std::cout << "s)\n";
             else std::cout << ")\n";
-        } else {
+        } else {                                 // Percorre a lista, imprimindo o conteudo das mensagens de seus elementos
             do {
                 std::cout << x->getId() << ") " << x->getMensagem()->getConteudo() << " ("
                     << x->getMensagem()->getCurtidas() << " curtida";

@@ -23,17 +23,26 @@ using namespace std;
 namespace Polikut {
 	class Pessoa {
 	private:
+		// Dados da pessoa
 		string nome;
 		string dataDeNascimento;
 		string pais;
+
+		// Ponteiros para os contatos da pessoa
 		Pessoa *contatos[9];
+
+		// Listas de Mensagens enviadas e recebidas da pessoa
 		ListaDeMensagens recebidas;
 		ListaDeMensagens enviadas;
+
+		// Numero de contatos da pessoa
 		int numeroContatos;
 
 	public:
+		// Cria uma pessoa vazia
 		Pessoa();
-		// Cria uma pessoa
+		
+		// Cria uma pessoa com atributos
 		Pessoa(string nome, string dataDeNascimento, string pais);
 
 		// Destrói um objeto pessoa, destruindo todos os objetos auxiliares criados
@@ -54,15 +63,16 @@ namespace Polikut {
 		// Este método é chamado pelo "envia" da pessoa que está enviando a mensagem
 		void recebe(Mensagem* m);
 
-		// Obtêm a lista ligada com as mensagens recebidas
+		// Obtêm uma referência para a lista ligada com as mensagens recebidas
 		ListaDeMensagens& getMensagensRecebidas();
 
-		// Obtêm a lista ligada com as mensagens enviadas
+		// Obtêm uma referência para a lista ligada com as mensagens enviadas
 		ListaDeMensagens& getMensagensEnviadas();
 
 		// Apresenta em tela o nome dos contatos que esta pessoa possui
 		void verContatos();
-
+		
+		// Retorna o numero de contatos da pessoa
 		int getNumContatos();
 	};
 }

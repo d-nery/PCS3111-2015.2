@@ -12,6 +12,8 @@ Turma 23
 Professor Jaime S. Sichman
 **/
 
+// Macros para colorir o terminal/console e limpa-lo
+
 #ifndef _COLORS_HPP_
 #define _COLORS_HPP_
 
@@ -21,17 +23,18 @@ Professor Jaime S. Sichman
 #include <winnt.h>
 #include <stdio.h>
 
-#define CRESET  SetConsoleTextAttribute(hOut, FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY | FOREGROUND_GREEN/*original.wAttributes*/);
+#define CRESET  SetConsoleTextAttribute(hOut, FOREGROUND_RED | FOREGROUND_BLUE | \
+										FOREGROUND_INTENSITY | FOREGROUND_GREEN/*original.wAttributes*/);    // Branco
 
-#define CPINK   SetConsoleTextAttribute(hOut, FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
-#define CBLUE   SetConsoleTextAttribute(hOut, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
-#define CYELLOW SetConsoleTextAttribute(hOut, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-#define CRED    SetConsoleTextAttribute(hOut, FOREGROUND_RED | FOREGROUND_INTENSITY);
-#define CGOLD   SetConsoleTextAttribute(hOut, FOREGROUND_RED | FOREGROUND_GREEN);
-#define CPURPLE SetConsoleTextAttribute(hOut, FOREGROUND_RED | FOREGROUND_BLUE);
-#define CGREEN  SetConsoleTextAttribute(hOut, FOREGROUND_GREEN);
+#define CPINK   SetConsoleTextAttribute(hOut, FOREGROUND_RED  | FOREGROUND_BLUE  | FOREGROUND_INTENSITY);    // Rosa
+#define CBLUE   SetConsoleTextAttribute(hOut, FOREGROUND_BLUE | FOREGROUND_INTENSITY);                       // Azul
+#define CYELLOW SetConsoleTextAttribute(hOut, FOREGROUND_RED  | FOREGROUND_GREEN | FOREGROUND_INTENSITY);    // Amarelo
+#define CRED    SetConsoleTextAttribute(hOut, FOREGROUND_RED  | FOREGROUND_INTENSITY);                       // Vermelho
+#define CGOLD   SetConsoleTextAttribute(hOut, FOREGROUND_RED  | FOREGROUND_GREEN);                           // Dourado
+#define CPURPLE SetConsoleTextAttribute(hOut, FOREGROUND_RED  | FOREGROUND_BLUE);                            // Roxo
+#define CGREEN  SetConsoleTextAttribute(hOut, FOREGROUND_GREEN);                                             // Verde
 
-#define CLEAR   system("cls");
+#define CLEAR   system("cls");   // Limpa a tela (Usado na transicao entre as diferentes telas do programa)
 
 #else
 

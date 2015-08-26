@@ -21,7 +21,10 @@ Professor Jaime S. Sichman
 namespace Polikut {
 	class ListaDeMensagens {
 	private:
+		// Total de mensagens na lista
 		int total;
+
+		// Cabeca da lista ligada
 		Elemento* cabeca;
 
 	public:
@@ -38,9 +41,13 @@ namespace Polikut {
 		// (Isso é necessário para varrer a lista)
 		Elemento* getCabeca();
 
+		// Obtem a mensagem apontada pelo elemento de chave id
 		Mensagem* getMensagem(int id);
 
+		// Retorna o total de mensgaens na lista
 		int getTotal();
+
+		// Lista as mensagens da lista
 		void listar();
 	};
 }

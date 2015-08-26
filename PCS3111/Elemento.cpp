@@ -22,17 +22,15 @@ namespace Polikut {
         proximo = nullptr;
     }
 
+	Elemento::Elemento(int id, Mensagem* msg, Elemento* prx) : 
+		id(id),
+		mensagem(msg),
+		proximo(prx)
+	{}
+
     Elemento::~Elemento() {
         delete mensagem;
         delete proximo;
-    }
-
-    void Elemento::setId(int _id) {
-        id = _id;
-    }
-
-    void Elemento::setMensagem(Mensagem* msg) {
-        mensagem = msg;
     }
 
     void Elemento::setProximo(Elemento* prx) {

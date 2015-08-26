@@ -20,13 +20,26 @@ Professor Jaime S. Sichman
 namespace Polikut {
 	class Tela {
 	public:
+		// Menu Principal
 		void principal();
+		
+		// Tela de cadastrar uma pessoa no sistema
 		void cadastro();
+
+		// Tela de entrar como uma pessoa no sistema
 		void login();
+
+		// Tela de informacoes de pessoa
 		void info(Pessoa& pessoa);
+
+		// Tela para adicionar um contato a pessoa
 		void adicionarContato(Pessoa& pessoa);
+
+		// Telas com as mensagens enviadas e recebidas de pessoa
 		void mensagensEnviadas(Pessoa& pessoa);
 		void mensagensRecebidas(Pessoa& pessoa);
+
+		// Tela para escrever mensagem de pessoa para seus contatos
 		void escreverMensagem(Pessoa& pessoa);
 	};
 }
