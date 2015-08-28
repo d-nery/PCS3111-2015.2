@@ -14,6 +14,7 @@ Professor Jaime S. Sichman
 
 #include <iostream>
 #include "Pessoa.hpp"
+#include "colors.hpp"
 
 using namespace std;
 
@@ -41,15 +42,23 @@ namespace Polikut {
         return this->pais;
     }
 
-    int Pessoa::adiciona(Pessoa* contato) {
-        if (contato == this)
-            return -2;
+    //int
+    void Pessoa::adiciona(Pessoa* contato) {
+        if (contato == this) {
+            std::cout << "Voce nao pode adicionar a si mesmo!\n"; // -
+            return; //-2;
+        }
         for (int i = 0; i < numeroContatos; i++) {
-            if (contato == this->contatos[i])
-                return -1;
+            if (contato == this->contatos[i]) {
+                std::cout << "Contato ja adicionado!\n"; // -
+                return;// -1;
+            }
         }
         this->contatos[this->numeroContatos++] = contato;
-        return 0;
+        CGREEN std::cout << contato->getNome(); CRESET      // -
+        std::cout << " conectado a ";                       // -
+        CGREEN std::cout << this->getNome() << endl; CRESET // -
+        return;// 0;
     }
 
     void Pessoa::envia(string texto) {

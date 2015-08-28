@@ -159,7 +159,8 @@ namespace Polikut {
 				if (opcao == 0)
 					return;
 				if (opcao >= 1 && opcao <= numPessoas) {
-					switch(pessoa.adiciona(&pessoas[opcao - 1])) {
+					pessoa.adiciona(&pessoas[opcao - 1]);
+					/*switch(pessoa.adiciona(&pessoas[opcao - 1])) {
                     case 0:
 						CGREEN cout << pessoas[opcao - 1].getNome(); CRESET
 						cout << " conectado a ";
@@ -171,7 +172,7 @@ namespace Polikut {
                     case (-2):
                         cout << "Voce nao pode adicionar a si mesmo!\n";
                         break;
-                    }
+                    }*/
                     cout << "\nAperte Enter para retornar\n";
                     cin.get();
                     while (cin.get() != '\n');
