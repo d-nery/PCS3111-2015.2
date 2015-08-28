@@ -160,8 +160,8 @@ namespace Polikut {
 					return;
 				if (opcao >= 1 && opcao <= numPessoas) {
 					pessoa.adiciona(&pessoas[opcao - 1]);
-					/*switch(pessoa.adiciona(&pessoas[opcao - 1])) {
-                    case 0:
+					/*switch(pessoa.adiciona(&pessoas[opcao - 1])) {        // Caso em que a funcao e do tipo int e
+                    case 0:                                                 // retorna um valor de erro, que e 
 						CGREEN cout << pessoas[opcao - 1].getNome(); CRESET
 						cout << " conectado a ";
 						CGREEN cout << pessoa.getNome() << endl; CRESET
