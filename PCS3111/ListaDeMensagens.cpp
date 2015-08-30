@@ -29,11 +29,10 @@ namespace Polikut {
     void ListaDeMensagens::adicionar(Mensagem* m) {
         Elemento* novo = new Elemento(++total, m, nullptr); // Cria um novo elemento
 
-        Elemento* x = cabeca;                     // Iterador para percorrer a lista até o final
-        if (x != nullptr) {                       // Checa se a lista está vazia
-            while (x->getProximo() != nullptr) {
+        Elemento* x = cabeca;                     // Iterador para percorrer a lista ate o final
+        if (x != nullptr) {                       // Checa se a lista esta vazia
+            while (x->getProximo() != nullptr)
                 x = x->getProximo();
-            }
             x->setProximo(novo);                  // Adiciona o novo elemento ao final da lista
         } else {
             cabeca = novo;
@@ -45,17 +44,16 @@ namespace Polikut {
     }
 
     Mensagem* ListaDeMensagens::getMensagem(int _id) {
-        if (_id == 0) {               // Nao ha item de id 0                       
+        if (_id == 0)              // Nao ha item de id 0
             return nullptr;
-        }
+
         Elemento* x = cabeca;
-        if (_id == 1) {               // Primeiro item da lista
+        if (_id == 1)              // Primeiro item da lista
             return x->getMensagem();
-        }
+
         if (x != nullptr) {
-            while (x->getProximo() != nullptr && x->getProximo()->getId() != _id) { // Percorre a lista até o final ou até achar o id
+            while (x->getProximo() != nullptr && x->getProximo()->getId() != _id) // Percorre a lista ate o final ou ate achar o id
                 x = x->getProximo();
-            }
 			return x->getProximo()->getMensagem();
         }
 	    return nullptr;
