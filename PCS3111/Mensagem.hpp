@@ -44,7 +44,6 @@ namespace Polikut {
 
 		// Curte a mensagem
 		void curtir();
-
 	};
 }
 
