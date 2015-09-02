@@ -24,20 +24,14 @@ using namespace Polikut;
 /// Variaveis globais
 int numPessoas = 0;                  ///< Numero de pessoas cadastradas no sistema
 Pessoa* pessoas = new Pessoa [10];   ///< Vetor de pessoas cadastradas no sistema
-Tela tela;                           ///< Interface com o usuario
-
-#ifdef _WIN32
-HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);   // Informacoes da tela caso o programa seja
-CONSOLE_SCREEN_BUFFER_INFO original;             // compilado para Windows, usados pelas macros
-#endif // _WIN32                                 // do colors.hpp **
 
 // Main
 int main() {
 #ifdef _WIN32
-    GetConsoleScreenBufferInfo(hOut, &original); // **Idem
     system("title PoliKut");
 #endif // _WIN32
     CRESET
+    Tela tela;                        ///< Interface com o usuario
 	int opcao = 0;                    // Opcao digitada pelo  usuario
 
 	tela.principal();                 // Mostra a tela inicial

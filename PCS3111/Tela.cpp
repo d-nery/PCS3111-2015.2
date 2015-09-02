@@ -91,7 +91,7 @@ namespace Polikut {
 				if (opcao == 0)
 					return;
 				if (opcao >= 1 && opcao <= numPessoas)
-					tela.info(pessoas[opcao - 1]);
+					info(pessoas[opcao - 1]);
 			} else {
 				cin.clear();
 				while (cin.get() != '\n');
@@ -123,19 +123,19 @@ namespace Polikut {
 		 			return;
 
 		 			case 1:
-					tela.adicionarContato(pessoa);
+					adicionarContato(pessoa);
 					break;
 
 					case 2:
-					tela.mensagensEnviadas(pessoa);
+					mensagensEnviadas(pessoa);
 					break;
 
 					case 3:
-					tela.mensagensRecebidas(pessoa);
+					mensagensRecebidas(pessoa);
 					break;
 
 					case 4:
-					tela.escreverMensagem(pessoa);
+					escreverMensagem(pessoa);
 		 			break;
 	 			}
  			else {

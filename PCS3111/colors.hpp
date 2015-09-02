@@ -23,6 +23,8 @@ Professor Jaime S. Sichman
 #include <winnt.h>
 #include <stdio.h>
 
+HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
 #define CRESET  SetConsoleTextAttribute(hOut, FOREGROUND_RED | FOREGROUND_BLUE | \
 										FOREGROUND_INTENSITY | FOREGROUND_GREEN/*original.wAttributes*/);    // Branco
 
@@ -36,8 +38,7 @@ Professor Jaime S. Sichman
 
 #define CLEAR   system("cls");   // Limpa a tela (Usado na transicao entre as diferentes telas do programa)
 
-#else // Not Win32
-#ifdef __linux__
+#else
 
 #define CRESET  std::cout << "\033[0m";
 
@@ -50,22 +51,6 @@ Professor Jaime S. Sichman
 #define CGREEN  std::cout << "\033[38;5;114m";
 
 #define CLEAR   system("clear");
-
-#else  // Outro SO nao tera cores
-
-#define CRESET
-
-#define CPINK
-#define CBLUE
-#define CYELLOW
-#define CRED
-#define CGOLD
-#define CPURPLE
-#define CGREEN
-
-#define CLEAR
-
-#endif // linux ou outro
 
 #endif // _win32
 
