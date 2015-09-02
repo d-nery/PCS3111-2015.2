@@ -25,6 +25,10 @@ using namespace Polikut;
 int numPessoas = 0;                  ///< Numero de pessoas cadastradas no sistema
 Pessoa* pessoas = new Pessoa [10];   ///< Vetor de pessoas cadastradas no sistema
 
+#ifdef _WIN32
+HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+#endif
+
 // Main
 int main() {
 #ifdef _WIN32

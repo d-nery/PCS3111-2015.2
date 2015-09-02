@@ -23,8 +23,6 @@ Professor Jaime S. Sichman
 #include <winnt.h>
 #include <stdio.h>
 
-HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-
 #define CRESET  SetConsoleTextAttribute(hOut, FOREGROUND_RED | FOREGROUND_BLUE | \
 										FOREGROUND_INTENSITY | FOREGROUND_GREEN/*original.wAttributes*/);    // Branco
 
