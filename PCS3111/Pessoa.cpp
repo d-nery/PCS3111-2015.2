@@ -1,9 +1,9 @@
 /**
 Escola Politecnica da Universidade de Sao Paulo
-2 de setembro de 2015
+14 de outubro de 2015
 
 PCS3111 - Laboratorio de Programacao Orientada a Objetos
-Exercicio Programa 1 - 2015
+Exercicio Programa 2 - 2015
 
 Turma 23
 	Daniel Nery Silva de Oliveira - 9349051
