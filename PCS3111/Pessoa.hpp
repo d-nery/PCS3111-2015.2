@@ -16,65 +16,34 @@ Professor Jaime S. Sichman
 #define _PESSOA_HPP_
 
 #include "ListaDeMensagens.hpp"
-#include "Mensagem.hpp"
+#include "Perfil.hpp"
 
 using namespace std;
 
 namespace Polikut {
-	class Pessoa {
+	class Pessoa : public Perfil {
 	private:
 		// Dados da pessoa
-		string nome;
 		string dataDeNascimento;
 		string pais;
 
-		// Ponteiros para os contatos da pessoa
-		Pessoa* contatos[9];
-
-		// Listas de Mensagens enviadas e recebidas da pessoa
-		ListaDeMensagens recebidas;
-		ListaDeMensagens enviadas;
-
-		// Numero de contatos da pessoa
-		int numeroContatos;
-
 	public:
-		// Cria uma pessoa vazia
-		Pessoa();
-
-		// Cria uma pessoa com atributos
 		Pessoa(string nome, string dataDeNascimento, string pais);
 
-		// Destrói um objeto pessoa, destruindo todos os objetos auxiliares criados
-		~Pessoa();
+		virtual ~Pessoa();
 
-		// Métodos acessores: obtem o nome, data de nascimento e país
-		string getNome();
-		string getDataDeNascimento();
 		string getPais();
+		string getDataDeNascimento();
 
-		// Adiciona uma outra pessoa como contato desta pessoa
-		//int
-		void adiciona(Pessoa* contato);
+		// Adiciona o contato à lista de contatos da Pessoa
+		void adiciona(Perfil* contato);
 
-		// Envia um texto como mensagem para todos os contatos da pessoa
-		void envia(string texto);
+		// Implementa o método adicionadoPor para adicionar uma mensagem à pessoa que
+		// ela foi adicionada pelo contato
+		virtual void adicionadoPor(Perfil* contato);
 
-		// Recebe uma mensagem enviada por uma pessoa que tem esta pessoa como contato.
-		// Este método é chamado pelo "envia" da pessoa que está enviando a mensagem
-		void recebe(Mensagem* m);
-
-		// Obtêm uma referência para a lista ligada com as mensagens recebidas
-		ListaDeMensagens& getMensagensRecebidas();
-
-		// Obtêm uma referência para a lista ligada com as mensagens enviadas
-		ListaDeMensagens& getMensagensEnviadas();
-
-		// Apresenta em tela o nome dos contatos que esta pessoa possui
-		void verContatos();
-
-		// Retorna o numero de contatos da pessoa
-		int getNumContatos();
+		// Envia uma mensagem privada para um contato
+		void envia(string texto, Perfil* contato);
 	};
 }
 

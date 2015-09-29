@@ -24,7 +24,6 @@ using namespace Polikut;
 
 extern int numPessoas;
 extern Pessoa* pessoas;
-extern Tela tela;
 
 #ifdef _WIN32
 extern HANDLE hOut;
