@@ -28,7 +28,7 @@ namespace Polikut {
 	public:
 		Departamento(std::string nome, std::string site, Pessoa* responsavel);
 
-		virtual ~Departamento();
+		~Departamento();
 
 		std::string getSite();
 
@@ -37,11 +37,11 @@ namespace Polikut {
 		// Redefine o método "recebe" para repassa-la ao responsável.
 		// A mensagem recebida deve também ser adicionada às mensagens recebidas do
 		// departamento.
-		virtual void recebe(Mensagem* m);
+		void recebe(Mensagem* m);
 
 		// Implementa o método adicionadoPor para adicionar o Perfil como contato do
 		// Departamento
-		virtual void adicionadoPor(Perfil* contato);
+		void adicionadoPor(Perfil* contato);
 	};
 }
 

@@ -45,7 +45,7 @@ namespace Polikut {
 
 		// Envia uma mensagem para todos os contatos do perfil.
 		// O curtir informa se a mensagem pode ser curtida ou não.
-		virtual void envia(std::string texto, bool curtir);
+		void envia(std::string texto, bool curtir);
 
 		// Recebe uma mensagem.
 		virtual void recebe(Mensagem* m);

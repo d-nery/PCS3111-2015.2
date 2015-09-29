@@ -23,9 +23,6 @@ namespace Polikut {
 		// Conteudo da mensagem
 		std::string conteudo;
 
-		// Curtidas da mensagem
-		int curtidas;
-
 	public:
 		// Cria uma mensagem vazia
 		Mensagem();
@@ -34,16 +31,10 @@ namespace Polikut {
 		Mensagem(std::string conteudo);
 
 		// Destroi a mensagem
-		~Mensagem();
+		virtual ~Mensagem();
 
 		// Retorna o conteudo da mensagem
 		std::string getConteudo();
-
-		// Retorna o numero de curtidas da mensagem
-		int getCurtidas();
-
-		// Curte a mensagem
-		void curtir();
 	};
 }
 
