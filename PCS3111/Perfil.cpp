@@ -30,10 +30,13 @@ namespace Polikut {
 	void Perfil::envia(std::string texto, bool curtir) {
 		Mensagem* mensagem;
 		if (curtir) {
-			mensagem = new MensagemComCurtir()
+			mensagem = new MensagemComCurtir(texto);
 		}
-        for (int i = 0; i < this->numeroContatos; i++)
-            contatos[i]->recebe(mensagem);
+		else {
+			mensagem = new Mensagem(texto);
+		}
+        for (auto &i : contatos)
+            i->recebe(mensagem);
         this->enviadas.adicionar(mensagem);
 	}
 
@@ -42,22 +45,19 @@ namespace Polikut {
 	}
 
 	ListaDeMensagens& Perfil::getMensagensRecebidas() {
-
-
+		return this->recebidas;
 	}
 
 	ListaDeMensagens& Perfil::getMensagensEnviadas() {
-
-
+		return this->enviadas;
 	}
 
 	void Perfil::verContatos() {
-
-
+		for (auto &i : contatos)
+			std::cout << i->getNome() << std::endl;
 	}
 
 	void Perfil::verContatosAlcancaveis() {
-
 
 	}
 }
