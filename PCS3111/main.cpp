@@ -14,16 +14,12 @@ Professor Jaime S. Sichman
 
 #include <iostream>
 
-#include "Pessoa.hpp"
+#include "Perfil.hpp"
 #include "colors.hpp"      // Macros para colorir o terminal/console e limpa-lo
 #include "Tela.hpp"
 
 using namespace std;
 using namespace Polikut;
-
-/// Variaveis globais
-int numPessoas = 0;                  ///< Numero de pessoas cadastradas no sistema
-Pessoa* pessoas = new Pessoa [10];   ///< Vetor de pessoas cadastradas no sistema
 
 #ifdef _WIN32
 HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -34,7 +30,7 @@ int main() {
 #ifdef _WIN32
     system("title PoliKut");
 #endif // _WIN32
-    CRESET
+    CRESET;
     Tela tela;                        ///< Interface com o usuario
 	int opcao = 0;                    // Opcao digitada pelo  usuario
 
@@ -55,7 +51,6 @@ int main() {
 			case 3:
 				cout << "Volte Sempre!\n";
 				cin.get(); cin.get(); // Espera enter para nao fechar rapido demais
-                //delete[] pessoas;
 				return 0;
 
 			default:                        // Nenhuma das opcoes foi digitada

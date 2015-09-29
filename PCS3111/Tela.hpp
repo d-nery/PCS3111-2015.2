@@ -15,32 +15,43 @@ Professor Jaime S. Sichman
 #ifndef _TELA_HPP_
 #define _TELA_HPP_
 
+#include "Perfil.hpp"
 #include "Pessoa.hpp"
+#include "Departamento.hpp"
 
 namespace Polikut {
 	class Tela {
+	private:
+		std::vector<Perfil*> perfis;
+
 	public:
 		// Menu Principal
 		void principal();
 
-		// Tela de cadastrar uma pessoa no sistema
-		void cadastro();
+		// Tela de cadastrar um pessoa no sistema
+		void cadastroPessoa();
 
-		// Tela de entrar como uma pessoa no sistema
+		// Tela de cadastrar um departamento no sistema
+		void cadastroDepartamento();
+
+		// Tela de entrar como um perfil no sistema
 		void login();
 
-		// Tela de informacoes de pessoa
+		// Tela de informacoes de uma pessoa
 		void info(Pessoa& pessoa);
 
-		// Tela para adicionar um contato a pessoa
-		void adicionarContato(Pessoa& pessoa);
+		// Tela de informacoes de um departamento
+		void info(Departamento& departamento);
 
-		// Telas com as mensagens enviadas e recebidas de pessoa
-		void mensagensEnviadas(Pessoa& pessoa);
-		void mensagensRecebidas(Pessoa& pessoa);
+		// Tela para adicionar um contato a perfil
+		void adicionarContato(Perfil& perfil);
 
-		// Tela para escrever mensagem de pessoa para seus contatos
-		void escreverMensagem(Pessoa& pessoa);
+		// Telas com as mensagens enviadas e recebidas de perfil
+		void mensagensEnviadas(Perfil& perfil);
+		void mensagensRecebidas(Perfil& perfil);
+
+		// Tela para escrever mensagem de perfil para seus contatos
+		void escreverMensagem(Perfil& perfil);
 	};
 }
 

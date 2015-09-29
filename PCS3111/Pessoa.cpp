@@ -59,9 +59,9 @@ namespace Polikut {
             }
         }
         this->contatos[this->numeroContatos++] = contato;
-        CGREEN std::cout << contato->getNome(); CRESET      // -
+        CGREEN; std::cout << contato->getNome(); CRESET;      // -
         std::cout << " conectado a ";                       // -
-        CGREEN std::cout << this->getNome() << endl; CRESET // -
+        CGREEN; std::cout << this->getNome() << endl; CRESET; // -
         return;// 0;
     }
 

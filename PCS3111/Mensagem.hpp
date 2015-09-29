@@ -17,6 +17,12 @@ Professor Jaime S. Sichman
 
 #include <string>
 
+/**
+ * Classe mensagem
+ *
+ * Representa uma mensagem simples
+ */
+
 namespace Polikut {
 	class Mensagem {
 	private:

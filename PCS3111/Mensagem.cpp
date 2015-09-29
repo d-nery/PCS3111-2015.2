@@ -15,27 +15,16 @@ Professor Jaime S. Sichman
 #include <iostream>
 #include "Mensagem.hpp"
 
-using namespace std;
-
 namespace Polikut {
     Mensagem::Mensagem() {}
 
-    Mensagem::Mensagem(string conteudo) {
-        this->conteudo = conteudo;
-        this->curtidas = 0;
-    }
+    Mensagem::Mensagem(std::string conteudo) :
+        conteudo(conteudo)
+    {}
 
     Mensagem::~Mensagem() {}
 
-    string Mensagem::getConteudo() {
-        return this->conteudo;
-    }
-
-    int Mensagem::getCurtidas() {
-        return this->curtidas;
-    }
-
-    void Mensagem::curtir() {
-        this->curtidas++;
+    std::string Mensagem::getConteudo() {
+        return conteudo;
     }
 }

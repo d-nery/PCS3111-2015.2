@@ -11,3 +11,34 @@ Turma 23
 
 Professor Jaime S. Sichman
 **/
+
+#ifndef _MENSAGEM_COM_CURTIR_HPP_
+#define _MENSAGEM_COM_CURTIR_HPP_
+
+#include <string>
+
+#include "Mensagem.hpp"
+
+namespace Polikut {
+	class MensagemComCurtir : public Mensagem {
+	private:
+		// Conteudo da mensagem
+		int curtidas;
+
+	public:
+		// Cria uma mensagem vazia
+		MensagemComCurtir();
+
+		//Cria uma mensagem com conteudo
+		MensagemComCurtir(std::string conteudo);
+
+		// Destroi a mensagem
+		~MensagemComCurtir();
+
+		int getCurtidas();
+
+		void curtir();
+	};
+}
+
+#endif /* end of include guard: _MENSAGEM_COM_CURTIR_HPP_ */

@@ -12,33 +12,25 @@ Turma 23
 Professor Jaime S. Sichman
 **/
 
-#ifndef _MENSAGEM_COM_CURTIR_HPP_
-#define _MENSAGEM_COM_CURTIR_HPP_
+#include <iostream>
 
-#include <string>
-
-#include "Mensagem.hpp"
+#include "MensagemComCurtir.hpp"
 
 namespace Polikut {
-	class MensagemComCurtir : public Mensagem {
-	private:
-		// Conteudo da mensagem
-		int curtidas;
+    MensagemComCurtir::MensagemComCurtir() {}
 
-	public:
-		// Cria uma mensagem vazia
-		MensagemComCurtir();
+    MensagemComCurtir::MensagemComCurtir(std::string conteudo) :
+		Mensagem(conteudo),
+		curtidas(0)
+	{}
 
-		//Cria uma mensagem com conteudo
-		MensagemComCurtir(std::string conteudo);
+    MensagemComCurtir::~MensagemComCurtir() {}
 
-		// Destroi a mensagem
-		~MensagemComCurtir();
+    int MensagemComCurtir::getCurtidas() {
+        return curtidas;
+    }
 
-		int getCurtidas();
-
-		void curtir();
-	};
+    void MensagemComCurtir::curtir() {
+        curtidas++;
+    }
 }
-
-#endif /* end of include guard: _MENSAGEM_COM_CURTIR_HPP_ */
