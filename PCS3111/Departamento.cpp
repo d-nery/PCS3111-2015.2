@@ -21,6 +21,7 @@ namespace Polikut {
 		this->nome = nome;
 		this->site = site;
 		this->responsavel = responsavel;
+		// apagar
 	}
 
 	Departamento::~Departamento() {}
