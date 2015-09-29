@@ -38,20 +38,23 @@ namespace Polikut {
 		void login();
 
 		// Tela de informacoes de uma pessoa
-		void info(Pessoa& pessoa);
+		void info(Pessoa* pessoa);
 
 		// Tela de informacoes de um departamento
-		void info(Departamento& departamento);
+		void info(Departamento* departamento);
 
-		// Tela para adicionar um contato a perfil
-		void adicionarContato(Perfil& perfil);
+		// Tela para adicionar um contato a pessoa
+		void adicionarContato(Pessoa* pessoa);
 
 		// Telas com as mensagens enviadas e recebidas de perfil
-		void mensagensEnviadas(Perfil& perfil);
-		void mensagensRecebidas(Perfil& perfil);
+		void mensagensEnviadas(Perfil* perfil);
+		void mensagensRecebidas(Perfil* perfil);
 
 		// Tela para escrever mensagem de perfil para seus contatos
-		void escreverMensagem(Perfil& perfil);
+		void escreverMensagem(Perfil* perfil);
+
+		// Tela com os contatos alcancaveis de um perfil
+		void contatosAlcancaveis(Perfil* perfil);
 	};
 }
 
