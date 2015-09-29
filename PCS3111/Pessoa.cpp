@@ -13,6 +13,8 @@ Professor Jaime S. Sichman
 **/
 
 #include <iostream>
+#include <stdexcept>
+
 #include "Pessoa.hpp"
 #include "colors.hpp"
 
@@ -29,14 +31,9 @@ namespace Polikut {
         this->nome = nome;
         this->dataDeNascimento = dataDeNascimento;
         this->pais = pais;
-        this->numeroContatos = 0;
     }
 
     Pessoa::~Pessoa() {}
-
-    string Pessoa::getNome() {
-        return this->nome;
-    }
 
     string Pessoa::getDataDeNascimento() {
         return this->dataDeNascimento;
@@ -47,50 +44,28 @@ namespace Polikut {
     }
 
     //int
-    void Pessoa::adiciona(Pessoa* contato) {
+    void Pessoa::adiciona(Perfil* contato) {
         if (contato == this) {
-            std::cout << "Voce nao pode adicionar a si mesmo!\n"; // -
+            throw logic_error("Voce nao pode adicionar a si mesmo"); // -
             return; //-2;
         }
-        for (int i = 0; i < numeroContatos; i++) {
-            if (contato == this->contatos[i]) {
-                std::cout << "Contato ja adicionado!\n"; // -
+        for (auto &i : contatos) {
+            if (contato == i) {
+                throw logic_error("Contato ja adicionado");
                 return;// -1;
             }
         }
-        this->contatos[this->numeroContatos++] = contato;
-        CGREEN; std::cout << contato->getNome(); CRESET;      // -
-        std::cout << " conectado a ";                       // -
-        CGREEN; std::cout << this->getNome() << endl; CRESET; // -
-        return;// 0;
+        this->contatos->push_back(contato);
     }
 
-    void Pessoa::envia(string texto) {
-        Mensagem* mensagem = new Mensagem(texto);
-        for (int i = 0; i < this->numeroContatos; i++)
-            contatos[i]->recebe(mensagem);
-        this->enviadas.adicionar(mensagem);
+    void Pessoa::adicionadoPor(Perfil* contato) {
+        std::string texto = contato->getNome() + " adicionou voce como contato.";
+        m = new Mensagem(texto)
+        Perfil::recebe(m);
     }
 
-    void Pessoa::recebe(Mensagem* m) {
-        this->recebidas.adicionar(m);
-    }
-
-    ListaDeMensagens& Pessoa::getMensagensRecebidas() {
-        return this->recebidas;
-    }
-
-    ListaDeMensagens& Pessoa::getMensagensEnviadas() {
-        return this->enviadas;
-    }
-
-    void Pessoa::verContatos() {
-        for (int i = 0; i < this->numeroContatos; i++) {
-            cout << "\t" << contatos[i]->getNome() << endl;
-        }
-    }
-
-    int Pessoa::getNumContatos() {
-        return this->numeroContatos;
+    void Pessoa::envia(string texto, Perfil* contato){
+        mensagem = new Mensagem(texto);
+        contato->recebe(mensagem);
     }
 }
