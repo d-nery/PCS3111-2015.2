@@ -24,7 +24,16 @@ namespace Polikut {
 
     Mensagem::~Mensagem() {}
 
-    std::string Mensagem::getConteudo() {
+    std::string Mensagem::getConteudo() const {
         return conteudo;
+    }
+
+    void Mensagem::listar(std::ostream& os) const {
+        os << conteudo;
+    }
+
+    std::ostream& operator<<(std::ostream& os, const Mensagem* msg) {
+        msg->listar(os);
+        return os;
     }
 }

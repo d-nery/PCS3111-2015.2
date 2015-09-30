@@ -14,7 +14,10 @@ Professor Jaime S. Sichman
 
 #include <iostream>
 
+#include "colors.hpp"
 #include "ListaDeMensagens.hpp"
+#include "Mensagem.hpp"
+#include "MensagemComCurtir.hpp"
 
 namespace Polikut {
     ListaDeMensagens::ListaDeMensagens() {
@@ -71,16 +74,10 @@ namespace Polikut {
         }
 
         if (x->getProximo() == nullptr) {        // 1 item na lista
-            std::cout << x->getId() << ") " << x->getMensagem()->getConteudo() << " ("
-                << x->getMensagem()->getCurtidas() << " curtida";
-            if(x->getMensagem()->getCurtidas() > 1) std::cout << "s)\n";
-            else std::cout << ")\n";
+            std::cout << x->getId() << ") " << x->getMensagem() << std::endl;
         } else {                                 // Percorre a lista, imprimindo o conteudo das mensagens de seus elementos
             do {
-                std::cout << x->getId() << ") " << x->getMensagem()->getConteudo() << " ("
-                    << x->getMensagem()->getCurtidas() << " curtida";
-				if (x->getMensagem()->getCurtidas() > 1) std::cout << "s)\n";
-				else std::cout << ")\n";
+                std::cout << x->getId() << ") " << x->getMensagem() << std::endl;
                 x = x->getProximo();
             } while (x != nullptr);
         }

@@ -24,7 +24,9 @@ namespace Polikut {
 	class Departamento : public Perfil {
 	private:
 		std::string nome;
-		const Pessoa* responsavel;
+		std::string site;
+
+		Pessoa* responsavel;
 
 	public:
 		Departamento(std::string nome, std::string site, Pessoa* responsavel);

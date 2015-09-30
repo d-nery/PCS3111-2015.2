@@ -39,18 +39,23 @@ int main() {
 		if(cin >> opcao)              // Recebe dados do usuario e checa o estado de cin para ver se o esperado (int) foi recebido
 			switch (opcao) {
 			case 1:
-				tela.cadastro();      // Mostra a tela de cadastro
+				tela.cadastroPessoa();      // Mostra a tela de cadastro de Pessoa
 				tela.principal();
 				break;
 
-			case 2:
+            case 2:
+                tela.cadastroDepartamento();         // Mostra a tela de cadastro de Departamento
+                tela.principal();
+                break;
+
+			case 3:
 				tela.login();         // Mostra a tela de login
 				tela.principal();
 				break;
 
-			case 3:
+			case 0:
 				cout << "Volte Sempre!\n";
-				cin.get(); cin.get(); // Espera enter para nao fechar rapido demais
+				cin.get(); cin.get();       // Espera enter para nao fechar rapido demais
 				return 0;
 
 			default:                        // Nenhuma das opcoes foi digitada

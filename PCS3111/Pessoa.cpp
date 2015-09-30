@@ -25,10 +25,7 @@ extern HANDLE hOut;
 #endif // _WIN32
 
 namespace Polikut {
-    Pessoa::Pessoa() {}
-
-    Pessoa::Pessoa (string nome, string dataDeNascimento, string pais) {
-        this->nome = nome;
+    Pessoa::Pessoa (string nome, string dataDeNascimento, string pais) : Perfil(nome) {
         this->dataDeNascimento = dataDeNascimento;
         this->pais = pais;
     }
@@ -43,29 +40,29 @@ namespace Polikut {
         return this->pais;
     }
 
-    //int
     void Pessoa::adiciona(Perfil* contato) {
         if (contato == this) {
-            throw logic_error("Voce nao pode adicionar a si mesmo"); // -
-            return; //-2;
+            throw logic_error("Voce nao pode adicionar a si mesmo");
+            return;
         }
         for (auto &i : contatos) {
             if (contato == i) {
                 throw logic_error("Contato ja adicionado");
-                return;// -1;
+                return;
             }
         }
-        this->contatos->push_back(contato);
+        this->contatos.push_back(contato);
+        contato->adicionadoPor(this);
     }
 
     void Pessoa::adicionadoPor(Perfil* contato) {
         std::string texto = contato->getNome() + " adicionou voce como contato.";
-        m = new Mensagem(texto)
+        Mensagem* m = new Mensagem(texto);
         Perfil::recebe(m);
     }
 
     void Pessoa::envia(string texto, Perfil* contato){
-        mensagem = new Mensagem(texto);
+        Mensagem* mensagem = new Mensagem(texto);
         contato->recebe(mensagem);
     }
 }

@@ -14,6 +14,8 @@ Professor Jaime S. Sichman
 
 #include <iostream>
 
+#include "colors.hpp"
+
 #include "MensagemComCurtir.hpp"
 
 namespace Polikut {
@@ -26,11 +28,16 @@ namespace Polikut {
 
     MensagemComCurtir::~MensagemComCurtir() {}
 
-    int MensagemComCurtir::getCurtidas() {
+    int MensagemComCurtir::getCurtidas() const {
         return curtidas;
     }
 
     void MensagemComCurtir::curtir() {
         curtidas++;
+    }
+
+    void MensagemComCurtir::listar(std::ostream& os) const {
+        os << conteudo << "  (" << curtidas << " curtida"
+            << (curtidas > 1 ? "s)" : ")");
     }
 }

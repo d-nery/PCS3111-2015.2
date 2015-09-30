@@ -15,6 +15,7 @@ Professor Jaime S. Sichman
 #ifndef _MENSAGEM_HPP_
 #define _MENSAGEM_HPP_
 
+#include <iostream>
 #include <string>
 
 /**
@@ -24,8 +25,9 @@ Professor Jaime S. Sichman
  */
 
 namespace Polikut {
+	class MensagemComCurtir;
 	class Mensagem {
-	private:
+	protected:
 		// Conteudo da mensagem
 		std::string conteudo;
 
@@ -40,8 +42,13 @@ namespace Polikut {
 		virtual ~Mensagem();
 
 		// Retorna o conteudo da mensagem
-		std::string getConteudo();
+		std::string getConteudo() const;
+
+		// Lista a msg
+		virtual void listar(std::ostream& os) const;
 	};
+
+	std::ostream& operator<<(std::ostream& os, const Mensagem* msg);
 }
 
 #endif /* end of include guard: _MENSAGEM_HPP_ */

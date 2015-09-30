@@ -55,6 +55,9 @@ namespace Polikut {
 
 		// Tela com os contatos alcancaveis de um perfil
 		void contatosAlcancaveis(Perfil* perfil);
+
+		// Lista de perfis cadastrados
+		void listarPerfis();
 	};
 }
 

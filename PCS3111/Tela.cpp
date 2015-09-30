@@ -61,7 +61,7 @@ namespace Polikut {
 		getline(cin, pais); CRESET;
 
 		perfis.push_back(new Pessoa(nome, dataDeNascimento, pais));
-		CGREEN; cout << perfis[perfis.size()]->getNome(); CRESET; cout << " cadastrado com sucesso.\n";
+		CGREEN; cout << perfis.back()->getNome(); CRESET; cout << " cadastrado com sucesso.\n";
 
 		cout << "\nAperte Enter para retornar\n";
 		while (cin.get() != '\n');
@@ -92,7 +92,7 @@ namespace Polikut {
 
 		cout << "Escolha um responsável:\n";
 		for (auto &i : perfis) {
-			cout << j << ") " << i->getNome();
+			cout << j << ") " << i->getNome() << endl;
 			j++;
 		}
 		cout << "Digite um numero ou 0 para cancelar: ";
@@ -104,7 +104,7 @@ namespace Polikut {
 		}
 
 		perfis.push_back(new Departamento(nome, site, responsavel));
-		CGREEN; cout << perfis[perfis.size()]->getNome(); CRESET; cout << " cadastrado com sucesso.\n";
+		CGREEN; cout << perfis.back()->getNome(); CRESET; cout << " cadastrado com sucesso.\n";
 
 		cout << "\nAperte Enter para retornar\n";
 		while (cin.get() != '\n');
@@ -250,9 +250,7 @@ namespace Polikut {
             int opcao = 0;
             cout << "Perfis\n"
                  << "-----------------------------------------\n";
-			for (int i = 0; i < perfis.size(); i++) {
-				CGREEN; cout << i + 1 << ") " << perfis[i]->getNome() << "\n"; CRESET;
-			}
+			listarPerfis();
             cout << "\nEscolha um contato para adicionar ou 0 para voltar: ";
 			if(cin >> opcao) {
 				if (opcao == 0)
@@ -266,6 +264,7 @@ namespace Polikut {
 					} catch (logic_error& e) {
 						cout << e.what() << endl;
 					}
+
                     cout << "\nAperte Enter para retornar\n";
                     cin.get();
                     while (cin.get() != '\n');
@@ -276,5 +275,107 @@ namespace Polikut {
 				while (cin.get() != '\n');
 			}
 		}
+	}
+
+	void Tela::mensagensEnviadas(Perfil* perfil) {
+		CLEAR;
+		cout << "Mensagens Enviadas\n"
+		 	 << "-----------------------------------------\n";
+		perfil->getMensagensEnviadas().listar();
+        cout << "\nAperte Enter para retornar\n";
+		cin.get();
+		while (cin.get() != '\n');
+		return;
+	}
+
+	void Tela::mensagensRecebidas(Perfil* perfil) {
+		for (;;) {
+		    CLEAR;
+			int opcao = 0;
+			cout << "Mensagens Recebidas\n"
+				 << "-----------------------------------------\n";
+			perfil->getMensagensRecebidas().listar();
+
+			if (perfil->getMensagensRecebidas().getTotal() > 0)
+				cout << "\nDigite o numero da mensagem para curtir ou 0 para voltar: ";
+			else
+				cout << "\nDigite 0 para voltar: ";
+
+			if(cin >> opcao) {
+				if (opcao == 0)
+					return;
+				if (opcao > 0 && opcao <= perfil->getMensagensRecebidas().getTotal()) {
+					//perfil->getMensagensRecebidas().getMensagem(opcao)->curtir();
+				}
+			} else {
+				cin.clear();
+				while (cin.get() != '\n');
+			}
+		}
+	}
+
+	void Tela::escreverMensagem(Perfil* perfil) {
+		CLEAR;
+	    if (/*perfil->getContatos().size()*/ 1 == 0) {
+            cout << "Voce nao tem nenhum contato :(\n"
+                << "Por que nao adiciona algum na tela anterior? =D\n";
+            cout << "\nAperte Enter para retornar\n";
+            cin.get();
+            while (cin.get() != '\n');
+            return;
+	    }
+		bool alternativa;
+		int opcao;
+        string mensagem;
+
+		cout << "A mensagem e privada? (0 - nao, 1 - sim): ";
+		cin >> alternativa;
+
+		if (alternativa) {
+			cout << "Escolha o destino:\n";
+			listarPerfis();
+			cout << "Digite um numero ou 0 para cancelar: ";
+			cin >> opcao;
+			if (opcao == 0) return;
+			if (opcao >= 1 && opcao <= perfis.size())
+				perfil->envia(mensagem, perfis[opcao - 1]);
+
+			cout << "Digite a mensagem: ";
+
+	        cin.ignore();
+	        getline(cin, mensagem);
+
+			cout << "Mensagem enviada a " << perfis[opcao - 1]->getNome() << endl;
+			cout << "\nAperte Enter para retornar\n";
+			while (cin.get() != '\n');
+			return;
+		}
+
+		cout << "A mensagem pode ser curtida? (0 – não, 1 – sim): ";
+		cin >> alternativa;
+
+        cout << "Digite a mensagem: ";
+
+        cin.ignore();
+        getline(cin, mensagem);
+
+        perfil->envia(mensagem, alternativa);
+        cout << "Mensagem enviada a todos os contatos\n";
+		cout << "\nAperte Enter para retornar\n";
+		while (cin.get() != '\n');
+	}
+
+	void Tela::contatosAlcancaveis(Perfil* perfil) {
+		// TODO fazer aqui
+		cout << "Contatos Alcancaveis:\n";
+		cin.clear();
+		while (cin.get() != '\n');
+	}
+
+	void Tela::listarPerfis() {
+		CGREEN;
+		for (int i = 0; i < perfis.size(); i++)
+			cout << i + 1 << ") " << perfis[i]->getNome() << "\n";
+		CRESET;
 	}
 }

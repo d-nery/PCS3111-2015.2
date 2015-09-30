@@ -17,11 +17,9 @@ Professor Jaime S. Sichman
 #include "Departamento.hpp"
 
 namespace Polikut {
-	Departamento::Departamento(std::string nome, std::string site, Pessoa* responsavel) {
-		this->nome = nome;
+	Departamento::Departamento(std::string nome, std::string site, Pessoa* responsavel) : Perfil(nome) {
 		this->site = site;
 		this->responsavel = responsavel;
-		// apagar
 	}
 
 	Departamento::~Departamento() {}
@@ -40,6 +38,6 @@ namespace Polikut {
 	}
 
 	void Departamento::adicionadoPor(Perfil* contato) {
-		this->contatos->push_back(contato);
+		this->contatos.push_back(contato);
 	}
 }

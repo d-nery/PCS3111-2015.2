@@ -15,6 +15,7 @@ Professor Jaime S. Sichman
 #ifndef _MENSAGEM_COM_CURTIR_HPP_
 #define _MENSAGEM_COM_CURTIR_HPP_
 
+#include <iostream>
 #include <string>
 
 #include "Mensagem.hpp"
@@ -35,10 +36,13 @@ namespace Polikut {
 		// Destroi a mensagem
 		~MensagemComCurtir();
 
-		int getCurtidas();
+		int getCurtidas() const;
 
 		void curtir();
+
+		void listar(std::ostream& os) const;
 	};
+
 }
 
 #endif /* end of include guard: _MENSAGEM_COM_CURTIR_HPP_ */

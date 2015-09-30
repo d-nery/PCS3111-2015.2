@@ -14,7 +14,9 @@ Professor Jaime S. Sichman
 
 #include <iostream>
 
+#include "colors.hpp"
 #include "Perfil.hpp"
+#include "MensagemComCurtir.hpp"
 
 namespace Polikut {
 	Perfil::Perfil(std::string nome) {
@@ -37,6 +39,7 @@ namespace Polikut {
 		}
         for (auto &i : contatos)
             i->recebe(mensagem);
+
         this->enviadas.adicionar(mensagem);
 	}
 
