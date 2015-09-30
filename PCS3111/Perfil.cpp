@@ -61,6 +61,27 @@ namespace Polikut {
 
 	void Perfil::verContatosAlcancaveis() {
 	    std::vector<Perfil*> visitados;
+	    visitados.push_back(this);
+	    bool visitado = false;
+        for (auto &i : contatos) {
+            std::cout << i->getNome() << std::endl;
+            visitados.push_back(i);
+        }
+        for (unsigned int l = 1; l < visitados.size(); l++) {
+            for (auto &j : visitados[l]->getContatos()) {
+                visitado = false;
+                for (auto &k : visitados) {
+                    if (j == k) {visitado = true; break;}
+                }
+                if (!visitado) {
+                    std::cout << j->getNome() << std::endl;
+                    visitados.push_back(j);
+                }
+            }
+        }
+    }
 
+    std::vector<Perfil*> Perfil::getContatos() {
+        return contatos;
     }
 }

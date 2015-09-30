@@ -61,6 +61,8 @@ namespace Polikut {
 
 		// Imprime a lista de contatos alcançáveis.
 		void verContatosAlcancaveis();
+
+		std::vector<Perfil*> getContatos();
 	};
 }
 
