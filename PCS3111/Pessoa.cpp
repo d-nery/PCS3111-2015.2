@@ -16,7 +16,6 @@ Professor Jaime S. Sichman
 #include <stdexcept>
 
 #include "Pessoa.hpp"
-#include "colors.hpp"
 
 using namespace std;
 

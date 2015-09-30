@@ -18,6 +18,7 @@ Professor Jaime S. Sichman
 
 #include "Tela.hpp"
 #include "colors.hpp"
+#include "MensagemComCurtir.hpp"
 
 using namespace std;
 using namespace Polikut;
@@ -81,7 +82,7 @@ namespace Polikut {
 
 		int j = 1;
 
-		cout << "\nInforme os dados da pessoa: \n";
+		cout << "\nInforme os dados do departamento: \n";
 
 		cout << "Nome: "; CGREEN;
 		cin.ignore();
@@ -107,6 +108,7 @@ namespace Polikut {
 		CGREEN; cout << perfis.back()->getNome(); CRESET; cout << " cadastrado com sucesso.\n";
 
 		cout << "\nAperte Enter para retornar\n";
+		cin.get();
 		while (cin.get() != '\n');
 	}
 
@@ -305,7 +307,8 @@ namespace Polikut {
 				if (opcao == 0)
 					return;
 				if (opcao > 0 && opcao <= perfil->getMensagensRecebidas().getTotal()) {
-					//perfil->getMensagensRecebidas().getMensagem(opcao)->curtir();
+					MensagemComCurtir* msg = dynamic_cast<MensagemComCurtir*>(perfil->getMensagensRecebidas().getMensagem(opcao));
+					if (msg != nullptr) msg->curtir();
 				}
 			} else {
 				cin.clear();
@@ -324,42 +327,44 @@ namespace Polikut {
             while (cin.get() != '\n');
             return;
 	    }
-		bool alternativa;
 		int opcao;
         string mensagem;
 
 		cout << "A mensagem e privada? (0 - nao, 1 - sim): ";
-		cin >> alternativa;
+		cin >> opcao;
 
-		if (alternativa) {
+		if (opcao) {
 			cout << "Escolha o destino:\n";
 			listarPerfis();
 			cout << "Digite um numero ou 0 para cancelar: ";
 			cin >> opcao;
 			if (opcao == 0) return;
-			if (opcao >= 1 && opcao <= perfis.size())
-				perfil->envia(mensagem, perfis[opcao - 1]);
 
 			cout << "Digite a mensagem: ";
 
 	        cin.ignore();
 	        getline(cin, mensagem);
 
-			cout << "Mensagem enviada a " << perfis[opcao - 1]->getNome() << endl;
+			if (opcao >= 1 && opcao <= perfis.size()) {
+				perfil->envia(mensagem, perfis[opcao - 1]);
+				cout << "Mensagem enviada a " << perfis[opcao - 1]->getNome() << endl;
+			} else {
+				cout << "Opcao invalida\n";
+			}
 			cout << "\nAperte Enter para retornar\n";
 			while (cin.get() != '\n');
 			return;
 		}
 
 		cout << "A mensagem pode ser curtida? (0 – não, 1 – sim): ";
-		cin >> alternativa;
+		cin >> opcao;
 
         cout << "Digite a mensagem: ";
 
         cin.ignore();
         getline(cin, mensagem);
 
-        perfil->envia(mensagem, alternativa);
+        perfil->envia(mensagem, bool(opcao));
         cout << "Mensagem enviada a todos os contatos\n";
 		cout << "\nAperte Enter para retornar\n";
 		while (cin.get() != '\n');

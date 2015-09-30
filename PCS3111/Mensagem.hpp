@@ -25,7 +25,6 @@ Professor Jaime S. Sichman
  */
 
 namespace Polikut {
-	class MensagemComCurtir;
 	class Mensagem {
 	protected:
 		// Conteudo da mensagem

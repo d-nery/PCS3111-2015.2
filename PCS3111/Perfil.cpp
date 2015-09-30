@@ -14,7 +14,6 @@ Professor Jaime S. Sichman
 
 #include <iostream>
 
-#include "colors.hpp"
 #include "Perfil.hpp"
 #include "MensagemComCurtir.hpp"
 

@@ -14,10 +14,8 @@ Professor Jaime S. Sichman
 
 #include <iostream>
 
-#include "colors.hpp"
 #include "ListaDeMensagens.hpp"
 #include "Mensagem.hpp"
-#include "MensagemComCurtir.hpp"
 
 namespace Polikut {
     ListaDeMensagens::ListaDeMensagens() {
