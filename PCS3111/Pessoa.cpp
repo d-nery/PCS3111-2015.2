@@ -19,10 +19,6 @@ Professor Jaime S. Sichman
 
 using namespace std;
 
-#ifdef _WIN32
-extern HANDLE hOut;
-#endif // _WIN32
-
 namespace Polikut {
     Pessoa::Pessoa (string nome, string dataDeNascimento, string pais) : Perfil(nome) {
         this->dataDeNascimento = dataDeNascimento;

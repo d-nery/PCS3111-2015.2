@@ -91,7 +91,7 @@ namespace Polikut {
 		cout << "Site: "; CGREEN;
 		getline(cin, site); CRESET;
 
-		cout << "Escolha um responsável:\n";
+		cout << "Escolha um responsavel:\n";
 		for (auto &i : perfis) {
 			cout << j << ") " << i->getNome() << endl;
 			j++;
@@ -115,10 +115,10 @@ namespace Polikut {
 	void Tela::login() {
 		for(;;) {
 	    CLEAR;
-			int opcao = 0;
+			unsigned int opcao = 0;
 			if (perfis.size() > 0) {
 				cout << "\nEscolha um dos perfis:\n"; CGREEN;
-				for (int i = 0; i < perfis.size(); i++)
+				for (unsigned int i = 0; i < perfis.size(); i++)
 					cout << i + 1 << ") " << perfis[i]->getNome() << endl;
 				CRESET; cout << "\nDigite um numero para logar ou 0 para voltar: ";
 			} else {
@@ -249,7 +249,7 @@ namespace Polikut {
 	void Tela::adicionarContato(Pessoa* pessoa) {
 		for (;;) {
 	    CLEAR;
-            int opcao = 0;
+            unsigned int opcao = 0;
             cout << "Perfis\n"
                  << "-----------------------------------------\n";
 			listarPerfis();
@@ -327,7 +327,7 @@ namespace Polikut {
             while (cin.get() != '\n');
             return;
 	    }
-		int opcao;
+		unsigned int opcao;
         string mensagem;
 
 		cout << "A mensagem e privada? (0 - nao, 1 - sim): ";
@@ -356,7 +356,7 @@ namespace Polikut {
 			return;
 		}
 
-		cout << "A mensagem pode ser curtida? (0 – não, 1 – sim): ";
+		cout << "A mensagem pode ser curtida? (0 - nao, 1 - sim): ";
 		cin >> opcao;
 
         cout << "Digite a mensagem: ";
@@ -371,15 +371,19 @@ namespace Polikut {
 	}
 
 	void Tela::contatosAlcancaveis(Perfil* perfil) {
-		// TODO fazer aqui
-		cout << "Contatos Alcancaveis:\n";
-		cin.clear();
+		CLEAR;
+		cout << "Contatos Alcancaveis\n"
+            <<  "--------------------\n";
+        perfil->verContatosAlcancaveis();
+		cout << "\nAperte Enter para continuar\n";
+
+		cin.get();
 		while (cin.get() != '\n');
 	}
 
 	void Tela::listarPerfis() {
 		CGREEN;
-		for (int i = 0; i < perfis.size(); i++)
+		for (unsigned int i = 0; i < perfis.size(); i++)
 			cout << i + 1 << ") " << perfis[i]->getNome() << "\n";
 		CRESET;
 	}

@@ -39,5 +39,6 @@ namespace Polikut {
 
 	void Departamento::adicionadoPor(Perfil* contato) {
 		this->contatos.push_back(contato);
+		contato->adicionadoPor(this);
 	}
 }

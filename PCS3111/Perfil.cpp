@@ -60,6 +60,7 @@ namespace Polikut {
 	}
 
 	void Perfil::verContatosAlcancaveis() {
+	    std::vector<Perfil*> visitados;
 
-	}
+    }
 }
