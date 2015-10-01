@@ -30,7 +30,7 @@ namespace Polikut {
 	public:
 		Pessoa(string nome, string dataDeNascimento, string pais);
 
-		~Pessoa();
+		virtual ~Pessoa();
 
 		string getPais();
 		string getDataDeNascimento();
@@ -40,7 +40,7 @@ namespace Polikut {
 
 		// Implementa o método adicionadoPor para adicionar uma mensagem à pessoa que
 		// ela foi adicionada pelo contato
-		void adicionadoPor(Perfil* contato);
+		virtual void adicionadoPor(Perfil* contato);
 
 		// Envia uma mensagem privada para um contato
 		void envia(string texto, Perfil* contato);

@@ -24,6 +24,10 @@ namespace Polikut {
 
 	Perfil::~Perfil() {}
 
+    std::vector<Perfil*> Perfil::getContatos() {
+        return contatos;
+    }
+
 	std::string Perfil::getNome() {
 		return this->nome;
 	}
@@ -79,9 +83,5 @@ namespace Polikut {
                 }
             }
         }
-    }
-
-    std::vector<Perfil*> Perfil::getContatos() {
-        return contatos;
     }
 }

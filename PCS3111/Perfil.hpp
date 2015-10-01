@@ -22,6 +22,7 @@ Professor Jaime S. Sichman
 
 namespace Polikut {
 	class Perfil {
+	friend class Tela;
 	protected:
 		std::string nome;
 
@@ -31,6 +32,8 @@ namespace Polikut {
 
 		// Ponteiros para os contatos do perfil
 		std::vector<Perfil*> contatos;
+
+		std::vector<Perfil*> getContatos();
 
 	public:
 		Perfil(std::string nome);
@@ -62,7 +65,6 @@ namespace Polikut {
 		// Imprime a lista de contatos alcançáveis.
 		void verContatosAlcancaveis();
 
-		std::vector<Perfil*> getContatos();
 	};
 }
 

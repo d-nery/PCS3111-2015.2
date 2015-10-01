@@ -330,31 +330,32 @@ namespace Polikut {
 		unsigned int opcao;
         string mensagem;
 
-		// TODO departamento nao envia msg privada
-		cout << "A mensagem e privada? (0 - nao, 1 - sim): "; // TODO verificar entrada aqui
-		cin >> opcao;
-
-		if (opcao) {
-			cout << "Escolha o destino:\n";
-			listarPerfis();
-			cout << "Digite um numero ou 0 para cancelar: ";
+		if (dynamic_cast<Departamento*>(perfil) != nullptr) {
+			cout << "A mensagem e privada? (0 - nao, 1 - sim): "; // TODO verificar entrada aqui
 			cin >> opcao;
-			if (opcao == 0) return;
 
-			if (opcao >= 1 && opcao <= perfis.size()) {
-				cout << "Digite a mensagem: ";
+			if (opcao) {
+				cout << "Escolha o destino:\n";
+				listarPerfis();
+				cout << "Digite um numero ou 0 para cancelar: ";
+				cin >> opcao;
+				if (opcao == 0) return;
 
-		        cin.ignore();
-		        getline(cin, mensagem);
+				if (opcao >= 1 && opcao <= perfis.size()) {
+					cout << "Digite a mensagem: ";
 
-				perfil->envia(mensagem, perfis[opcao - 1]);
-				cout << "Mensagem enviada a " << perfis[opcao - 1]->getNome() << endl;
-			} else {
-				cout << "Opcao invalida\n";
+			        cin.ignore();
+			        getline(cin, mensagem);
+
+					perfil->envia(mensagem, perfis[opcao - 1]);
+					cout << "Mensagem enviada a " << perfis[opcao - 1]->getNome() << endl;
+				} else {
+					cout << "Opcao invalida\n";
+				}
+				cout << "\nAperte Enter para retornar\n";
+				while (cin.get() != '\n');
+				return;
 			}
-			cout << "\nAperte Enter para retornar\n";
-			while (cin.get() != '\n');
-			return;
 		}
 
 		cout << "A mensagem pode ser curtida? (0 - nao, 1 - sim): "; // TODO verificar entrada aqui
