@@ -155,7 +155,7 @@ namespace Polikut {
 			cout << "Pessoa: "; CGREEN; cout << pessoa->getNome() << endl;
 			cout << pessoa->getDataDeNascimento(); CRESET; cout << " | "; CGREEN; cout << pessoa->getPais() << endl;
 			CRESET;
-			/*if (pessoa->getContatos().size() > 0 ) */cout << "\nContatos: \n";  // TODO ver como pegar numerod e contatos
+			if (pessoa->getContatos().size() > 0 ) cout << "\nContatos: \n";
 			CGREEN; pessoa->verContatos(); CRESET;
 			cout << "-----------------------------------------\n\n"
 				 << "Escolha uma opcao:\n"
@@ -207,7 +207,7 @@ namespace Polikut {
 			cout << "Site: "; CGREEN; cout << departamento->getSite() << endl; CRESET;
 			cout << "Responsavel: " << departamento->getResponsavel()->getNome() << endl; CRESET;
 			CRESET;
-			/*if (departamento->getContatos().size() > 0 ) */cout << "\nContatos: \n";  // TODO ver como pegar numerod e contatos
+			if (departamento->getContatos().size() > 0 ) cout << "\nContatos: \n";
 			CGREEN; departamento->verContatos(); CRESET;
 			cout << "-----------------------------------------\n\n"
 				 << "Escolha uma opcao:\n"
@@ -319,7 +319,7 @@ namespace Polikut {
 
 	void Tela::escreverMensagem(Perfil* perfil) {
 		CLEAR;
-	    if (/*perfil->getContatos().size()*/ 1 == 0) {
+	    if (perfil->getContatos().size() == 0) {
             cout << "Voce nao tem nenhum contato :(\n"
                 << "Por que nao adiciona algum na tela anterior? =D\n";
             cout << "\nAperte Enter para retornar\n";
@@ -330,7 +330,8 @@ namespace Polikut {
 		unsigned int opcao;
         string mensagem;
 
-		cout << "A mensagem e privada? (0 - nao, 1 - sim): ";
+		// TODO departamento nao envia msg privada
+		cout << "A mensagem e privada? (0 - nao, 1 - sim): "; // TODO verificar entrada aqui
 		cin >> opcao;
 
 		if (opcao) {
@@ -340,12 +341,12 @@ namespace Polikut {
 			cin >> opcao;
 			if (opcao == 0) return;
 
-			cout << "Digite a mensagem: ";
-
-	        cin.ignore();
-	        getline(cin, mensagem);
-
 			if (opcao >= 1 && opcao <= perfis.size()) {
+				cout << "Digite a mensagem: ";
+
+		        cin.ignore();
+		        getline(cin, mensagem);
+
 				perfil->envia(mensagem, perfis[opcao - 1]);
 				cout << "Mensagem enviada a " << perfis[opcao - 1]->getNome() << endl;
 			} else {
@@ -356,7 +357,7 @@ namespace Polikut {
 			return;
 		}
 
-		cout << "A mensagem pode ser curtida? (0 - nao, 1 - sim): ";
+		cout << "A mensagem pode ser curtida? (0 - nao, 1 - sim): "; // TODO verificar entrada aqui
 		cin >> opcao;
 
         cout << "Digite a mensagem: ";
