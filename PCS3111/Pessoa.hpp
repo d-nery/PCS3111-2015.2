@@ -18,22 +18,20 @@ Professor Jaime S. Sichman
 #include "ListaDeMensagens.hpp"
 #include "Perfil.hpp"
 
-using namespace std;
-
 namespace Polikut {
 	class Pessoa : public Perfil {
 	private:
 		// Dados da pessoa
-		string dataDeNascimento;
-		string pais;
+		std::string dataDeNascimento;
+		std::string pais;
 
 	public:
-		Pessoa(string nome, string dataDeNascimento, string pais);
+		Pessoa(std::string nome, std::string dataDeNascimento, std::string pais);
 
 		virtual ~Pessoa();
 
-		string getPais();
-		string getDataDeNascimento();
+		std::string getPais();
+		std::string getDataDeNascimento();
 
 		// Adiciona o contato à lista de contatos da Pessoa
 		void adiciona(Perfil* contato);
@@ -43,7 +41,7 @@ namespace Polikut {
 		virtual void adicionadoPor(Perfil* contato);
 
 		// Envia uma mensagem privada para um contato
-		void envia(string texto, Perfil* contato);
+		void envia(std::string texto, Perfil* contato);
 	};
 }
 

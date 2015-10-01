@@ -17,6 +17,8 @@ Professor Jaime S. Sichman
 #include "Perfil.hpp"
 #include "MensagemComCurtir.hpp"
 
+#include "colors.hpp"
+
 namespace Polikut {
 	Perfil::Perfil(std::string nome) {
 		this->nome = nome;
@@ -71,7 +73,7 @@ namespace Polikut {
             std::cout << i->getNome() << std::endl;
             visitados.push_back(i);
         }
-        for (unsigned int l = 1; l < visitados.size(); l++) {
+        for (int l = 1; l < int(visitados.size()); l++) {
             for (auto &j : visitados[l]->getContatos()) {
                 visitado = false;
                 for (auto &k : visitados) {

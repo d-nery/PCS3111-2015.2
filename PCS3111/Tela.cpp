@@ -20,6 +20,8 @@ Professor Jaime S. Sichman
 #include "colors.hpp"
 #include "MensagemComCurtir.hpp"
 
+#define MAXCADASTROS 10
+
 using namespace std;
 using namespace Polikut;
 
@@ -41,7 +43,7 @@ namespace Polikut {
 
 	void Tela::cadastroPessoa() {
 		CLEAR;
-		if (perfis.size() > 9) {
+		if (perfis.size() >= MAXCADASTROS) {
 			cout << "Numero maximo de perfis cadastrados.";
 			cout << "\nAperte Enter para retornar\n";
 			cin.get();
@@ -70,7 +72,7 @@ namespace Polikut {
 
 	void Tela::cadastroDepartamento() {
 		CLEAR;
-		if (perfis.size() > 9) {
+		if (perfis.size() >= MAXCADASTROS) {
 			cout << "Numero maximo de perfis cadastrados.";
 			cout << "\nAperte Enter para retornar\n";
 			cin.get();
@@ -97,11 +99,21 @@ namespace Polikut {
 			j++;
 		}
 		cout << "Digite um numero ou 0 para cancelar: ";
-		cin >> j;
-		if (j == 0) return;
-		if ((responsavel = dynamic_cast<Pessoa*>(perfis[j - 1])) == nullptr) {
-			cout << "Selecione uma pessoa!\n";
-			return; // TODO arrumar aqui pra pedir a entrada de novo
+		for(;;) {
+			if(cin >> j) {
+				if (j == 0) return;
+				if (j > int(perfis.size())) {
+					cout << "Digite uma opcao valida: ";
+					continue;
+				}
+				if ((responsavel = dynamic_cast<Pessoa*>(perfis[j - 1])) == nullptr) {
+					cout << "Selecione uma pessoa: ";
+				} else break;
+			} else {
+				cout << "Digite uma opcao valida: ";
+				cin.clear();
+				while (cin.get() != '\n');
+			}
 		}
 
 		perfis.push_back(new Departamento(nome, site, responsavel));
@@ -115,10 +127,10 @@ namespace Polikut {
 	void Tela::login() {
 		for(;;) {
 	    CLEAR;
-			unsigned int opcao = 0;
+			int opcao = 0;
 			if (perfis.size() > 0) {
 				cout << "\nEscolha um dos perfis:\n"; CGREEN;
-				for (unsigned int i = 0; i < perfis.size(); i++)
+				for (int i = 0; i < int(perfis.size()); i++)
 					cout << i + 1 << ") " << perfis[i]->getNome() << endl;
 				CRESET; cout << "\nDigite um numero para logar ou 0 para voltar: ";
 			} else {
@@ -131,7 +143,7 @@ namespace Polikut {
 			if (cin >> opcao) {
 				if (opcao == 0)
 					return;
-				if (opcao >= 1 && opcao <= perfis.size()) {
+				if (opcao >= 1 && opcao <= int(perfis.size())) {
 					Perfil* perf = dynamic_cast<Pessoa*>(perfis[opcao - 1]);
 					if (perf == nullptr) {
 						Departamento* dept = dynamic_cast<Departamento*>(perfis[opcao - 1]);
@@ -249,7 +261,7 @@ namespace Polikut {
 	void Tela::adicionarContato(Pessoa* pessoa) {
 		for (;;) {
 	    CLEAR;
-            unsigned int opcao = 0;
+            int opcao = 0;
             cout << "Perfis\n"
                  << "-----------------------------------------\n";
 			listarPerfis();
@@ -257,7 +269,7 @@ namespace Polikut {
 			if(cin >> opcao) {
 				if (opcao == 0)
 					return;
-				if (opcao >= 1 && opcao <= perfis.size()) {
+				if (opcao >= 1 && opcao <= int(perfis.size())) {
 					try {
 						pessoa->adiciona(perfis[opcao - 1]);
 						CGREEN; cout << perfis[opcao - 1]->getNome(); CRESET;
@@ -327,39 +339,53 @@ namespace Polikut {
             while (cin.get() != '\n');
             return;
 	    }
-		unsigned int opcao;
+		int opcao;
         string mensagem;
 
-		if (dynamic_cast<Departamento*>(perfil) != nullptr) {
-			cout << "A mensagem e privada? (0 - nao, 1 - sim): "; // TODO verificar entrada aqui
-			cin >> opcao;
+		if (dynamic_cast<Departamento*>(perfil) == nullptr) {
+			cout << "A mensagem e privada? (0 - nao, 1 - sim): ";
+			for (;;) {
+				if(cin >> opcao) {
+					if (opcao) {
+						cout << "Escolha o destino:\n";
+						listarPerfis();
+						cout << "Digite um numero ou 0 para cancelar: ";
+						cin >> opcao;
+						if (opcao == 0) return;
 
-			if (opcao) {
-				cout << "Escolha o destino:\n";
-				listarPerfis();
-				cout << "Digite um numero ou 0 para cancelar: ";
-				cin >> opcao;
-				if (opcao == 0) return;
+						if (opcao >= 1 && opcao <= int(perfis.size())) {
+							cout << "Digite a mensagem: ";
 
-				if (opcao >= 1 && opcao <= perfis.size()) {
-					cout << "Digite a mensagem: ";
+					        cin.ignore();
+					        getline(cin, mensagem);
 
-			        cin.ignore();
-			        getline(cin, mensagem);
-
-					perfil->envia(mensagem, perfis[opcao - 1]);
-					cout << "Mensagem enviada a " << perfis[opcao - 1]->getNome() << endl;
+							dynamic_cast<Pessoa*>(perfil)->envia(mensagem, perfis[opcao - 1]);
+							cout << "Mensagem enviada a " << perfis[opcao - 1]->getNome() << endl;
+						} else {
+							cout << "Opcao invalida\n";
+						}
+						cout << "\nAperte Enter para retornar\n";
+						while (cin.get() != '\n');
+						return;
+					} else break;
 				} else {
-					cout << "Opcao invalida\n";
+					cout << "Digite uma opcao valida: ";
+					cin.clear();
+					while (cin.get() != '\n');
 				}
-				cout << "\nAperte Enter para retornar\n";
-				while (cin.get() != '\n');
-				return;
 			}
 		}
 
-		cout << "A mensagem pode ser curtida? (0 - nao, 1 - sim): "; // TODO verificar entrada aqui
-		cin >> opcao;
+		cout << "A mensagem pode ser curtida? (0 - nao, 1 - sim): ";
+		for(;;) {
+			if (cin >> opcao)
+				break;
+			else {
+				cout << "Digite uma opcao valida: ";
+				cin.clear();
+				while (cin.get() != '\n');
+			}
+		}
 
         cout << "Digite a mensagem: ";
 
@@ -385,7 +411,7 @@ namespace Polikut {
 
 	void Tela::listarPerfis() {
 		CGREEN;
-		for (unsigned int i = 0; i < perfis.size(); i++)
+		for (int i = 0; i < int(perfis.size()); i++)
 			cout << i + 1 << ") " << perfis[i]->getNome() << "\n";
 		CRESET;
 	}

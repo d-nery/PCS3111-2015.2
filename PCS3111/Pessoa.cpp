@@ -16,6 +16,7 @@ Professor Jaime S. Sichman
 #include <stdexcept>
 
 #include "Pessoa.hpp"
+#include "colors.hpp"
 
 using namespace std;
 
@@ -56,8 +57,9 @@ namespace Polikut {
         Perfil::recebe(m);
     }
 
-    void Pessoa::envia(string texto, Perfil* contato){
+    void Pessoa::envia(string texto, Perfil* contato) {
         Mensagem* mensagem = new Mensagem(texto);
+        enviadas.adicionar(mensagem);
         contato->recebe(mensagem);
     }
 }
