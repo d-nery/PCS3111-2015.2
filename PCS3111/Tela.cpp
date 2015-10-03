@@ -354,13 +354,17 @@ namespace Polikut {
 						if (opcao == 0) return;
 
 						if (opcao >= 1 && opcao <= int(perfis.size())) {
+							string aviso = "Mensagem enviada a " + perfis[opcao - 1]->getNome();
 							cout << "Digite a mensagem: ";
 
 					        cin.ignore();
 					        getline(cin, mensagem);
-
-							dynamic_cast<Pessoa*>(perfil)->envia(mensagem, perfis[opcao - 1]);
-							cout << "Mensagem enviada a " << perfis[opcao - 1]->getNome() << endl;
+							try {
+								dynamic_cast<Pessoa*>(perfil)->envia(mensagem, perfis[opcao - 1]);
+							} catch (logic_error& e) {
+								aviso = e.what();
+							}
+							cout << aviso << endl;
 						} else {
 							cout << "Opcao invalida\n";
 						}
