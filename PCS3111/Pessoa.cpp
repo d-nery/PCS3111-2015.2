@@ -58,12 +58,12 @@ namespace Polikut {
     }
 
     void Pessoa::envia(string texto, Perfil* contato) {
-        bool temContato = true;
+        bool temContato = false;
         for (auto &i : contatos) {
             if (i == contato) {
                 temContato = true;
                 break;
-            } else temContato = false;
+            }
         }
         if (!temContato)
             throw logic_error("Voce nao tem esse contato!");
