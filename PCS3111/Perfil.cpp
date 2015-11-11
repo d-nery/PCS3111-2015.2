@@ -52,11 +52,11 @@ namespace Polikut {
 		this->recebidas.adicionar(m);
 	}
 
-	ListaDeMensagens& Perfil::getMensagensRecebidas() {
+	std::list<Mensagem*>& Perfil::getMensagensRecebidas() {
 		return this->recebidas;
 	}
 
-	ListaDeMensagens& Perfil::getMensagensEnviadas() {
+	std::list<Mensagem*>& Perfil::getMensagensEnviadas() {
 		return this->enviadas;
 	}
 

@@ -11,13 +11,15 @@ Turma 23
 
 Professor Jaime S. Sichman
 **/
+
 #ifndef _PERFIL_HPP_
 #define _PERFIL_HPP_
 
 #include <string>
 #include <vector>
+#include <list>
 
-#include "ListaDeMensagens.hpp"
+#include "Mensagem.hpp"
 
 namespace Polikut {
 	class Perfil {
@@ -26,8 +28,8 @@ namespace Polikut {
 		std::string nome;
 
 		// Listas de Mensagens enviadas e recebidas da pessoa
-		ListaDeMensagens enviadas;
-		ListaDeMensagens recebidas;
+		std::list<Mensagem*> enviadas;
+		std::list<Mensagem*> recebidas;
 
 		// Ponteiros para os contatos do perfil
 		std::vector<Perfil*> contatos;
@@ -51,10 +53,10 @@ namespace Polikut {
 		virtual void recebe(Mensagem* m);
 
 		// Obtêm a lista ligada com as mensagens recebidas.
-		ListaDeMensagens& getMensagensRecebidas();
+		std::list<Mensagem*>& getMensagensRecebidas();
 
 		// Obtêm a lista ligada com as mensagens enviadas.
-		ListaDeMensagens& getMensagensEnviadas();
+		std::list<Mensagem*>& getMensagensEnviadas();
 
 		// Imprime a lista de contatos diretos.
 		void verContatos();
