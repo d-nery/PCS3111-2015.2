@@ -13,6 +13,7 @@ Professor Jaime S. Sichman
 **/
 
 #include <iostream>
+#include <list>
 
 #include "Perfil.hpp"
 #include "MensagemComCurtir.hpp"
@@ -26,10 +27,6 @@ namespace Polikut {
 
 	Perfil::~Perfil() {}
 
-    std::vector<Perfil*>& Perfil::getContatos() {
-        return contatos;
-    }
-
 	std::string Perfil::getNome() {
 		return this->nome;
 	}
@@ -37,19 +34,19 @@ namespace Polikut {
 	void Perfil::envia(std::string texto, bool curtir) {
 		Mensagem* mensagem;
 		if (curtir) {
-			mensagem = new MensagemComCurtir(texto);
+			mensagem = new MensagemComCurtir(texto, this->nome);
 		}
 		else {
-			mensagem = new Mensagem(texto);
+			mensagem = new Mensagem(texto, this->nome);
 		}
         for (auto &i : contatos)
             i->recebe(mensagem);
 
-        this->enviadas.adicionar(mensagem);
+        this->enviadas.push_back(mensagem);
 	}
 
 	void Perfil::recebe(Mensagem* m) {
-		this->recebidas.adicionar(m);
+		this->recebidas.push_back(m);
 	}
 
 	std::list<Mensagem*>& Perfil::getMensagensRecebidas() {
@@ -60,17 +57,20 @@ namespace Polikut {
 		return this->enviadas;
 	}
 
-	void Perfil::verContatos() {
-		for (auto &i : contatos)
-			std::cout << i->getNome() << std::endl;
+	void Perfil::setContatos(std::vector<Perfil*>& perfis) {
+        this->contatos = perfis;
 	}
 
-	void Perfil::verContatosAlcancaveis() {
+
+    std::vector<Perfil*>& Perfil::getContatos() {
+        return contatos;
+    }
+
+	std::vector<Perfil*>& Perfil::verContatosAlcancaveis() {
 	    std::vector<Perfil*> visitados;
 	    visitados.push_back(this);
 	    bool visitado = false;
         for (auto &i : contatos) {
-            std::cout << i->getNome() << std::endl;
             visitados.push_back(i);
         }
         for (int l = 1; l < int(visitados.size()); l++) {
@@ -80,10 +80,11 @@ namespace Polikut {
                     if (j == k) {visitado = true; break;}
                 }
                 if (!visitado) {
-                    std::cout << j->getNome() << std::endl;
                     visitados.push_back(j);
                 }
             }
         }
+
+        return visitados;
     }
 }

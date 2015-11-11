@@ -23,7 +23,6 @@ Professor Jaime S. Sichman
 
 namespace Polikut {
 	class Perfil {
-	friend class Tela;
 	protected:
 		std::string nome;
 
@@ -58,14 +57,15 @@ namespace Polikut {
 		// Obtêm a lista ligada com as mensagens enviadas.
 		std::list<Mensagem*>& getMensagensEnviadas();
 
-		// Imprime a lista de contatos diretos.
-		void verContatos();
-
-		// Imprime a lista de contatos alcançáveis.
-		void verContatosAlcancaveis();
+		// Método que define os contatos do Perfil
+        // Deve ser usado apenas pela persistência
+		void setContatos(std::vector<Perfil*>& perfis);
 
 		// retorna a lista de contatos de um perfil.
 		std::vector<Perfil*>& getContatos();
+
+		//Retorna a lista de contatos alcançáveis.
+		std::vector<Perfil*>& getContatosAlcancaveis();
 
 	};
 }
