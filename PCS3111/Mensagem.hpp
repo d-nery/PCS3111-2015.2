@@ -30,12 +30,14 @@ namespace Polikut {
 		// Conteudo da mensagem
 		std::string conteudo;
 
+		std::string autor;
+
 	public:
 		// Cria uma mensagem vazia
 		Mensagem();
 
 		//Cria uma mensagem com conteudo
-		Mensagem(std::string conteudo);
+		Mensagem(std::string conteudo, std::string autor);
 
 		// Destroi a mensagem
 		virtual ~Mensagem();

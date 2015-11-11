@@ -19,8 +19,9 @@ Professor Jaime S. Sichman
 namespace Polikut {
     Mensagem::Mensagem() {}
 
-    Mensagem::Mensagem(std::string conteudo) :
-        conteudo(conteudo)
+    Mensagem::Mensagem(std::string conteudo, std::string autor) :
+        conteudo(conteudo),
+        autor(autor)
     {}
 
     Mensagem::~Mensagem() {}

@@ -21,8 +21,8 @@ Professor Jaime S. Sichman
 namespace Polikut {
     MensagemComCurtir::MensagemComCurtir() {}
 
-    MensagemComCurtir::MensagemComCurtir(std::string conteudo) :
-		Mensagem(conteudo),
+    MensagemComCurtir::MensagemComCurtir(std::string conteudo, std::string autor) :
+		Mensagem(conteudo, autor),
 		curtidas(0)
 	{}
 

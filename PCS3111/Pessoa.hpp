@@ -15,7 +15,6 @@ Professor Jaime S. Sichman
 #ifndef _PESSOA_HPP_
 #define _PESSOA_HPP_
 
-#include "ListaDeMensagens.hpp"
 #include "Perfil.hpp"
 
 namespace Polikut {

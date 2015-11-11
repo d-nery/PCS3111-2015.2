@@ -31,7 +31,7 @@ namespace Polikut {
 		MensagemComCurtir();
 
 		//Cria uma mensagem com conteudo
-		MensagemComCurtir(std::string conteudo);
+		MensagemComCurtir(std::string conteudo, std::string autor);
 
 		// Destroi a mensagem
 		~MensagemComCurtir();
