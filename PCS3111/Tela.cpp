@@ -20,8 +20,6 @@ Professor Jaime S. Sichman
 #include "colors.hpp"
 #include "MensagemComCurtir.hpp"
 
-#define MAXCADASTROS 10
-
 using namespace std;
 using namespace Polikut;
 
@@ -43,13 +41,6 @@ namespace Polikut {
 
 	void Tela::cadastroPessoa() {
 		CLEAR;
-		if (perfis.size() >= MAXCADASTROS) {
-			cout << "Numero maximo de perfis cadastrados.";
-			cout << "\nAperte Enter para retornar\n";
-			cin.get();
-			while (cin.get() != '\n');
-			return;
-		}
 		string nome, dataDeNascimento, pais;
 		cout << "\nInforme os dados da pessoa: \n";
 
@@ -72,13 +63,6 @@ namespace Polikut {
 
 	void Tela::cadastroDepartamento() {
 		CLEAR;
-		if (perfis.size() >= MAXCADASTROS) {
-			cout << "Numero maximo de perfis cadastrados.";
-			cout << "\nAperte Enter para retornar\n";
-			cin.get();
-			while (cin.get() != '\n');
-			return;
-		}
 		string nome, site;
 		Pessoa* responsavel;
 

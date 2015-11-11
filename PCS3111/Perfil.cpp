@@ -26,7 +26,7 @@ namespace Polikut {
 
 	Perfil::~Perfil() {}
 
-    std::vector<Perfil*> Perfil::getContatos() {
+    std::vector<Perfil*>& Perfil::getContatos() {
         return contatos;
     }
 
