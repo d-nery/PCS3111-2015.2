@@ -16,7 +16,7 @@ Professor Jaime S. Sichman
 #define _PERSISTENCIA_DO_PERFIL_HPP_
 
 #include <fstream>
-#incldue <string>
+#include <string>
 #include <vector>
 
 #include "Perfil.hpp"
@@ -24,7 +24,9 @@ Professor Jaime S. Sichman
 namespace Polikut {
     class PersistenciaDoPerfil {
     private:
-        std::fstream dados;
+        static std::fstream dados;
+
+        static std::vector<Perfil*> perfis;
 
     public:
         PersistenciaDoPerfil(std::string arquivo);

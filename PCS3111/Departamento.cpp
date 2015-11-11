@@ -17,10 +17,16 @@ Professor Jaime S. Sichman
 #include "Departamento.hpp"
 
 namespace Polikut {
-	Departamento::Departamento(std::string nome, std::string site, Pessoa* responsavel) : Perfil(nome) {
-		this->site = site;
-		this->responsavel = responsavel;
-	}
+	Departamento::Departamento(std::string nome, std::string site, Pessoa* responsavel) :
+		Perfil(nome),
+		site(site),
+		responsavel(responsavel)
+	{}
+
+	Departamento::Departamento(std::string nome, std::string site) :
+		Perfil(nome),
+		site(site)
+	{}
 
 	Departamento::~Departamento() {}
 

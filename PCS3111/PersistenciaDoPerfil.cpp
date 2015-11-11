@@ -13,8 +13,11 @@ Professor Jaime S. Sichman
 **/
 
 #include <stdexcept>
+#include <string>
 
 #include "PersistenciaDoPerfil.hpp"
+#include "Departamento.hpp"
+#include "Pessoa.hpp"
 
 namespace Polikut {
     PersistenciaDoPerfil::PersistenciaDoPerfil(std::string arquivo) {
@@ -26,25 +29,21 @@ namespace Polikut {
     }
 
     std::vector<Perfil*>& PersistenciaDoPerfil::obter() {
-        std::vector<Perfil*> perfis;
         std::vector<Perfil*> contatos;
-        Perfil* novoPerfil;
         std::string data[3];
         int numContatos, num, j = 0;
 
-        while(dados) {
+        while (dados) {
             if (dados.get() == 'P') {
                 for (int i = 0; i < 3; i++)
-                    dados >> data[i];
-                novoPerfil = new Pessoa(data[0], data[1], data[2]);
-                perfis.push_back(novoPerfil);
+                    std::getline(dados, data[0]);
+                perfis.push_back(new Pessoa(data[0], data[1], data[2]));
             } else if (dados.get() == 'D') {
                 for (int i = 0; i < 2; i++)
-                    dados >> data[i];
-                novoPerfil = new Pessoa(data[0], data[1]);
-                perfis.push_back(novoPerfil);
+                    std::getline(dados, data[0]);
+                perfis.push_back(new Departamento(data[0], data[1]));
             } else if (dados.get() == '#') {
-                while(!dados.eof()) {
+                while (!dados.eof()) {
                     dados >> numContatos;
                     for (int i = 0; i < numContatos; i++) {
                         dados >> num;
@@ -52,12 +51,12 @@ namespace Polikut {
                     }
                     if (dynamic_cast<Departamento*>(perfis[j]) != nullptr) {
                         dados >> num;
-                        perfis[j].setResponsavel(perfis[num]);
+                        dynamic_cast<Departamento*>(perfis[j])->setResponsavel(dynamic_cast<Pessoa*>(perfis[num]));
                     }
-                    perfis[j++].setContatos(contatos);
+                    perfis[j++]->setContatos(contatos);
                 }
             } else {
-                throw std::runtime_error("Formato de arquivo inválido");
+                throw std::runtime_error("Formato de arquivo invalido");
             }
         }
         return perfis;

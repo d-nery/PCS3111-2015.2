@@ -31,11 +31,16 @@ namespace Polikut {
 	public:
 		Departamento(std::string nome, std::string site, Pessoa* responsavel);
 
+		Departamento(std::string nome, std::string site);
+
 		virtual ~Departamento();
 
 		std::string getSite();
 
 		Pessoa* getResponsavel();
+
+		// Deve ser usado apenas pela persistência
+		void setResponsavel(Pessoa* responsavel);
 
 		// Redefine o método "recebe" para repassa-la ao responsável.
 		// A mensagem recebida deve também ser adicionada às mensagens recebidas do
