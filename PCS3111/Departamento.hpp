@@ -23,7 +23,6 @@ Professor Jaime S. Sichman
 namespace Polikut {
 	class Departamento : public Perfil {
 	private:
-		std::string nome;
 		std::string site;
 
 		Pessoa* responsavel;

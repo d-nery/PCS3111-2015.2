@@ -40,43 +40,39 @@ namespace Polikut {
 
         while (dados) {
             c = dados.get();
-            std::cerr << c << "\n";
             dados.get();
             if (c == 'P') {
                 for (int i = 0; i < 3; i++)
                     std::getline(dados, data[i]);
-                std::cerr << data[0] << " " << data[1] << " " << data[2] << " " << std::endl;
                 _perfis.push_back(new Pessoa(data[0], data[1], data[2]));
             } else if (c == 'D') {
                 for (int i = 0; i < 2; i++)
                     std::getline(dados, data[i]);
-                std::cerr << data[0] << " " << data[1] << " "  << std::endl;
                 _perfis.push_back(new Departamento(data[0], data[1]));
             } else if (c == '#') {
                 while (dados) {
                     dados >> numContatos;
-                    std::cerr << "numContatos: " << numContatos << "\n";
+                    std::cerr << "numContatos: " << numContatos << std::endl;
                     for (int i = 0; i < numContatos; i++) {
                         dados >> num;
-                        std::cerr << num << "\n";
                         contatos.push_back(_perfis[num - 1]);
                     }
                     if (dynamic_cast<Departamento*>(_perfis[j]) != nullptr) {
                         dados >> num;
-                        std::cerr << "Resp:" << num << "\n";
                         dynamic_cast<Departamento*>(_perfis[j])->setResponsavel(dynamic_cast<Pessoa*>(_perfis[num - 1]));
                     }
+                    if (dados.get() != '\n') throw std::runtime_error("Formato de arquivo invalido - numero de contatos errado.");
                     _perfis[j++]->setContatos(contatos);
                     contatos.clear();
                     if (j >= _perfis.size()) break;
                 }
                 break;
             } else {
-                std::cerr << c << "!!\n";
-                throw std::runtime_error("Formato de arquivo invalido");
+                std::string msg = "Formato de arquivo invalido - encontrado caracter de identificacao invalido: ";
+                msg.push_back(c);
+                throw std::runtime_error(msg);
             }
         }
-        std::cerr << "returning\n";
         dados.close();
         return _perfis;
     }
@@ -90,17 +86,17 @@ namespace Polikut {
         dados << '#' << std::endl;
 
         for (auto& i : perfis) {
-            dados << i->getContatos().size() << " ";
+            dados << i->getContatos().size();
             for (auto& j : i->getContatos()) {
                 for (int k = 0; k < perfis.size(); k++) {
                     if (j == perfis[k])
-                        dados << k + 1 << " ";
+                        dados << " " << k + 1;
                 }
             }
             if (dynamic_cast<Departamento*>(i) != nullptr) {
                 for (int j = 0; j < perfis.size(); j++)
                     if (perfis[j] == dynamic_cast<Departamento*>(i)->getResponsavel())
-                        dados << j + 1;
+                        dados << " " << j + 1;
             }
             dados << std::endl;
         }

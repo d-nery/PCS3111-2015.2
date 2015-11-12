@@ -15,11 +15,11 @@ Donald Knuth
 10/01/1938
 Estados Unidos da America
 D
-
+PCS
 http://www.pcs.usp.br
 #
-1 2 
-2 3 5 
-1 4 
-3 2 3 5 
+1 2
+2 3 5
+1 4
+3 2 3 5
 2 2 4 3
