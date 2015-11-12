@@ -32,6 +32,10 @@ namespace Polikut {
 
 		std::string autor;
 
+		friend std::ostream& operator<<(std::ostream& os, const Mensagem* msg);
+
+		// Lista a msg
+		virtual void listar(std::ostream& os) const;
 	public:
 		// Cria uma mensagem vazia
 		Mensagem();
@@ -44,12 +48,7 @@ namespace Polikut {
 
 		// Retorna o conteudo da mensagem
 		std::string getConteudo() const;
-
-		// Lista a msg
-		virtual void listar(std::ostream& os) const;
 	};
-
-	std::ostream& operator<<(std::ostream& os, const Mensagem* msg);
 }
 
 #endif /* end of include guard: _MENSAGEM_HPP_ */

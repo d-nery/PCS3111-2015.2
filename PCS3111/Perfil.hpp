@@ -33,6 +33,10 @@ namespace Polikut {
 		// Ponteiros para os contatos do perfil
 		std::vector<Perfil*> contatos;
 
+		friend std::ostream& operator<<(std::ostream& os, const Perfil* perf);
+
+		virtual void listar(std::ostream& os) const = 0;
+
 	public:
 		Perfil(std::string nome);
 
@@ -66,7 +70,6 @@ namespace Polikut {
 
 		//Retorna a lista de contatos alcançáveis.
 		std::vector<Perfil*>& getContatosAlcancaveis();
-
 	};
 }
 

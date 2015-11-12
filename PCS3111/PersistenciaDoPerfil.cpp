@@ -20,12 +20,13 @@ Professor Jaime S. Sichman
 #include "Pessoa.hpp"
 
 namespace Polikut {
-    PersistenciaDoPerfil::PersistenciaDoPerfil(std::string arquivo) {
-        dados.open(arquivo);
-    }
+    PersistenciaDoPerfil::PersistenciaDoPerfil(std::string arquivo) :
+        filename(arquivo)
+    {}
 
     PersistenciaDoPerfil::~PersistenciaDoPerfil() {
-        dados.close();
+        if (dados.is_open())
+            dados.close();
     }
 
     std::vector<Perfil*>& PersistenciaDoPerfil::obter() {
@@ -33,32 +34,77 @@ namespace Polikut {
         std::string data[3];
         int numContatos, num, j = 0;
 
+        char c;
+
+        dados.open(filename, std::ostream::in);
+
         while (dados) {
-            if (dados.get() == 'P') {
+            c = dados.get();
+            std::cerr << c << "\n";
+            dados.get();
+            if (c == 'P') {
                 for (int i = 0; i < 3; i++)
-                    std::getline(dados, data[0]);
-                perfis.push_back(new Pessoa(data[0], data[1], data[2]));
-            } else if (dados.get() == 'D') {
+                    std::getline(dados, data[i]);
+                std::cerr << data[0] << " " << data[1] << " " << data[2] << " " << std::endl;
+                _perfis.push_back(new Pessoa(data[0], data[1], data[2]));
+            } else if (c == 'D') {
                 for (int i = 0; i < 2; i++)
-                    std::getline(dados, data[0]);
-                perfis.push_back(new Departamento(data[0], data[1]));
-            } else if (dados.get() == '#') {
-                while (!dados.eof()) {
+                    std::getline(dados, data[i]);
+                std::cerr << data[0] << " " << data[1] << " "  << std::endl;
+                _perfis.push_back(new Departamento(data[0], data[1]));
+            } else if (c == '#') {
+                while (dados) {
                     dados >> numContatos;
+                    std::cerr << "numContatos: " << numContatos << "\n";
                     for (int i = 0; i < numContatos; i++) {
                         dados >> num;
-                        contatos.push_back(perfis[num]);
+                        std::cerr << num << "\n";
+                        contatos.push_back(_perfis[num - 1]);
                     }
-                    if (dynamic_cast<Departamento*>(perfis[j]) != nullptr) {
+                    if (dynamic_cast<Departamento*>(_perfis[j]) != nullptr) {
                         dados >> num;
-                        dynamic_cast<Departamento*>(perfis[j])->setResponsavel(dynamic_cast<Pessoa*>(perfis[num]));
+                        std::cerr << "Resp:" << num << "\n";
+                        dynamic_cast<Departamento*>(_perfis[j])->setResponsavel(dynamic_cast<Pessoa*>(_perfis[num - 1]));
                     }
-                    perfis[j++]->setContatos(contatos);
+                    _perfis[j++]->setContatos(contatos);
+                    contatos.clear();
+                    if (j >= _perfis.size()) break;
                 }
+                break;
             } else {
+                std::cerr << c << "!!\n";
                 throw std::runtime_error("Formato de arquivo invalido");
             }
         }
-        return perfis;
+        std::cerr << "returning\n";
+        dados.close();
+        return _perfis;
+    }
+
+    void PersistenciaDoPerfil::salvar(std::vector<Perfil*>& perfis) {
+        dados.open(filename, std::ostream::out | std::ostream::trunc);
+
+        for (auto& i : perfis)
+            dados << i << std::endl;
+
+        dados << '#' << std::endl;
+
+        for (auto& i : perfis) {
+            dados << i->getContatos().size() << " ";
+            for (auto& j : i->getContatos()) {
+                for (int k = 0; k < perfis.size(); k++) {
+                    if (j == perfis[k])
+                        dados << k + 1 << " ";
+                }
+            }
+            if (dynamic_cast<Departamento*>(i) != nullptr) {
+                for (int j = 0; j < perfis.size(); j++)
+                    if (perfis[j] == dynamic_cast<Departamento*>(i)->getResponsavel())
+                        dados << j + 1;
+            }
+            dados << std::endl;
+        }
+
+        dados.close();
     }
 }

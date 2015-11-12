@@ -24,6 +24,8 @@ namespace Polikut {
 		std::string dataDeNascimento;
 		std::string pais;
 
+		void listar(std::ostream& os) const;
+
 	public:
 		Pessoa(std::string nome, std::string dataDeNascimento, std::string pais);
 

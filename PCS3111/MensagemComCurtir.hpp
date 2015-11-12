@@ -26,6 +26,7 @@ namespace Polikut {
 		// Conteudo da mensagem
 		int curtidas;
 
+		void listar(std::ostream& os) const;
 	public:
 		// Cria uma mensagem vazia
 		MensagemComCurtir();
@@ -39,8 +40,6 @@ namespace Polikut {
 		int getCurtidas() const;
 
 		void curtir();
-
-		void listar(std::ostream& os) const;
 	};
 
 }

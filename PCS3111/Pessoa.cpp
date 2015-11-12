@@ -53,7 +53,7 @@ namespace Polikut {
 
     void Pessoa::adicionadoPor(Perfil* contato) {
         std::string texto = contato->getNome() + " adicionou voce como contato.";
-        Mensagem* m = new Mensagem(texto);
+        Mensagem* m = new Mensagem(texto, contato->getNome());
         Perfil::recebe(m);
     }
 
@@ -67,8 +67,15 @@ namespace Polikut {
         }
         if (!temContato)
             throw logic_error("Voce nao tem esse contato!");
-        Mensagem* mensagem = new Mensagem(texto);
-        enviadas.adicionar(mensagem);
+        Mensagem* mensagem = new Mensagem(texto, this->getNome());
+        enviadas.push_back(mensagem);
         contato->recebe(mensagem);
+    }
+
+    void Pessoa::listar(std::ostream& os) const {
+        os << "P" << endl
+            << nome << endl
+            << dataDeNascimento << endl
+            << pais;
     }
 }

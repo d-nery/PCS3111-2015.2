@@ -66,25 +66,30 @@ namespace Polikut {
         return contatos;
     }
 
-	std::vector<Perfil*>& Perfil::verContatosAlcancaveis() {
-	    std::vector<Perfil*> visitados;
-	    visitados.push_back(this);
-	    bool visitado = false;
-        for (auto &i : contatos) {
-            visitados.push_back(i);
-        }
-        for (int l = 1; l < int(visitados.size()); l++) {
-            for (auto &j : visitados[l]->getContatos()) {
-                visitado = false;
-                for (auto &k : visitados) {
-                    if (j == k) {visitado = true; break;}
-                }
-                if (!visitado) {
-                    visitados.push_back(j);
-                }
-            }
-        }
+	// std::vector<Perfil*>& Perfil::verContatosAlcancaveis() {
+	//     std::vector<Perfil*> visitados;
+	//     visitados.push_back(this);
+	//     bool visitado = false;
+    //     for (auto &i : contatos) {
+    //         visitados.push_back(i);
+    //     }
+    //     for (int l = 1; l < int(visitados.size()); l++) {
+    //         for (auto &j : visitados[l]->getContatos()) {
+    //             visitado = false;
+    //             for (auto &k : visitados) {
+    //                 if (j == k) {visitado = true; break;}
+    //             }
+    //             if (!visitado) {
+    //                 visitados.push_back(j);
+    //             }
+    //         }
+    //     }
+	//
+    //     return visitados;
+    // }
 
-        return visitados;
-    }
+	std::ostream& operator<<(std::ostream& os, const Perfil* perf) {
+		perf->listar(os);
+		return os;
+	}
 }

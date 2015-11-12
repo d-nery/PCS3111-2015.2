@@ -28,6 +28,8 @@ namespace Polikut {
 
 		Pessoa* responsavel;
 
+		void listar(std::ostream& os) const;
+
 	public:
 		Departamento(std::string nome, std::string site, Pessoa* responsavel);
 

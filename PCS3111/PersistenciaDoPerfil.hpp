@@ -24,9 +24,10 @@ Professor Jaime S. Sichman
 namespace Polikut {
     class PersistenciaDoPerfil {
     private:
-        static std::fstream dados;
+        std::fstream dados;
+        std::string filename;
 
-        static std::vector<Perfil*> perfis;
+        std::vector<Perfil*> _perfis;
 
     public:
         PersistenciaDoPerfil(std::string arquivo);
@@ -38,5 +39,4 @@ namespace Polikut {
     };
 }
 
-
-#endif // _PERSISTENCIA_DO_PERFIL_HPP_
+#endif /* end of include guard: _PERSISTENCIA_DO_PERFIL_HPP_ */

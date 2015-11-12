@@ -38,6 +38,10 @@ namespace Polikut {
 		return this->responsavel;
 	}
 
+	void Departamento::setResponsavel(Pessoa* responsavel) {
+		this->responsavel = responsavel;
+	}
+
 	void Departamento::recebe(Mensagem* m) {
 		Perfil::recebe(m);
 		responsavel->recebe(m);
@@ -47,4 +51,10 @@ namespace Polikut {
 		this->contatos.push_back(contato);
 		contato->adicionadoPor(this);
 	}
+
+    void Departamento::listar(std::ostream& os) const {
+        os << "D" << std::endl
+            << nome << std::endl
+            << site;
+    }
 }
