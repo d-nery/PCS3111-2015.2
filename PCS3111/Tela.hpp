@@ -15,16 +15,21 @@ Professor Jaime S. Sichman
 #ifndef _TELA_HPP_
 #define _TELA_HPP_
 
+#include "PersistenciaDoPerfil.hpp"
+#include "Departamento.hpp"
 #include "Perfil.hpp"
 #include "Pessoa.hpp"
-#include "Departamento.hpp"
 
 namespace Polikut {
 	class Tela {
 	private:
 		std::vector<Perfil*> perfis;
+		PersistenciaDoPerfil* persistencia;
 
 	public:
+		// Inicia a persistencia
+		void inicio();
+
 		// Menu Principal
 		void principal();
 
@@ -61,6 +66,9 @@ namespace Polikut {
 
 		// Lista de perfis cadastrados
 		void listarPerfis();
+
+		// Salva o arquivo de persistencia
+		void savePersistencia();
 	};
 }
 

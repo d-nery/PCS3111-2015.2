@@ -38,21 +38,28 @@ namespace Polikut {
 
         dados.open(filename, std::ostream::in);
 
+        if (!dados)
+            throw std::runtime_error("Arquivo inexistente");
+
         while (dados) {
             c = dados.get();
             dados.get();
             if (c == 'P') {
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < 3; i++) {
                     std::getline(dados, data[i]);
+                    if (data[i] == "") throw std::runtime_error("Formato de arquivo invalido");
+                }
                 _perfis.push_back(new Pessoa(data[0], data[1], data[2]));
             } else if (c == 'D') {
-                for (int i = 0; i < 2; i++)
+                for (int i = 0; i < 2; i++) {
                     std::getline(dados, data[i]);
+                    if (data[i] == "") throw std::runtime_error("Formato de arquivo invalido");
+                }
                 _perfis.push_back(new Departamento(data[0], data[1]));
             } else if (c == '#') {
                 while (dados) {
                     dados >> numContatos;
-                    std::cerr << "numContatos: " << numContatos << std::endl;
+                    if (!dados) throw std::runtime_error("Formato de arquivo invalido");
                     for (int i = 0; i < numContatos; i++) {
                         dados >> num;
                         contatos.push_back(_perfis[num - 1]);

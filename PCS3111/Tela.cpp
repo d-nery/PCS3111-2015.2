@@ -29,6 +29,25 @@ extern HANDLE hOut;
 #endif // _WIN32
 
 namespace Polikut {
+	void Tela::inicio() {
+		string nome;
+
+		cout << "Informe o nome do arquivo: ";
+		cin >> nome;
+
+		persistencia = new PersistenciaDoPerfil(nome);
+
+		try {
+			perfis = persistencia->obter();
+			cout << "Perfis carregados com sucesso\n";
+		} catch (runtime_error& e) {
+			cout << e.what() << "\nIniciando uma rede social vazia\n";
+		}
+		cout << "Aperte enter para continuar\n";
+		cin.get();
+		while (cin.get() != '\n');
+	}
+
 	void Tela::principal() {
 		CLEAR;
 		cout << "\nPoli"; CPINK; cout << "Kut\n"; CRESET;
@@ -457,5 +476,9 @@ namespace Polikut {
 		for (int i = 0; i < int(perfis.size()); i++)
 			cout << i + 1 << ") " << perfis[i]->getNome() << "\n";
 		CRESET;
+	}
+
+	void Tela::savePersistencia() {
+		persistencia->salvar(perfis);
 	}
 }

@@ -34,6 +34,7 @@ int main() {
     Tela tela;                        ///< Interface com o usuario
 	int opcao = 0;                    // Opcao digitada pelo  usuario
 
+    tela.inicio();
 	tela.principal();                 // Mostra a tela inicial
 	for (;;) {
 		if(cin >> opcao)              // Recebe dados do usuario e checa o estado de cin para ver se o esperado (int) foi recebido
@@ -54,6 +55,7 @@ int main() {
 				break;
 
 			case 0:
+                tela.savePersistencia();
 				cout << "Volte Sempre!\n";
 				cin.get(); cin.get();       // Espera enter para nao fechar rapido demais
 				return 0;
