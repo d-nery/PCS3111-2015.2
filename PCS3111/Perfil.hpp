@@ -22,6 +22,7 @@ Professor Jaime S. Sichman
 #include "Mensagem.hpp"
 
 namespace Polikut {
+	class Mensagem;
 	class Perfil {
 	protected:
 		std::string nome;
@@ -32,6 +33,7 @@ namespace Polikut {
 
 		// Ponteiros para os contatos do perfil
 		std::vector<Perfil*> contatos;
+		std::vector<Perfil*> visitados;
 
 		friend std::ostream& operator<<(std::ostream& os, const Perfil* perf);
 

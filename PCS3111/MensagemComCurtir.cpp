@@ -19,9 +19,7 @@ Professor Jaime S. Sichman
 #include "MensagemComCurtir.hpp"
 
 namespace Polikut {
-    MensagemComCurtir::MensagemComCurtir() {}
-
-    MensagemComCurtir::MensagemComCurtir(std::string conteudo, std::string autor) :
+    MensagemComCurtir::MensagemComCurtir(std::string conteudo, Perfil* autor) :
 		Mensagem(conteudo, autor),
 		curtidas(0)
 	{}
@@ -38,6 +36,6 @@ namespace Polikut {
 
     void MensagemComCurtir::listar(std::ostream& os) const {
         os << conteudo << "  (" << curtidas << " curtida"
-            << (curtidas > 1 ? "s)" : ")");
+            << (curtidas > 1 ? "s) - " : ") - ") << autor->getNome();
     }
 }

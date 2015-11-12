@@ -34,10 +34,10 @@ namespace Polikut {
 	void Perfil::envia(std::string texto, bool curtir) {
 		Mensagem* mensagem;
 		if (curtir) {
-			mensagem = new MensagemComCurtir(texto, this->nome);
+			mensagem = new MensagemComCurtir(texto, this);
 		}
 		else {
-			mensagem = new Mensagem(texto, this->nome);
+			mensagem = new Mensagem(texto, this);
 		}
         for (auto &i : contatos)
             i->recebe(mensagem);
@@ -66,27 +66,25 @@ namespace Polikut {
         return contatos;
     }
 
-	// std::vector<Perfil*>& Perfil::verContatosAlcancaveis() {
-	//     std::vector<Perfil*> visitados;
-	//     visitados.push_back(this);
-	//     bool visitado = false;
-    //     for (auto &i : contatos) {
-    //         visitados.push_back(i);
-    //     }
-    //     for (int l = 1; l < int(visitados.size()); l++) {
-    //         for (auto &j : visitados[l]->getContatos()) {
-    //             visitado = false;
-    //             for (auto &k : visitados) {
-    //                 if (j == k) {visitado = true; break;}
-    //             }
-    //             if (!visitado) {
-    //                 visitados.push_back(j);
-    //             }
-    //         }
-    //     }
-	//
-    //     return visitados;
-    // }
+	std::vector<Perfil*>& Perfil::getContatosAlcancaveis() {
+		visitados.clear();
+	    visitados.push_back(this);
+	    bool visitado = false;
+        for (int l = 0; l < int(visitados.size()); l++) {
+            for (auto &j : visitados[l]->getContatos()) {
+                visitado = false;
+                for (auto &k : visitados) {
+                    if (j == k) {visitado = true; break;}
+                }
+                if (!visitado) {
+                    visitados.push_back(j);
+                }
+            }
+        }
+
+		visitados.erase(visitados.begin());
+        return visitados;
+    }
 
 	std::ostream& operator<<(std::ostream& os, const Perfil* perf) {
 		perf->listar(os);

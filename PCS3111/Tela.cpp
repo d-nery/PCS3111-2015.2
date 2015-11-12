@@ -14,6 +14,7 @@ Professor Jaime S. Sichman
 
 #include <stdexcept>
 #include <iostream>
+#include <utility>
 #include <string>
 
 #include "Tela.hpp"
@@ -152,7 +153,10 @@ namespace Polikut {
 			cout << pessoa->getDataDeNascimento(); CRESET; cout << " | "; CGREEN; cout << pessoa->getPais() << endl;
 			CRESET;
 			if (pessoa->getContatos().size() > 0 ) cout << "\nContatos: \n";
-			CGREEN; pessoa->verContatos(); CRESET;
+			CGREEN;
+			for (auto& i : pessoa->getContatos())
+				cout << '\t' << i->getNome() << endl;
+			CRESET;
 			cout << "-----------------------------------------\n\n"
 				 << "Escolha uma opcao:\n"
 				 << "1) Ver mensagens enviadas\n"
@@ -160,6 +164,7 @@ namespace Polikut {
 				 << "3) Escrever mensagem\n"
 				 << "4) Ver Contatos Alcancaveis\n"
 				 << "5) Adicionar contato\n"
+				 << "6) Remover contato\n"
 				 << "0) Voltar" << endl;
 
 			cout << "\nDigite uma opcao: ";
@@ -186,6 +191,10 @@ namespace Polikut {
 
 					case 5:
 					adicionarContato(pessoa);
+					break;
+
+					case 6:
+					removerContato(pessoa);
 		 			break;
 	 			}
  			else {
@@ -204,7 +213,10 @@ namespace Polikut {
 			cout << "Responsavel: " << departamento->getResponsavel()->getNome() << endl; CRESET;
 			CRESET;
 			if (departamento->getContatos().size() > 0 ) cout << "\nContatos: \n";
-			CGREEN; departamento->verContatos(); CRESET;
+			CGREEN;
+			for (auto& i : departamento->getContatos())
+				cout << '\t' << i->getNome() << endl;
+			CRESET;
 			cout << "-----------------------------------------\n\n"
 				 << "Escolha uma opcao:\n"
 				 << "1) Ver mensagens enviadas\n"
@@ -249,7 +261,7 @@ namespace Polikut {
             cout << "Perfis\n"
                  << "-----------------------------------------\n";
 			listarPerfis();
-            cout << "\nEscolha um contato para adicionar ou 0 para voltar: ";
+            cout << "\nEscolha um perfil para adicionar ou 0 para voltar: ";
 			if(cin >> opcao) {
 				if (opcao == 0)
 					return;
@@ -275,11 +287,47 @@ namespace Polikut {
 		}
 	}
 
+	void Tela::removerContato(Pessoa* pessoa) {
+		for (;;) {
+		CLEAR;
+			int opcao = 0;
+			int i = 0;
+			cout << "Contatos\n"
+				<<  "-----------------------------------------\n";
+			for (auto& c : pessoa->getContatos())
+				cout << ++i << ") " << c->getNome() << endl;
+			cout << "\nEscolha um contato para remover ou 0 para voltar: ";
+			if (cin >> opcao) {
+				if (opcao == 0)
+					return;
+				if (opcao >= 1 && opcao <= int(pessoa->getContatos().size())) {
+					if (pessoa->remove(pessoa->getContatos()[opcao - 1])) {
+						CGREEN; cout << pessoa->getContatos()[opcao - 1]->getNome(); CRESET;
+						cout << " removido com sucesso\n";
+					} else {
+						cout << "Não foi possível remover o contato\n";
+					}
+
+					cout << "\nAperte Enter para retornar\n";
+                    cin.get();
+                    while (cin.get() != '\n');
+                    return;
+				} else {
+					cin.clear();
+					while (cin.get() != '\n');
+				}
+			}
+
+		}
+	}
+
 	void Tela::mensagensEnviadas(Perfil* perfil) {
 		CLEAR;
 		cout << "Mensagens Enviadas\n"
 		 	 << "-----------------------------------------\n";
-		perfil->getMensagensEnviadas().listar();
+		for (auto& m : perfil->getMensagensEnviadas()) {
+			cout << m << endl;
+		}
         cout << "\nAperte Enter para retornar\n";
 		cin.get();
 		while (cin.get() != '\n');
@@ -290,20 +338,26 @@ namespace Polikut {
 		for (;;) {
 		    CLEAR;
 			int opcao = 0;
+			int i = 0;
+			vector<Mensagem*> mensagens;
 			cout << "Mensagens Recebidas\n"
 				 << "-----------------------------------------\n";
-			perfil->getMensagensRecebidas().listar();
+			for (auto& m : perfil->getMensagensRecebidas()) {
+				mensagens.push_back(m);
+				cout << ++i << ") " << m << endl;
+			}
 
-			if (perfil->getMensagensRecebidas().getTotal() > 0)
+			if (perfil->getMensagensRecebidas().size() > 0)
 				cout << "\nDigite o numero da mensagem para curtir ou 0 para voltar: ";
 			else
 				cout << "\nDigite 0 para voltar: ";
 
 			if(cin >> opcao) {
-				if (opcao == 0)
+				if (opcao == 0) {
 					return;
-				if (opcao > 0 && opcao <= perfil->getMensagensRecebidas().getTotal()) {
-					MensagemComCurtir* msg = dynamic_cast<MensagemComCurtir*>(perfil->getMensagensRecebidas().getMensagem(opcao));
+				}
+				if (opcao > 0 && opcao <= perfil->getMensagensRecebidas().size()) {
+					MensagemComCurtir* msg = dynamic_cast<MensagemComCurtir*>(mensagens[opcao - 1]);
 					if (msg != nullptr) msg->curtir();
 				}
 			} else {
@@ -390,7 +444,8 @@ namespace Polikut {
 		CLEAR;
 		cout << "Contatos Alcancaveis\n"
             <<  "--------------------\n";
-        perfil->verContatosAlcancaveis();
+        for (auto& i : perfil->getContatosAlcancaveis())
+			cout << i->getNome() << endl;
 		cout << "\nAperte Enter para continuar\n";
 
 		cin.get();

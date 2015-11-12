@@ -46,6 +46,9 @@ namespace Polikut {
 		// Tela para adicionar um contato a pessoa
 		void adicionarContato(Pessoa* pessoa);
 
+		// Tela para remover um contato de pessoa
+		void removerContato(Pessoa* pessoa);
+
 		// Telas com as mensagens enviadas e recebidas de perfil
 		void mensagensEnviadas(Perfil* perfil);
 		void mensagensRecebidas(Perfil* perfil);

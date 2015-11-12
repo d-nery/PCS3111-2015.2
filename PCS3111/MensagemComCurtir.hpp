@@ -28,11 +28,8 @@ namespace Polikut {
 
 		void listar(std::ostream& os) const;
 	public:
-		// Cria uma mensagem vazia
-		MensagemComCurtir();
-
 		//Cria uma mensagem com conteudo
-		MensagemComCurtir(std::string conteudo, std::string autor);
+		MensagemComCurtir(std::string conteudo, Perfil* autor);
 
 		// Destroi a mensagem
 		~MensagemComCurtir();

@@ -18,6 +18,8 @@ Professor Jaime S. Sichman
 #include <iostream>
 #include <string>
 
+#include "Perfil.hpp"
+
 /**
  * Classe mensagem
  *
@@ -25,29 +27,29 @@ Professor Jaime S. Sichman
  */
 
 namespace Polikut {
+	class Perfil;
 	class Mensagem {
 	protected:
 		// Conteudo da mensagem
 		std::string conteudo;
 
-		std::string autor;
+		Perfil* autor;
 
 		friend std::ostream& operator<<(std::ostream& os, const Mensagem* msg);
 
 		// Lista a msg
 		virtual void listar(std::ostream& os) const;
 	public:
-		// Cria uma mensagem vazia
-		Mensagem();
-
 		//Cria uma mensagem com conteudo
-		Mensagem(std::string conteudo, std::string autor);
+		Mensagem(std::string conteudo, Perfil* autor);
 
 		// Destroi a mensagem
 		virtual ~Mensagem();
 
 		// Retorna o conteudo da mensagem
-		std::string getConteudo() const;
+		std::string getTexto();
+
+		Perfil* getAutor();
 	};
 }
 

@@ -17,21 +17,24 @@ Professor Jaime S. Sichman
 #include "Mensagem.hpp"
 
 namespace Polikut {
-    Mensagem::Mensagem() {}
 
-    Mensagem::Mensagem(std::string conteudo, std::string autor) :
+    Mensagem::Mensagem(std::string conteudo, Perfil* autor) :
         conteudo(conteudo),
         autor(autor)
     {}
 
     Mensagem::~Mensagem() {}
 
-    std::string Mensagem::getConteudo() const {
+    std::string Mensagem::getTexto() {
         return conteudo;
     }
 
+    Perfil* Mensagem::getAutor() {
+        return autor;
+    }
+
     void Mensagem::listar(std::ostream& os) const {
-        os << conteudo;
+        os << conteudo << " - " << autor->getNome();
     }
 
     std::ostream& operator<<(std::ostream& os, const Mensagem* msg) {

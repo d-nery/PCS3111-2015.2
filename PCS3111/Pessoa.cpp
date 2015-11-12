@@ -51,9 +51,24 @@ namespace Polikut {
         contato->adicionadoPor(this);
     }
 
+    bool Pessoa::remove(Perfil* contato) {
+        int i;
+
+        for (i = 0; i < contatos.size(); i++) {
+            if (contatos[i] == contato) {
+                Mensagem* msg = new Mensagem(nome + " removeu voce como contato.", this);
+                contatos[i]->recebe(msg);
+                contatos.erase(contatos.begin() + i);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     void Pessoa::adicionadoPor(Perfil* contato) {
         std::string texto = contato->getNome() + " adicionou voce como contato.";
-        Mensagem* m = new Mensagem(texto, contato->getNome());
+        Mensagem* m = new Mensagem(texto, contato);
         Perfil::recebe(m);
     }
 
@@ -67,7 +82,7 @@ namespace Polikut {
         }
         if (!temContato)
             throw logic_error("Voce nao tem esse contato!");
-        Mensagem* mensagem = new Mensagem(texto, this->getNome());
+        Mensagem* mensagem = new Mensagem(texto, this);
         enviadas.push_back(mensagem);
         contato->recebe(mensagem);
     }
