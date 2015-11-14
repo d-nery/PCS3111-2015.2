@@ -54,7 +54,7 @@ namespace Polikut {
     bool Pessoa::remove(Perfil* contato) {
         int i;
 
-        for (i = 0; i < contatos.size(); i++) {
+        for (i = 0; i < int(contatos.size()); i++) {
             if (contatos[i] == contato) {
                 Mensagem* msg = new Mensagem(nome + " removeu voce como contato.", this);
                 contatos[i]->recebe(msg);

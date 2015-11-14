@@ -37,10 +37,10 @@ Mais Uma Pessoa
 15/06/1994
 Nigéria
 D
-Outr Departamento
+Outro Departamento
 www.departamento57.net
 #
-3 2 7 4
+4 2 7 4 6
 2 3 5
 1 4
 2 2 5

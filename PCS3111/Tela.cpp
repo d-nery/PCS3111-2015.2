@@ -281,7 +281,7 @@ namespace Polikut {
                  << "-----------------------------------------\n";
 			listarPerfis();
             cout << "\nEscolha um perfil para adicionar ou 0 para voltar: ";
-			if(cin >> opcao) {
+			if (cin >> opcao) {
 				if (opcao == 0)
 					return;
 				if (opcao >= 1 && opcao <= int(perfis.size())) {
@@ -313,8 +313,10 @@ namespace Polikut {
 			int i = 0;
 			cout << "Contatos\n"
 				<<  "-----------------------------------------\n";
+			CGREEN;
 			for (auto& c : pessoa->getContatos())
 				cout << ++i << ") " << c->getNome() << endl;
+			CRESET;
 			cout << "\nEscolha um contato para remover ou 0 para voltar: ";
 			if (cin >> opcao) {
 				if (opcao == 0)
@@ -335,8 +337,10 @@ namespace Polikut {
 					cin.clear();
 					while (cin.get() != '\n');
 				}
+			} else {
+				cin.clear();
+				while (cin.get() != '\n');
 			}
-
 		}
 	}
 
@@ -375,7 +379,7 @@ namespace Polikut {
 				if (opcao == 0) {
 					return;
 				}
-				if (opcao > 0 && opcao <= perfil->getMensagensRecebidas().size()) {
+				if (opcao > 0 && opcao <= int(perfil->getMensagensRecebidas().size())) {
 					MensagemComCurtir* msg = dynamic_cast<MensagemComCurtir*>(mensagens[opcao - 1]);
 					if (msg != nullptr) msg->curtir();
 				}

@@ -41,6 +41,11 @@ namespace Polikut {
         if (!dados)
             throw std::runtime_error("Arquivo inexistente");
 
+        c = dados.get();
+        if (c != 'P' && c != 'D')
+            throw std::runtime_error("Formato de arquivo invalido");
+        dados.unget();
+
         while (dados) {
             c = dados.get();
             dados.get();
@@ -71,7 +76,7 @@ namespace Polikut {
                     if (dados.get() != '\n') throw std::runtime_error("Formato de arquivo invalido - numero de contatos errado.");
                     _perfis[j++]->setContatos(contatos);
                     contatos.clear();
-                    if (j >= _perfis.size()) break;
+                    if (j >= int(_perfis.size())) break;
                 }
                 break;
             } else {
@@ -95,13 +100,13 @@ namespace Polikut {
         for (auto& i : perfis) {
             dados << i->getContatos().size();
             for (auto& j : i->getContatos()) {
-                for (int k = 0; k < perfis.size(); k++) {
+                for (int k = 0; k < int(perfis.size()); k++) {
                     if (j == perfis[k])
                         dados << " " << k + 1;
                 }
             }
             if (dynamic_cast<Departamento*>(i) != nullptr) {
-                for (int j = 0; j < perfis.size(); j++)
+                for (int j = 0; j < int(perfis.size()); j++)
                     if (perfis[j] == dynamic_cast<Departamento*>(i)->getResponsavel())
                         dados << " " << j + 1;
             }
