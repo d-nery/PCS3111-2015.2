@@ -12,6 +12,7 @@ Turma 23
 Professor Jaime S. Sichman
 **/
 
+#include <algorithm>
 #include <iostream>
 
 #include "Departamento.hpp"
@@ -48,6 +49,8 @@ namespace Polikut {
 	}
 
 	void Departamento::adicionadoPor(Perfil* contato) {
+		if (find(contatos.begin(), contatos.end(), contato) != contatos.end()) // Contato ja adicionado
+			return;
 		this->contatos.push_back(contato);
 		contato->adicionadoPor(this);
 	}

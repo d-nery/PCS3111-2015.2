@@ -74,7 +74,7 @@ namespace Polikut {
             for (auto &j : visitados[l]->getContatos()) {
                 visitado = false;
                 for (auto &k : visitados) {
-                    if (j == k) {visitado = true; break;}
+                    if (j == k) { visitado = true; break; }
                 }
                 if (!visitado) {
                     visitados.push_back(j);

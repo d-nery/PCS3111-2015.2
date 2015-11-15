@@ -13,6 +13,7 @@ Professor Jaime S. Sichman
 **/
 
 #include <stdexcept>
+#include <algorithm>
 #include <string>
 
 #include "PersistenciaDoPerfil.hpp"
@@ -67,6 +68,8 @@ namespace Polikut {
                     if (!dados) throw std::runtime_error("Formato de arquivo invalido");
                     for (int i = 0; i < numContatos; i++) {
                         dados >> num;
+                        if (find(contatos.begin(), contatos.end(), _perfis[num - 1]) != contatos.end())
+                            throw std::runtime_error("Formato de arquivo invalido - contatos de " + _perfis[j]->getNome() + " repetidos");
                         contatos.push_back(_perfis[num - 1]);
                     }
                     if (dynamic_cast<Departamento*>(_perfis[j]) != nullptr) {

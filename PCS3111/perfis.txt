@@ -39,15 +39,20 @@ Nigéria
 D
 Outro Departamento
 www.departamento57.net
+P
+Pessoa 5
+19/04/2014
+Sei l�
 #
-4 2 7 4 6
+4 2 3 6 7
 2 3 5
 1 4
 2 2 5
 2 2 4 3
 3 8 11 9
-2 1 1 6
+2 1 5 6
 1 4
 0
 0
-1 6 10
+2 6 1 10
+0
